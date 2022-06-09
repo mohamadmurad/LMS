@@ -1,0 +1,140 @@
+.guest-body {
+    background-image: url("../img/imc_image_lms_schools_2021_10.jpg");
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*box-shadow: inset 0 0 0 2000px rgb(179 179 179 / 21%);*/
+    /*min-height: 100%;*/
+}
+
+.guest-body .main-content {
+
+}
+
+#status-group .radio {
+    display: inline-block;
+    position: relative;
+}
+
+#status-group .radio {
+    min-height: 145px;
+    min-width: 145px;
+}
+
+#status-group .radio {
+    display: inline-block;
+    position: relative;
+}
+
+#status-group {
+    text-align: center;
+}
+
+#status-group .radio label {
+    min-height: 20px;
+    /*padding-left: 20px;*/
+    margin-bottom: 0;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+input[name='status'] {
+    position: relative !important;
+    margin-left: 0 !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#status-group .radio label p {
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+input.register-profile[value='0']:after {
+    position: relative;
+    top: 0;
+    display: block;
+    content: ' ';
+    background: url(../img/coursestudent_na.svg);
+    width: 132px;
+    height: 132px;
+    border-radius: 0;
+    -webkit-transition: color 1s, -webkit-box-shadow 1s;
+    transition: color 1s, -webkit-box-shadow 1s;
+    transition: box-shadow 1s, color 1s;
+    transition: box-shadow 1s, color 1s, -webkit-box-shadow 1s;
+    border: 4px solid #FFFFFF;
+}
+
+input.register-profile[value='0']:checked:after {
+    -webkit-box-shadow: 2px 2px 14px rgb(0 0 0 / 40%);
+    box-shadow: 2px 2px 10px rgb(0 0 0 / 20%);
+    background: url(../img/coursestudent.svg);
+    border-color: #E4CE80;
+    transition: all 250ms ease;
+    will-change: transition;
+    top: 5px;
+}
+
+input.register-profile[value='1']:after {
+    position: relative;
+    top: 0;
+    display: block;
+    content: ' ';
+    background: url(../img/coursemanager_na.svg);
+    width: 132px;
+    height: 132px;
+    border-radius: 0;
+    -webkit-transition: color 1s, -webkit-box-shadow 1s;
+    transition: color 1s, -webkit-box-shadow 1s;
+    transition: box-shadow 1s, color 1s;
+    transition: box-shadow 1s, color 1s, -webkit-box-shadow 1s;
+    border: 4px solid #FFFFFF;
+}
+
+input.register-profile[value='1']:checked:after {
+    -webkit-box-shadow: 2px 2px 14px rgb(0 0 0 / 40%);
+    box-shadow: 2px 2px 10px rgb(0 0 0 / 20%);
+    background: url(../img/coursemanager.svg);
+    border-color: #76CDE4;
+    transition: all 250ms ease;
+    will-change: transition;
+    top: 5px;
+}
+
+img.edit-image {
+    width: 500px;
+    align-self: center;
+    border-radius: 20px;
+    box-shadow: 3px 2px 20px 0px #ececec;
+    margin: 20px 20px;
+}
+
+
+.course-tool .big-icon {
+    padding: 10px;
+    text-align: center;
+}
+
+.big-icon img {
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px #c8c8c8;
+    border: 1px solid #e6e6e6;
+}
+.course-tool .content {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    width: 100%;
+    height: 50px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
