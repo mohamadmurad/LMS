@@ -43,6 +43,7 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'birthdate' => ['required', 'date'],
+            'cert_img' => ['required_if:status,1', 'image'],
         ]);
 
 
@@ -62,6 +63,10 @@ class RegisteredUserController extends Controller
             } else {
 
                 $user->syncRoles(['teacher']);
+                if ($request->hasFile('cert_img')) {
+                    //$user->hasMedia('certificate') ? $teacher->getFirstMedia('certificate')->delete(): null;
+                    $user->addMediaFromRequest('cert_img')->toMediaCollection('certificate');
+                }
             }
             event(new Registered($user));
 

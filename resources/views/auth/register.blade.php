@@ -9,18 +9,18 @@
         <div class="card-body">
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors"/>
-            <form role="form" method="POST" action="{{ route('register') }}">
+            <form role="form" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                 @csrf
                 <div id="status-group">
 
                     <div class="radio">
                         <label class=""><input class="register-profile" data-order="1" value="0" type="radio"
-                                               id="qf_0feebc" name="status" checked="checked">
+                                               id="qf_0feebc" name="status" {{old('status') == '0' || old('status') == null ? 'checked' :''}}>
                             <p class="caption">Student</p></label>
                     </div>
                     <div class="radio">
                         <label class=""><input class="register-profile" data-order="2" value="1" type="radio"
-                                               id="qf_83c64e" name="status">
+                                               id="qf_83c64e" name="status" {{old('status') == '1' ? 'checked' :''}}>
                             <p class="caption">Teacher</p></label>
                     </div>
                 </div>
@@ -52,12 +52,18 @@
                 </div>
 
                 <div class="mb-3">
-                    <input type="text" data-date="dirthdate" class="form-control" placeholder="dirthdate" value="{{old('birthdate')}}"
+                    <input type="text" data-date="dirthdate" class="form-control" placeholder="dirthdate"
+                           value="{{old('birthdate')}}"
                            aria-label="birthdate"
                            name="birthdate" required>
 
                 </div>
 
+                <div class="form-group" id="cert_img" style="display: none">
+                    <label for="example-text-input" class="form-control-label">Certificate Image</label>
+                    <input class="form-control" type="file" name="cert_img" accept="image/*">
+
+                </div>
                 <div class="text-center">
                     <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
                 </div>
@@ -69,51 +75,22 @@
     </div>
 
 
-    {{--        <form method="POST" action="{{ route('register') }}">--}}
-    {{--            @csrf--}}
+    @section('scripts')
 
-    {{--            <!-- Name -->--}}
-    {{--            <div>--}}
-    {{--                <x-label for="name" :value="__('Name')" />--}}
+        <script>
+            $('input[type=radio][name="status"]').change(function () {
+                let val = $(this).val();
+                if (val == 1) {
+                    $('#cert_img').show();
+                    $('#cert_img input').attr('required', true);
+                } else {
+                    $('#cert_img').hide();
+                    $('#cert_img input').attr('required', false);
+                }
 
-    {{--                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />--}}
-    {{--            </div>--}}
+            })
 
-    {{--            <!-- Email Address -->--}}
-    {{--            <div class="mt-4">--}}
-    {{--                <x-label for="email" :value="__('Email')" />--}}
-
-    {{--                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />--}}
-    {{--            </div>--}}
-
-    {{--            <!-- Password -->--}}
-    {{--            <div class="mt-4">--}}
-    {{--                <x-label for="password" :value="__('Password')" />--}}
-
-    {{--                <x-input id="password" class="block mt-1 w-full"--}}
-    {{--                                type="password"--}}
-    {{--                                name="password"--}}
-    {{--                                required autocomplete="new-password" />--}}
-    {{--            </div>--}}
-
-    {{--            <!-- Confirm Password -->--}}
-    {{--            <div class="mt-4">--}}
-    {{--                <x-label for="password_confirmation" :value="__('Confirm Password')" />--}}
-
-    {{--                <x-input id="password_confirmation" class="block mt-1 w-full"--}}
-    {{--                                type="password"--}}
-    {{--                                name="password_confirmation" required />--}}
-    {{--            </div>--}}
-
-    {{--            <div class="flex items-center justify-end mt-4">--}}
-    {{--                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">--}}
-    {{--                    {{ __('Already registered?') }}--}}
-    {{--                </a>--}}
-
-    {{--                <x-button class="ml-4">--}}
-    {{--                    {{ __('Register') }}--}}
-    {{--                </x-button>--}}
-    {{--            </div>--}}
-    {{--        </form>--}}
-
+            //$('#cert_img')
+        </script>
+    @endsection
 </x-guest-layout>

@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\TeacherNoVerify;
+use App\Http\Middleware\TeacherVerify;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Spatie\Permission\Middlewares\RoleMiddleware;
 
@@ -65,5 +67,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'role' => RoleMiddleware::class,
+        'TeacherVerify' => TeacherVerify::class,
+        'notVerified' => TeacherNoVerify::class,
     ];
 }

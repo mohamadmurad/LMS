@@ -28,11 +28,20 @@ Route::middleware('auth')->group(function () {
         Route::resource('categories', \App\Http\Controllers\CategoryController::class);
 
 
+        Route::resource('teachers', \App\Http\Controllers\TeacherController::class);
+        Route::get('techVerify/{teacher}', [\App\Http\Controllers\TeacherController::class, 'verify'])->name('teachers.verify');
+
+
 
     });
 
+    Route::get('teacher/notVerified', function () {
+        return view('backend.teachers.notVerified');
+    })->name('backend.teacher.notVerified')->middleware(['notVerified']);
 
-    Route::group(['prefix' => 'teacher', 'as' => 'backend.', 'middleware' => ['role:teacher|Admin']], function () {
+    Route::group(['prefix' => 'teacher', 'as' => 'backend.', 'middleware' => ['role:teacher|Admin','TeacherVerify']], function () {
+
+
 
         Route::get('/dashboard', function () {
             return view('dashboard');

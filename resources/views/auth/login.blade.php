@@ -2,14 +2,15 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <!-- Validation Errors -->
-    <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
     <div class="card ">
         <div class="card-header pb-0 text-start">
             <h4 class="font-weight-bolder">Sign In</h4>
             <p class="mb-0">Enter your email and password to sign in</p>
         </div>
         <div class="card-body">
+            <!-- Validation Errors -->
+            <x-auth-validation-errors class="mb-4" :errors="$errors" />
             <form role="form" method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="mb-3">
