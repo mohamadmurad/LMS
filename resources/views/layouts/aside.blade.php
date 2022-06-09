@@ -42,16 +42,16 @@
 {{--                        <span class="nav-link-text ms-1">teachers</span>--}}
 {{--                    </a>--}}
 {{--                </li>--}}
-{{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link {{request()->routeIs('backend.students.index')? 'active': ''}}"--}}
-{{--                       href="{{route('backend.students.index')}}">--}}
-{{--                        <div--}}
-{{--                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">--}}
-{{--                            <i class="fa fa-users text-primary text-sm opacity-10"></i>--}}
-{{--                        </div>--}}
-{{--                        <span class="nav-link-text ms-1">students</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+                <li class="nav-item">
+                    <a class="nav-link {{request()->routeIs('backend.students.index')? 'active': ''}}"
+                       href="{{route('backend.students.index')}}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa fa-users text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">students</span>
+                    </a>
+                </li>
 {{--                <li class="nav-item">--}}
 {{--                    <a class="nav-link {{request()->routeIs('backend.rules.index')? 'active': ''}}"--}}
 {{--                       href="{{route('backend.rules.index')}}">--}}
@@ -154,6 +154,16 @@
                         <span class="nav-link-text ms-1">Subjects</span>
                     </a>
                 </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{request()->routeIs('backend.students.index')? 'active': ''}}"
+                           href="{{route('backend.students.index')}}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fa fa-users text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">students</span>
+                        </a>
+                    </li>
 {{--                <li class="nav-item">--}}
 {{--                    <a class="nav-link {{request()->routeIs('backend.badgeRule.index')? 'active': ''}}"--}}
 {{--                       href="{{route('backend.badgeRule.index')}}">--}}

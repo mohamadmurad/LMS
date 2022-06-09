@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
     return view('welcome');
 });
 
@@ -25,6 +26,9 @@ Route::middleware('auth')->group(function () {
     Route::group(['prefix' => 'teacher', 'as' => 'backend.', 'middleware' => ['role:Admin']], function () {
 
         Route::resource('categories', \App\Http\Controllers\CategoryController::class);
+
+
+
     });
 
 
@@ -36,6 +40,8 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('subjects', \App\Http\Controllers\SubjectController::class);
         Route::resource('subjects/{subject}/modules', \App\Http\Controllers\ModuleController::class);
+
+        Route::resource('students', \App\Http\Controllers\StudentController::class);
     });
 
     Route::group(['prefix' => 'student', 'as' => 'student.', 'middleware' => ['auth', 'role:student']], function () {
