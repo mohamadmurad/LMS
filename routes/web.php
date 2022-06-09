@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
 
 
         Route::resource('teachers', \App\Http\Controllers\TeacherController::class);
+        Route::resource('admins', \App\Http\Controllers\AdminController::class);
         Route::get('techVerify/{teacher}', [\App\Http\Controllers\TeacherController::class, 'verify'])->name('teachers.verify');
 
 

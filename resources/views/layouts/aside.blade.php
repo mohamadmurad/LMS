@@ -22,16 +22,16 @@
                         <span class="nav-link-text ms-1">Dashboard</span>
                     </a>
                 </li>
-{{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link {{request()->routeIs('backend.admins.index')? 'active': ''}}"--}}
-{{--                       href="{{route('backend.admins.index')}}">--}}
-{{--                        <div--}}
-{{--                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">--}}
-{{--                            <i class="fa fa-lock-open text-primary text-sm opacity-10"></i>--}}
-{{--                        </div>--}}
-{{--                        <span class="nav-link-text ms-1">Admins</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+                <li class="nav-item">
+                    <a class="nav-link {{request()->routeIs('backend.admins.*')? 'active': ''}}"
+                       href="{{route('backend.admins.index')}}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa fa-lock-open text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Admins</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link {{request()->routeIs('backend.teachers.index')? 'active': ''}}"
                        href="{{route('backend.teachers.index')}}">
