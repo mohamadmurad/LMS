@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
         })->name('dashboard.index');
 
         Route::resource('subjects', \App\Http\Controllers\SubjectController::class);
+        Route::resource('subjects/{subject}/modules', \App\Http\Controllers\ModuleController::class);
     });
 
     Route::group(['prefix' => 'student', 'as' => 'student.', 'middleware' => ['auth', 'role:student']], function () {

@@ -50,12 +50,12 @@
                         <div class="col-xs-12 col-sm-4 col-md-3">
                             <div class="course-tool">
                                 <div class="big-icon">
-                                    <a href="#">
+                                    <a href="{{route('backend.modules.index',$subject)}}">
                                         <img  src="{{asset('assets/img/course_progress.png')}}" alt="Modules" title="Module"/>
                                     </a>
                                 </div>
                                 <div class="content">
-                                    <a href="#">Modules</a>
+                                    <a href="{{route('backend.modules.index',$subject)}}">Modules</a>
                                 </div>
                             </div>
                         </div>

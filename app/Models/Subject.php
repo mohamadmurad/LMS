@@ -25,6 +25,11 @@ class Subject extends Model implements HasMedia
             if ($subject->hasMedia('cover')) {
                 $subject->getFirstMedia('cover')->delete();
             }
+
+            $subject->modules()->each(function ($module){
+                $module->delete();
+            });
+
         });
     }
 
@@ -36,7 +41,7 @@ class Subject extends Model implements HasMedia
         'creator_id',
     ];
 
-    // Article model
+
     public function getRouteKeyName()
     {
         return 'slug';
@@ -46,5 +51,9 @@ class Subject extends Model implements HasMedia
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    public function modules(){
+        return $this->hasMany(Module::class,'subject_id','id');
     }
 }
