@@ -40,4 +40,8 @@ class Module extends Model
     {
         return $this->belongsTo(Subject::class, 'subject_id', 'id');
     }
+
+    public function objectives(){
+        return $this->hasMany(Objective::class,'module_id','id');
+    }
 }

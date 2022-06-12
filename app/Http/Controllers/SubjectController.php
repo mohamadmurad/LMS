@@ -169,6 +169,9 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
+        if ($subject->hasMedia('cover')) {
+            $subject->getFirstMedia('cover')->delete();
+        }
         $subject->delete();
         $this->successFlash('Subject Deleted Successfully');
         return redirect()->route('backend.subjects.index');

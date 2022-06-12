@@ -42,6 +42,9 @@ Route::middleware('auth')->group(function () {
 
     Route::group(['prefix' => 'teacher', 'as' => 'backend.', 'middleware' => ['role:teacher|Admin','TeacherVerify']], function () {
 
+        Route::post('upload/image', [\App\Http\Controllers\HelperController::class, 'upload_image'])->name('upload.image');
+
+
 
 
         Route::get('/dashboard', function () {
@@ -50,6 +53,7 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('subjects', \App\Http\Controllers\SubjectController::class);
         Route::resource('subjects/{subject}/modules', \App\Http\Controllers\ModuleController::class);
+        Route::resource('subjects/{subject}/modules/{module}/objectives', \App\Http\Controllers\ObjectiveController::class);
 
         Route::resource('students', \App\Http\Controllers\StudentController::class);
     });

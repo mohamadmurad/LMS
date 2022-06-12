@@ -69,60 +69,52 @@
 
                         <h5>Objectives</h5>
                         <ul class="list-group">
-                            {{--                                            @foreach($module->objectives as $objective)--}}
-                            {{--                                                <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-start text-white">--}}
-                            {{--                                                    <a class=""--}}
-                            {{--                                                       href="{{route('teacher.objectives.show',[--}}
-                            {{--                                                'subject'=>$subject,--}}
-                            {{--                                                'module' => $module,--}}
-                            {{--                                                'objective' => $objective--}}
-                            {{--                                            ])}}">--}}
-                            {{--                                                        <i class="fa  {{$objective->type ? 'fa-video' : 'fa-book'}} me-2"></i>{{$objective->name}}--}}
-                            {{--                                                        <br>--}}
-                            {{--                                                        <i class="fa fa-gift me-2"></i>{{$objective->points['count']}} points--}}
+                            @foreach($module->objectives as $objective)
+                                <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-start text-white">
+                                    <a class=""
+                                       href="{{route('backend.objectives.show',['subject'=>$subject,'module' => $module,'objective' => $objective])}}">
+                                        <i class="fa fa-book me-2"></i>{{$objective->name}}
+                                        <br>
+                                        {{--                                        <i class="fa fa-gift me-2"></i>{{$objective->points['count']}} points--}}
 
-                            {{--                                                    </a>--}}
-                            {{--                                                    <form action="{{route('teacher.objectives.destroy',[--}}
-                            {{--                                            'subject'=>$subject,--}}
-                            {{--                                            'module' => $module,--}}
-                            {{--                                               'objective' => $objective--}}
-                            {{--                                            ])}}" method="POST">--}}
-                            {{--                                                        @csrf--}}
-                            {{--                                                        @method('delete')--}}
-                            {{--                                                        <a class="btn btn-link" href="{{route('teacher.objectives.edit',[--}}
-                            {{--                                            'subject'=>$subject,--}}
-                            {{--                                            'module' => $module,--}}
-                            {{--                                            'objective' => $objective--}}
-                            {{--                                        ])}}"><i class="fa fa-pencil me-2"></i>Edit</a>--}}
+                                    </a>
+                                    <form
+                                        action="{{route('backend.objectives.destroy',['subject'=>$subject,'module' => $module,'objective' => $objective])}}"
+                                        method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <a class="btn btn-link"
+                                           href="{{route('backend.objectives.edit',['subject'=>$subject,'module' => $module, 'objective' => $objective])}}">
+                                            <i class="fa fa-pencil me-2"></i>Edit</a>
 
-                            {{--                                                        <a type="submit" class="text-danger font-weight-bold btn btn-link "--}}
-                            {{--                                                           onclick="delete_submit(this)"><i class="fa fa-trash me-2"></i>Delete</a>--}}
-                            {{--                                                    </form>--}}
+                                        <a type="submit" class="text-danger font-weight-bold btn btn-link "
+                                           onclick="delete_submit(this)"><i class="fa fa-trash me-2"></i>Delete</a>
+                                    </form>
 
-                            {{--                                                </li>--}}
+                                </li>
 
-                            {{--                                            @endforeach--}}
+                            @endforeach
                         </ul>
                     </div>
                     <div class="card-footer d-flex justify-content-center align-items-center gap-2">
-                        {{--                                        <a href="{{route('teacher.objectives.create',[--}}
-                        {{--                                'subject'=>$subject,--}}
-                        {{--                                'module' => $module--}}
-                        {{--                            ])}}" class="subject-create"><i class="fa fa-plus-circle  me-2"></i>Create Objective</a>--}}
-                        {{--                                        @if($module->exam)--}}
-                        {{--                                            <a href="{{route('teacher.module.exam.show',[--}}
-                        {{--                                        'subject'=>$subject,--}}
-                        {{--                                        'module' => $module,--}}
-                        {{--                                        'exam' => $module->exam,--}}
-                        {{--                                    ])}}" class="subject-create">--}}
-                        {{--                                                <i class="fa fa-book  me-2"></i>show</a>--}}
-                        {{--                                        @else--}}
-                        {{--                                            <a href="{{route('teacher.module.exam.create',[--}}
-                        {{--                                        'subject'=>$subject,--}}
-                        {{--                                        'module' => $module--}}
-                        {{--                                    ])}}" class="subject-create">--}}
-                        {{--                                                <i class="fa fa-book-open  me-2"></i>Create final Test</a>--}}
-                        {{--                                        @endif--}}
+                        <a href="{{route('backend.objectives.create',['subject'=>$subject,'module' => $module])}}"
+                           class="subject-create">
+                            <i class="fa fa-plus-circle  me-2"></i>Create Objective
+                        </a>
+                        {{--                        @if($module->exam)--}}
+                        {{--                            <a href="{{route('teacher.module.exam.show',[--}}
+                        {{--                                                                'subject'=>$subject,--}}
+                        {{--                                                                'module' => $module,--}}
+                        {{--                                                                'exam' => $module->exam,--}}
+                        {{--                                                            ])}}" class="subject-create">--}}
+                        {{--                                <i class="fa fa-book  me-2"></i>show</a>--}}
+                        {{--                        @else--}}
+                        {{--                            <a href="{{route('teacher.module.exam.create',[--}}
+                        {{--                                                                'subject'=>$subject,--}}
+                        {{--                                                                'module' => $module--}}
+                        {{--                                                            ])}}" class="subject-create">--}}
+                        {{--                                <i class="fa fa-book-open  me-2"></i>Create final Test</a>--}}
+                        {{--                        @endif--}}
 
 
                     </div>

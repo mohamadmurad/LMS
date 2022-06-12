@@ -96,7 +96,7 @@
     tinymce.init({
         selector: '.editor,#editor',
         plugins: ' advlist image video media autolink code codesample directionality table wordcount quickbars link lists numlist bullist',
-        {{--images_upload_url: "{{route('admin.upload.image',['_token' => csrf_token() ])}}",--}}
+        images_upload_url: "{{route('backend.upload.image',['_token' => csrf_token() ])}}",
         file_picker_types: 'file image media',
         image_caption: true,
         image_dimensions: true,
