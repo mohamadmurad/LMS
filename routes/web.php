@@ -13,10 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\FrontContrller::class,'home'])->name('home');
+Route::get('/subjects', [\App\Http\Controllers\FrontContrller::class,'subjects'])->name('subjects');
 
 
 
