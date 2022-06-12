@@ -65,6 +65,18 @@ class User extends Authenticatable implements HasMedia
     }
 
 
+    public function enrolledSubject(){
+        return $this->belongsToMany(Subject::class,'enrolls','student_id','subject_id')
+         //   ->withPivot('level_id')
+            ->withTimestamps();
+    }
+
+    public function seen(){
+        return $this->belongsToMany(Objective::class,'objective_seen','student_id','objective_id')
+            ->withTimestamps();
+    }
+
+
 
 
 }

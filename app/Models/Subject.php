@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -47,6 +48,9 @@ class Subject extends Model implements HasMedia
         return 'slug';
     }
 
+    public function creator(){
+        return $this->belongsTo(User::class,'creator_id','id');
+    }
 
     public function category()
     {
@@ -56,4 +60,21 @@ class Subject extends Model implements HasMedia
     public function modules(){
         return $this->hasMany(Module::class,'subject_id','id');
     }
+
+    public function enrolledStudents()
+    {
+        return $this->belongsToMany(User::class, 'enrolls', 'subject_id', 'student_id')->withPivot('level_id')
+           // ->join('levels','levels.id','=','level_id')
+           // ->select(['users.*','levels.name as level_name'])
+            ->withTimestamps();
+    }
+
+
+    public function authEnrolledStudent()
+    {
+        return $this->belongsToMany(User::class, 'enrolls', 'subject_id', 'student_id')
+           // ->withPivot('level_id')
+            ->withTimestamps()->where('student_id', Auth::id())->first();
+    }
+
 }

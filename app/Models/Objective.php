@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -40,5 +41,20 @@ class Objective extends Model implements HasMedia
     public function module()
     {
         return $this->belongsTo(Module::class, 'module_id', 'id');
+    }
+
+    public function isSeen(){
+        $seen = $this->belongsToMany(User::class,'objective_seen','objective_id','student_id')
+            ->where('student_id',Auth::id())
+            ->withTimestamps();
+        return $seen;
+    }
+
+    public function isSeenObj($id){
+        $seen = $this->belongsToMany(User::class,'objective_seen','objective_id','student_id')
+            ->where('student_id',Auth::id())
+            ->where('objective_id',$id)
+            ->withTimestamps();
+        return $seen;
     }
 }

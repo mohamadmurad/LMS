@@ -1,0 +1,30 @@
+
+
+
+
+@import "variables";
+
+@import "lms/core";
+@import "lms/preloader";
+@import "lms/navigation";
+@import "lms/subjectCard";
+@import "lms/subjectInfo";
+@import "lms/weekProgress";
+@import "lms/rating";
+
+.objectives{
+    li{
+        padding: 12px;
+        border-radius: 12px;
+        margin-bottom: 5px;
+        &:hover{
+            background-color: #d9d9d9;
+        }
+    }
+    li.active{
+        background-color: #d9d9d9;
+    }
+}
+aside{
+    width: 15%;
+}

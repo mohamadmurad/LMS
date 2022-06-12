@@ -9,7 +9,7 @@
 
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="{{asset('assets/front/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/front/css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/front/css/slicknav.css')}}">
     <link rel="stylesheet" href="{{asset('assets/front/css/flaticon.css')}}">
@@ -23,7 +23,9 @@
     <link rel="stylesheet" href="{{asset('assets/front/css/slick.css')}}">
     <link rel="stylesheet" href="{{asset('assets/front/css/nice-select.css')}}">
     <link rel="stylesheet" href="{{asset('assets/front/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/front/css/front.css')}}">
 
+    <link rel="stylesheet" href="{{ asset('assets/css/toastr.css') }}">
 
 </head>
 <body>
@@ -40,13 +42,13 @@
 <script src=" {{asset('assets/js/jquery.min.js')}}"></script>
 <script src=" {{asset('assets/js/fancybox.umd.js')}}"></script>
 <script src=" {{asset('assets/js/core/popper.min.js')}}"></script>
-
+<script src=" {{asset('assets/js/toastr.js')}}"></script>
 <!-- JS here -->
 <script src="{{asset('assets/front/js/vendor/modernizr-3.5.0.min.js')}}"></script>
 <!-- Jquery, Popper, Bootstrap -->
 <script src="{{asset('assets/front/js/vendor/jquery-1.12.4.min.js')}}"></script>
 <script src="{{asset('assets/front/js/popper.min.js')}}"></script>
-<script src="{{asset('assets/front/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
 <!-- Jquery Mobile Menu -->
 <script src="{{asset('assets/front/js/jquery.slicknav.min.js')}}"></script>
 
@@ -83,7 +85,23 @@
 <script src="{{asset('assets/front/js/plugins.js')}}"></script>
 <script src="{{asset('assets/front/js/main.js')}}"></script>
 
+<script>
 
+
+    $(document).ready(function () {
+        toastr.options.timeOut = 10000;
+        @if (Session::has('error'))
+        toastr.error('{{ Session::get('error') }}');
+        @endif
+        @if(Session::has('success'))
+        toastr.success('{{ Session::get('success') }}');
+        @endif
+        @if(Session::has('info'))
+        toastr.info('{{ Session::get('info') }}');
+        @endif
+    });
+
+</script>
 @yield('scripts')
 </body>
 </html>

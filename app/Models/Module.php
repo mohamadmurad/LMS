@@ -31,6 +31,10 @@ class Module extends Model
     ];
 
 
+    protected $appends = [
+        'is_completed'
+    ];
+
     public function getRouteKeyName()
     {
         return 'slug';
@@ -44,4 +48,37 @@ class Module extends Model
     public function objectives(){
         return $this->hasMany(Objective::class,'module_id','id');
     }
+
+
+    public function VideoObjectives()
+    {
+        return $this->objectives()->whereHas('media');
+    }
+
+    public function ReadingObjectives()
+    {
+        return $this->objectives()->doesntHave('media');
+    }
+
+    public function getIsCompletedAttribute()
+    {
+
+        $examComplete = $this->exam ? $this->exam->authSubmit()->first() : null;
+        $objectives = $this->objectives;
+        $objectiveSeen = 0;
+        foreach ($objectives as $objective) {
+            if ($objective->isSeen->first()) {
+                $objectiveSeen++;
+            }
+
+        }
+
+        if (($this->exam && $examComplete) && $objectiveSeen == $objectives->count() || (!$this->exam ) && $objectiveSeen == $objectives->count()) {
+            return true;
+        }
+
+
+        return false;
+    }
+
 }

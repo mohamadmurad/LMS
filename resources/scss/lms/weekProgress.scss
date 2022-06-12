@@ -1,0 +1,148 @@
+.horizontal-box{
+    display: flex;
+    align-items: flex-end;
+    bottom: 0;
+    //position: absolute;
+    flex-direction: row;
+
+    .week-section{
+        position: relative;
+        top: 2px;
+        min-width: 156px;
+
+        .vertical-box{
+            display: flex;
+            flex-direction: column;
+        }
+        .rc-WeekStatusIndicator{
+            align-items: center;
+            padding: 0 2.5rem;
+
+            .completed{
+                width: 12px;
+                height: 12px;
+                margin-top: -2px;
+                background-color: #1f8354;
+                border-radius: 100%;
+                z-index: 10;
+                transform: translateY(-65%);
+            }
+            .label{
+                font-family: OpenSans-Bold,OpenSans,Arial,sans-serif;
+                font-weight: 700;
+                text-transform: uppercase;
+                white-space: nowrap;
+                font-size: 12px;
+                line-height: 23px;
+            }
+            &:after,&:before{
+                background: rgba(0,0,0,.255);
+                content: "";
+                height: 3px;
+                z-index: 0;
+                position: absolute;
+                width: 50%;
+                bottom: 36px;
+                //left: 50%;
+            }
+            &:before{
+                left: 0;
+            }
+            &:after{
+                left: 50%;
+            }
+            &.week-completed:after{
+                background: #1f8354;
+            }
+
+            .ontrack{
+                width: 12px;
+                height: 12px;
+                margin-top: -2px;
+                background-color: #757575;
+                border-radius: 100%;
+                z-index: 10;
+                transform: translateY(-65%);
+            }
+        }
+
+        .rc-WeekAssignmentIcons{
+            .vertical-box{
+                align-items: center;
+                .hoverable-overlay-trigger{
+                    z-index: 10;
+                    .icon-wrapper{
+                        display: flex;
+                        border-radius: 50%;
+                        background-color: #fff;
+                    }
+                }
+            }
+
+            .label{
+                margin-top: 8px;
+                white-space: nowrap;
+            }
+           &:before{
+                left: 0;
+
+            }
+
+            &:after, &:before{
+                background: rgba(0,0,0,.255);
+                content: "";
+                height: 3px;
+                z-index: 0;
+                position: absolute;
+                width: 50%;
+                bottom: 36px;
+
+            }
+            &:after{
+                left: 50%;
+            }
+            &.week-completed:after{
+                background: #1f8354;
+            }
+
+            &.prev-week-completed{
+                &:before{
+                    background: #1f8354;
+                }
+            }
+
+
+        }
+    }
+}
+
+.label{
+    font-family: OpenSans-Bold,OpenSans,Arial,sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    white-space: nowrap;
+    font-size: 12px;
+    line-height: 23px;
+}
+
+.start-week-section .rc-WeekStatusIndicator:before{
+    content: unset !important;
+}
+.end-week-section .rc-WeekStatusIndicator:after{
+    content: unset !important;
+}
+.welcome-progress{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.end-week-section .prev-week-completed::before{
+    background: #1f8354 !important;
+}
+.end-week-section .prev-week-completed .ontrack{
+    background: #1f8354 !important;
+}
+
+.accordion-button svg{
+    margin-right: 1rem;
+}

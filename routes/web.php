@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\FrontContrller::class,'home'])->name('home');
 Route::get('/subjects', [\App\Http\Controllers\FrontContrller::class,'subjects'])->name('subjects');
+Route::get('/subjects/{subject}', [\App\Http\Controllers\FrontContrller::class,'subjectInfo'])->name('subjects.info');
 
 
 
@@ -61,6 +62,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/student/dashboard', function () {
             dd('rer');
         })->name('dashboard.index');
+
+
+        Route::post('subject/{subject}/enroll',[\App\Http\Controllers\EnrollController::class,'enroll'])->name('subject.enroll');
+        Route::get('subject/{subject}/learn',[\App\Http\Controllers\EnrollController::class,'learn'])->name('subject.learn');
+        Route::get('subject/{subject}/learn/{objective}',[\App\Http\Controllers\EnrollController::class,'learnObjective'])->name('subject.learnObjective');
+        Route::post('markSeed/{subject}/{objective}',[\App\Http\Controllers\EnrollController::class,'markObjSeed'])->name('obj.seen');
     });
 
 });

@@ -40,11 +40,11 @@
                         <div class="properties properties2 mb-30">
                             <div class="properties__card">
                                 <div class="properties__img overlay1">
-                                    <a href="#"><img src="{{$subject->getFirstMediaUrl('cover')}}" alt=""></a>
+                                    <a href="{{route('subjects.info',$subject)}}"><img src="{{$subject->getFirstMediaUrl('cover')}}" alt=""></a>
                                 </div>
                                 <div class="properties__caption">
                                     <p>{{$subject->category->title}}</p>
-                                    <h3><a href="#">{{$subject->name}}</a></h3>
+                                    <h3><a href="{{route('subjects.info',$subject)}}">{{$subject->name}}</a></h3>
                                     <p> {!! $subject->description !!}</p>
                                     <div class="properties__footer d-flex justify-content-between align-items-center">
                                         <div class="restaurant-name">
@@ -61,7 +61,7 @@
                                             <span>$135</span>
                                         </div>
                                     </div>
-                                    <a href="#" class="border-btn border-btn2">Find out more</a>
+                                    <a href="{{route('subjects.info',$subject)}}" class="border-btn border-btn2">Find out more</a>
                                 </div>
                             </div>
                         </div>

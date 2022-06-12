@@ -1,0 +1,108 @@
+.Enroll-btn{
+    border-radius: 2px;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    line-height: 1rem;
+    user-select: none;
+    position: relative;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    white-space: nowrap;
+    background-image: none;
+    cursor: pointer;
+    filter: none;
+    text-decoration: none;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    background-color: $primary;
+    border: 1px solid $primary;
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+    min-height: 48px;
+}
+
+
+.subject-body{
+    border-top: 1px solid #cfcfcf;
+    border-bottom: 1px solid #cfcfcf;
+}
+.SyllabusWeek{
+
+    .moduleWeeks{
+        position: relative;
+        min-height: 1px;
+        padding-left: 12px;
+        padding-right: 12px;
+
+        .week{
+            font-size: 2.875rem;
+            line-height: 4.5rem;
+            font-weight: normal;
+            font-family: OpenSans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        span{
+            font-size: 3.75rem;
+            line-height: 4.5rem;
+            font-weight: normal;
+            font-family: OpenSans-Light, OpenSans, Arial, sans-serif;
+        }
+    }
+}
+
+.SyllabusModule{
+    position: relative;
+    min-height: 1px;
+    padding-left: 12px;
+    flex: auto;
+    padding-right: 12px;
+    border-bottom: 1px solid #e3e4e5;
+    h2{
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .module-desc{
+        font-size: 0.875rem;
+        line-height: 1.5rem;
+        font-weight: normal;
+        font-family: OpenSans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+}
+
+.objective-icon{
+    background-image: linear-gradient(90deg, rgb(72, 207, 173), rgb(59, 175, 218));
+    border-radius: 50%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+}
+.countingObjective{
+    color: #6e767f;
+}
+.seeallbtn{    border-radius: 4px;
+    text-transform: none;
+    text-align: center;
+    max-width: 320px;
+    min-width: unset;
+    -webkit-transition: none;
+    transition: none;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    color: #0056d2;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-family: "Source Sans Pro",Arial,sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.1px;
+    padding: 8px;
+    background-color: transparent;
+    border: 0;
+}
+
+.objectiveItem{
+    border-top: 1px solid #e3e4e5;
+    padding-top: 1.5rem!important;
+}
