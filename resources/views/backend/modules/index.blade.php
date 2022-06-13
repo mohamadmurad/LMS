@@ -75,7 +75,7 @@
                                        href="{{route('backend.objectives.show',['subject'=>$subject,'module' => $module,'objective' => $objective])}}">
                                         <i class="fa fa-book me-2"></i>{{$objective->name}}
                                         <br>
-                                        {{--                                        <i class="fa fa-gift me-2"></i>{{$objective->points['count']}} points--}}
+                                        <i class="fa fa-gift me-2"></i>{{$objective->points()->first()->count}} points
 
                                     </a>
                                     <form

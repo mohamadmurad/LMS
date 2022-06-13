@@ -187,7 +187,7 @@
                                             ])}}">
                                                 <i class="fa  {{$objective->type ? 'fa-video' : 'fa-book'}} me-2"></i>{{$objective->name}}
                                                 <br>
-                                                <i class="fa fa-gift me-2"></i>{{$objective->points['count']}} points
+                                                <i class="fa fa-gift me-2"></i>{{$objective->points()->first()->count}} points
 
                                             </a>
 

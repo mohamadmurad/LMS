@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Behavior;
 use App\Models\Module;
 use App\Models\Objective;
 use App\Models\Subject;
@@ -50,7 +51,6 @@ class ObjectiveController extends Controller
         try {
 
 
-
             $objective = Objective::create([
                 'module_id' => $module->id,
                 'name' => $request->get('name'),
@@ -59,8 +59,14 @@ class ObjectiveController extends Controller
 
             if ($request->hasFile('video')) {
                 $objective->addMediaFromRequest('video')->toMediaCollection('videos');
-
             }
+
+            $point = $objective->points()->create([
+                'count' => $request->get('process_points'),
+            ]);
+
+            $objective_complete = Behavior::where('name', 'objective_complete')->first()->id;
+            $point->behavior()->attach($objective_complete);
 
 
             DB::commit();
@@ -71,7 +77,7 @@ class ObjectiveController extends Controller
         }
 
         $this->successFlash('Objective Created Successfully');
-        return redirect()->route('backend.modules.index',$subject);
+        return redirect()->route('backend.modules.index', $subject);
 
 
     }
@@ -82,10 +88,10 @@ class ObjectiveController extends Controller
      * @param \App\Models\Objective $objective
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function show(Subject $subject,Module $module,Objective $objective)
+    public function show(Subject $subject, Module $module, Objective $objective)
     {
 
-        return view('backend.objectives.show',compact('subject','module','objective'));
+        return view('backend.objectives.show', compact('subject', 'module', 'objective'));
 
     }
 
@@ -95,9 +101,9 @@ class ObjectiveController extends Controller
      * @param \App\Models\Objective $objective
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function edit(Subject $subject,Module $module,Objective $objective)
+    public function edit(Subject $subject, Module $module, Objective $objective)
     {
-        return view('backend.objectives.edit', compact('subject', 'module','objective'));
+        return view('backend.objectives.edit', compact('subject', 'module', 'objective'));
 
     }
 
@@ -108,7 +114,7 @@ class ObjectiveController extends Controller
      * @param \App\Models\Objective $objective
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request,Subject $subject,Module $module,Objective $objective)
+    public function update(Request $request, Subject $subject, Module $module, Objective $objective)
     {
         $this->validate($request, [
             'name' => 'required|string',
@@ -135,14 +141,14 @@ class ObjectiveController extends Controller
             }
 
             DB::commit();
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             DB::rollBack();
             $this->errorFlash($e->getMessage());
             return redirect()->back()->withInput();
         }
 
         $this->successFlash('Objective Updated Successfully');
-        return redirect()->route('backend.modules.index',$subject);
+        return redirect()->route('backend.modules.index', $subject);
 
     }
 
@@ -152,7 +158,7 @@ class ObjectiveController extends Controller
      * @param \App\Models\Objective $objective
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Subject $subject,Module $module,Objective $objective)
+    public function destroy(Subject $subject, Module $module, Objective $objective)
     {
         if ($objective->hasMedia('videos')) {
             $subject->getFirstMedia('videos')->delete();

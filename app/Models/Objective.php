@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasPoints;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 class Objective extends Model implements HasMedia
 {
-    use HasFactory, HasMediaTrait;
+    use HasFactory, HasMediaTrait, HasPoints;
 
     protected $fillable = [
         'name',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\enroll_subject;
 
+use App\Events\objective_complete;
 use App\Models\Objective;
 use App\Models\Subject;
 use Illuminate\Support\Facades\Auth;
@@ -106,7 +107,7 @@ class EnrollController extends  Controller
             $user = Auth::user();
             $user->seen()->attach($objective->id);
 
-         //   event(new objective_complete($user, $objective, $subject));
+            event(new objective_complete($user, $objective, $subject));
 
             DB::commit();
         } catch (\Exception $e) {

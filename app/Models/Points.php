@@ -23,4 +23,8 @@ class Points extends Model
     public function subject(){
         return $this->morphTo(Subject::class,'model_type','model_id');
     }
+
+    public function objective(){
+        return $this->morphTo(Objective::class,'model_type','model_id');
+    }
 }
