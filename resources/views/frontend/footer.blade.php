@@ -29,13 +29,13 @@
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
                                 <h4>Our solutions</h4>
-                                <ul>
-                                    <li><a href="#">Design & creatives</a></li>
-                                    <li><a href="#">Telecommunication</a></li>
-                                    <li><a href="#">Restaurant</a></li>
-                                    <li><a href="#">Programing</a></li>
-                                    <li><a href="#">Architecture</a></li>
-                                </ul>
+{{--                                <ul>--}}
+{{--                                    <li><a href="#">Design & creatives</a></li>--}}
+{{--                                    <li><a href="#">Telecommunication</a></li>--}}
+{{--                                    <li><a href="#">Restaurant</a></li>--}}
+{{--                                    <li><a href="#">Programing</a></li>--}}
+{{--                                    <li><a href="#">Architecture</a></li>--}}
+{{--                                </ul>--}}
                             </div>
                         </div>
                     </div>
@@ -43,13 +43,13 @@
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
                                 <h4>Support</h4>
-                                <ul>
-                                    <li><a href="#">Design & creatives</a></li>
-                                    <li><a href="#">Telecommunication</a></li>
-                                    <li><a href="#">Restaurant</a></li>
-                                    <li><a href="#">Programing</a></li>
-                                    <li><a href="#">Architecture</a></li>
-                                </ul>
+{{--                                <ul>--}}
+{{--                                    <li><a href="#">Design & creatives</a></li>--}}
+{{--                                    <li><a href="#">Telecommunication</a></li>--}}
+{{--                                    <li><a href="#">Restaurant</a></li>--}}
+{{--                                    <li><a href="#">Programing</a></li>--}}
+{{--                                    <li><a href="#">Architecture</a></li>--}}
+{{--                                </ul>--}}
                             </div>
                         </div>
                     </div>
@@ -57,13 +57,13 @@
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
                                 <h4>Company</h4>
-                                <ul>
-                                    <li><a href="#">Design & creatives</a></li>
-                                    <li><a href="#">Telecommunication</a></li>
-                                    <li><a href="#">Restaurant</a></li>
-                                    <li><a href="#">Programing</a></li>
-                                    <li><a href="#">Architecture</a></li>
-                                </ul>
+{{--                                <ul>--}}
+{{--                                    <li><a href="#">Design & creatives</a></li>--}}
+{{--                                    <li><a href="#">Telecommunication</a></li>--}}
+{{--                                    <li><a href="#">Restaurant</a></li>--}}
+{{--                                    <li><a href="#">Programing</a></li>--}}
+{{--                                    <li><a href="#">Architecture</a></li>--}}
+{{--                                </ul>--}}
                             </div>
                         </div>
                     </div>

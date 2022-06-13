@@ -52,16 +52,16 @@
                         <span class="nav-link-text ms-1">students</span>
                     </a>
                 </li>
-{{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link {{request()->routeIs('backend.rules.index')? 'active': ''}}"--}}
-{{--                       href="{{route('backend.rules.index')}}">--}}
-{{--                        <div--}}
-{{--                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">--}}
-{{--                            <i class="fa fa-ruler text-primary text-sm opacity-10"></i>--}}
-{{--                        </div>--}}
-{{--                        <span class="nav-link-text ms-1">Rules</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+                <li class="nav-item">
+                    <a class="nav-link {{request()->routeIs('backend.behaviors.index')? 'active': ''}}"
+                       href="{{route('backend.behaviors.index')}}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa fa-ruler text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Behaviors</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link {{request()->routeIs('backend.categories.index')? 'active': ''}}"
                        href="{{route('backend.categories.index')}}">
@@ -72,26 +72,26 @@
                         <span class="nav-link-text ms-1">Categories</span>
                     </a>
                 </li>
-{{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link {{request()->routeIs('backend.levels.index')? 'active': ''}}"--}}
-{{--                       href="{{route('backend.levels.index')}}">--}}
-{{--                        <div--}}
-{{--                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">--}}
-{{--                            <i class="fa fa-square text-primary text-sm opacity-10"></i>--}}
-{{--                        </div>--}}
-{{--                        <span class="nav-link-text ms-1">levels</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-{{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link {{request()->routeIs('backend.badges.index')? 'active': ''}}"--}}
-{{--                       href="{{route('backend.badges.index')}}">--}}
-{{--                        <div--}}
-{{--                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">--}}
-{{--                            <i class="fa fa-square text-primary text-sm opacity-10"></i>--}}
-{{--                        </div>--}}
-{{--                        <span class="nav-link-text ms-1">Badges</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+                <li class="nav-item">
+                    <a class="nav-link {{request()->routeIs('backend.levels.index')? 'active': ''}}"
+                       href="{{route('backend.levels.index')}}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa fa-sitemap text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">levels</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{request()->routeIs('backend.badges.index')? 'active': ''}}"
+                       href="{{route('backend.badges.index')}}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-ribbon text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Badges</span>
+                    </a>
+                </li>
 {{--                <li class="nav-item">--}}
 {{--                    <a class="nav-link {{request()->routeIs('backend.badgeRule.index')? 'active': ''}}"--}}
 {{--                       href="{{route('backend.badgeRule.index')}}">--}}
@@ -162,6 +162,16 @@
                                 <i class="fa fa-users text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1">students</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{request()->routeIs('backend.behaviors.index')? 'active': ''}}"
+                           href="{{route('backend.behaviors.index')}}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fa fa-ruler text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Behaviors</span>
                         </a>
                     </li>
 {{--                <li class="nav-item">--}}

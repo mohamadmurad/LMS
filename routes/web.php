@@ -55,6 +55,15 @@ Route::middleware('auth')->group(function () {
         Route::resource('subjects/{subject}/modules/{module}/objectives', \App\Http\Controllers\ObjectiveController::class);
 
         Route::resource('students', \App\Http\Controllers\StudentController::class);
+
+        // badges
+        Route::resource('badges', \App\Http\Controllers\BadgeController::class);
+
+        // levels
+        Route::resource('levels', \App\Http\Controllers\LevelController::class);
+
+        // behaviors
+        Route::resource('behaviors', \App\Http\Controllers\BehaviorController::class);
     });
 
     Route::group(['prefix' => 'student', 'as' => 'student.', 'middleware' => ['auth', 'role:student']], function () {
