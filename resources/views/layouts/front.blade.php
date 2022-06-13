@@ -99,6 +99,13 @@
         @if(Session::has('info'))
         toastr.info('{{ Session::get('info') }}');
         @endif
+
+        @if(Session::has('points'))
+        @foreach(Session::get('points') as $p)
+        toastr.info('{{ $p }}');
+        @endforeach
+
+        @endif
     });
 
 </script>

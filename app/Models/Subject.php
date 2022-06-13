@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use App\Traits\HasPoints;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -13,7 +13,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 class Subject extends Model implements HasMedia
 {
-    use HasFactory, HasMediaTrait;
+    use HasFactory, HasMediaTrait, HasPoints;
 
     protected static function boot()
     {
@@ -27,7 +27,7 @@ class Subject extends Model implements HasMedia
                 $subject->getFirstMedia('cover')->delete();
             }
 
-            $subject->modules()->each(function ($module){
+            $subject->modules()->each(function ($module) {
                 $module->delete();
             });
 
@@ -48,8 +48,9 @@ class Subject extends Model implements HasMedia
         return 'slug';
     }
 
-    public function creator(){
-        return $this->belongsTo(User::class,'creator_id','id');
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'creator_id', 'id');
     }
 
     public function category()
@@ -57,15 +58,16 @@ class Subject extends Model implements HasMedia
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    public function modules(){
-        return $this->hasMany(Module::class,'subject_id','id');
+    public function modules()
+    {
+        return $this->hasMany(Module::class, 'subject_id', 'id');
     }
 
     public function enrolledStudents()
     {
         return $this->belongsToMany(User::class, 'enrolls', 'subject_id', 'student_id')->withPivot('level_id')
-           // ->join('levels','levels.id','=','level_id')
-           // ->select(['users.*','levels.name as level_name'])
+            // ->join('levels','levels.id','=','level_id')
+            // ->select(['users.*','levels.name as level_name'])
             ->withTimestamps();
     }
 
@@ -73,7 +75,7 @@ class Subject extends Model implements HasMedia
     public function authEnrolledStudent()
     {
         return $this->belongsToMany(User::class, 'enrolls', 'subject_id', 'student_id')
-           // ->withPivot('level_id')
+            // ->withPivot('level_id')
             ->withTimestamps()->where('student_id', Auth::id())->first();
     }
 

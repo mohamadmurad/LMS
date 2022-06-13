@@ -24,4 +24,22 @@ class Behavior extends Model
     {
         return $query->where('hidden', 0);
     }
+
+
+    public function points()
+    {
+        return $this->belongsToMany(Points::class, 'points_behaviors', 'behavior_id', 'point_id')
+            ->withTimestamps();
+    }
+
+    public function subject_points($id)
+    {
+        return $this->belongsToMany(Points::class, 'points_behaviors', 'behavior_id', 'point_id')
+            ->whereHas('subject',function ($query) use ($id){
+                $query->where('id', '=', $id);
+            })
+            ->withPivot('id')
+            ->withTimestamps()
+            ->get();
+    }
 }

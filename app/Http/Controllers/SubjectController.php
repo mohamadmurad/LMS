@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Behavior;
 use App\Models\Category;
+use App\Models\Rules;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -69,6 +71,14 @@ class SubjectController extends Controller
                 'creator_id' => Auth::id(),
                 'category_id' => $request->get('category_id'),
             ]);
+            $point = $subject->points()->create([
+                'count' => $request->get('process_points'),
+            ]);
+
+            $enroll_subject = Behavior::where('name', 'enroll_subject')->first()->id;
+
+            $point->behavior()->attach($enroll_subject);
+
             if ($request->hasFile('cover')) {
                 $subject->addMediaFromRequest('cover')->toMediaCollection('cover');
             }

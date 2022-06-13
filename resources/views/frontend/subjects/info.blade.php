@@ -59,7 +59,7 @@
                 </div>
 
 
-                @if($subject->authEnrolledStudent()->count())
+                @if(\Illuminate\Support\Facades\Auth::check() && $subject->authEnrolledStudent())
                     <a class="btn " href="{{route('student.subject.learn',$subject)}}">Go to
                         Course</a>
                 @else

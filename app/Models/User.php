@@ -77,6 +77,11 @@ class User extends Authenticatable implements HasMedia
     }
 
 
+    public function rewardPoints(){
+        return $this->hasMany(RewardPoint::class,'student_id','id');
+    }
+
+
 
 
 }
