@@ -52,6 +52,9 @@ Route::middleware('auth')->group(function () {
         Route::get('subjects/{subject}/students', [\App\Http\Controllers\SubjectController::class, 'students'])->name('subjects.student');
         Route::get('subjects/{subject}/students/{student}/info', [\App\Http\Controllers\SubjectController::class, 'studentInfo'])->name('subjects.student.info');
 
+        Route::resource('subjects/{subject}/assignments', \App\Http\Controllers\AssignmentController::class);
+
+
         Route::resource('students', \App\Http\Controllers\StudentController::class);
 
         // badges

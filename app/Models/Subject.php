@@ -86,4 +86,8 @@ class Subject extends Model implements HasMedia
             ->orderBy('id', 'DESC');
     }
 
+    public function assignments(){
+        return $this->hasMany(Assignment::class,'subject_id','id');
+    }
+
 }

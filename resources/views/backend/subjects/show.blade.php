@@ -38,6 +38,18 @@
                         <div class="col-xs-12 col-sm-4 col-md-3">
                             <div class="course-tool">
                                 <div class="big-icon">
+                                    <a href="{{route('backend.assignments.index',$subject)}}">
+                                        <img  src="{{asset('assets/img/gradebook.png')}}" alt="gradebook" title="gradebook"/>
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <a href="{{route('backend.assignments.index',$subject)}}">Assignments</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-3">
+                            <div class="course-tool">
+                                <div class="big-icon">
                                     <a href="#">
                                         <img  src="{{asset('assets/img/quiz.png')}}" alt="Placement" title="Placement"/>
                                     </a>
