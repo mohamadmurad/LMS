@@ -26,12 +26,12 @@
                         <div class="col-xs-12 col-sm-4 col-md-3">
                             <div class="course-tool">
                                 <div class="big-icon">
-                                    <a href="#">
+                                    <a href="{{route('backend.subjects.student',$subject)}}">
                                         <img  src="{{asset('assets/img/members.png')}}" alt="Students" title="Students"/>
                                     </a>
                                 </div>
                                 <div class="content">
-                                    <a href="#">Students</a>
+                                    <a href="{{route('backend.subjects.student',$subject)}}">Students</a>
                                 </div>
                             </div>
                         </div>

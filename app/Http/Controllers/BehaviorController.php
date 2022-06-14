@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewBehaviorAdded;
 use App\Models\Behavior;
 use App\Models\Rules;
+use App\Models\StudentBehavior;
+use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class BehaviorController extends Controller
 {
@@ -96,6 +101,39 @@ class BehaviorController extends Controller
     public function destroy(Behavior $behavior)
     {
         $behavior->delete();
+        return redirect()->back();
+    }
+
+
+    public function addBehaviorToStudent(Request $request)
+    {
+        $this->validate($request, [
+            'student_id' => 'required|exists:users,id',
+            'subject_id' => 'required|exists:subjects,id',
+            'rule_id' => 'required|exists:behaviors,id',
+        ]);
+
+        $subject = Subject::where('creator_id', Auth::id())->where('id', $request->get('subject_id'))->first();
+        if (!$subject) {
+            Session::flash('error', 'Subject Not found');
+            return redirect()->back();
+        }
+
+        $student = $subject->enrolledStudents()->where('users.id', $request->get('student_id'))->first();
+        if (!$student) {
+            Session::flash('error', 'Student Not found');
+            return redirect()->back();
+        }
+
+
+        $behavior = StudentBehavior::create([
+            'user_id' => $request->get('student_id'),
+            'behavior_id' => $request->get('rule_id'),
+            'subject_id' => $request->get('subject_id'),
+        ]);
+
+
+        event(new NewBehaviorAdded($behavior));
         return redirect()->back();
     }
 }

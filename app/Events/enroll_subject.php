@@ -24,22 +24,9 @@ class enroll_subject extends baseEvent
     public function __construct($user, $subject)
     {
         $enroll_subject = Behavior::where('name', 'enroll_subject')->first();
-        //$pointsCount = $subject->points ? $subject->points->count : null;
+
         $points = $enroll_subject->subject_points($subject->id);
-
-        foreach ($points as $point) {
-
-            $user->rewardPoints()->UpdateOrCreate([
-                'points_behaviors_id' => $point->pivot->id,
-            ], [
-                'points_behaviors_id' => $point->pivot->id,
-                'count' => $point->count,
-            ]);
-
-            $this->pointSession('You are Reward ' . $point->count . ' Points');
-        }
-
-
+        $this->rewardPoints($user, $points,$subject->id);
         // event(new BadgeGift($subject, 'enroll_subject'));
     }
 

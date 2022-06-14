@@ -32,6 +32,12 @@ class Behavior extends Model
             ->withTimestamps();
     }
 
+    public function behaviorPoints()
+    {
+        return $this->belongsToMany(Points::class, 'point_custom_behaviors', 'behavior_id', 'point_id')
+            ->withTimestamps();
+    }
+
     public function subject_points($id)
     {
         return $this->belongsToMany(Points::class, 'points_behaviors', 'behavior_id', 'point_id')
@@ -53,5 +59,10 @@ class Behavior extends Model
             ->withPivot('id')
             ->withTimestamps()
             ->get();
+    }
+
+
+    public function badges(){
+        return $this->hasMany(BadgeBehavior::class,'behavior_id','id')->with('badge');
     }
 }

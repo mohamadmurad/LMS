@@ -27,21 +27,13 @@ class objective_complete extends baseEvent
     {
         $objective_complete = Behavior::where('name', 'objective_complete')->first();
         $points = $objective_complete->objective_points($objective->id);
-        foreach ($points as $point) {
-
-            $user->rewardPoints()->UpdateOrCreate([
-                'points_behaviors_id' => $point->pivot->id,
-            ], [
-                'points_behaviors_id' => $point->pivot->id,
-                'count' => $point->count,
-            ]);
-
-            $this->pointSession('You are Reward ' . $point->count . ' Points');
-        }
+        $this->rewardPoints($user,$points,$subject->id);
 
        // event(new changeLevel($subject));
 
     }
+
+
 
     /**
      * Get the channels the event should broadcast on.

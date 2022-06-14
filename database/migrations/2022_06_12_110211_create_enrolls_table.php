@@ -26,6 +26,15 @@ class CreateEnrollsTable extends Migration
                 ->on('subjects')
                 ->references('id')
                 ->onDelete('CASCADE');
+
+
+            $table->foreignId('level_id');
+            $table->foreign('level_id')
+                ->references('id')
+                ->on('levels')
+                ->onDelete('CASCADE');
+
+
             $table->timestamps();
         });
     }

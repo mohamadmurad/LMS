@@ -66,8 +66,8 @@ class Subject extends Model implements HasMedia
     public function enrolledStudents()
     {
         return $this->belongsToMany(User::class, 'enrolls', 'subject_id', 'student_id')->withPivot('level_id')
-            // ->join('levels','levels.id','=','level_id')
-            // ->select(['users.*','levels.name as level_name'])
+            ->join('levels', 'levels.id', '=', 'level_id')
+            ->select(['users.*', 'levels.name as level_name'])
             ->withTimestamps();
     }
 
@@ -75,8 +75,15 @@ class Subject extends Model implements HasMedia
     public function authEnrolledStudent()
     {
         return $this->belongsToMany(User::class, 'enrolls', 'subject_id', 'student_id')
-            // ->withPivot('level_id')
+            ->withPivot('level_id')
             ->withTimestamps()->where('student_id', Auth::id())->first();
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'subject_id', 'id')
+            ->with('student')
+            ->orderBy('id', 'DESC');
     }
 
 }

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class PointsBehavior extends Model
 {
     use HasFactory;
+
+
+    public function point(){
+        return $this->belongsTo(Points::class,'point_id','id');
+    }
 }

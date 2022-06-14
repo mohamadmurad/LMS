@@ -35,7 +35,7 @@
                         <div class="">
                             <div class="d-flex gap-3 mb-3 align-items-center">
                                 <span>{{$totalStudent}} Student in this Subject</span>.
-                                <livewire:subject-rate :subject="$subject" />
+                                <livewire:subject-rate :subject="$subject"/>
 
 
                             </div>
@@ -47,12 +47,12 @@
 
                     </div>
                     <div>
-{{--                        @if($authLevel)--}}
-{{--                            <p>Level <span>{{$authLevel->name}}</span> from <span>{{$lastLevel->name}}</span></p>--}}
-{{--                            <p>Total Earned Point <a--}}
-{{--                                    href="{{route('student.subject.points',$subject)}}"><span>{{$totalPoints}}</span></a>--}}
-{{--                            </p>--}}
-{{--                        @endif--}}
+                        @if($authLevel)
+                            <p>Level <b>{{$authLevel->name}}</b> from <b>{{$lastLevel->name}}</b></p>
+                            <p>Total Earned Point <a
+                                    href="{{route('student.subject.points',$subject)}}"><span>{{$totalPoints}}</span></a>
+                            </p>
+                        @endif
 
 
                     </div>
@@ -154,7 +154,7 @@
 
             </div>
 
-            <livewire:subject-reviews :subject="$subject" />
+            <livewire:subject-reviews :subject="$subject"/>
 
         </div>
     </div>

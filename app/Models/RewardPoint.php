@@ -10,6 +10,10 @@ class RewardPoint extends Model
     use HasFactory;
 
     protected $fillable = [
-        'points_behaviors_id',
+        'point_id','subject_id','student_id'
     ];
+
+    public function point(){
+        return $this->belongsTo(Points::class,'point_id','id');
+    }
 }

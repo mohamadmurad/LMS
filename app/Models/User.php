@@ -15,7 +15,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable,HasRoles,HasMediaTrait;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, HasMediaTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -53,7 +53,8 @@ class User extends Authenticatable implements HasMedia
 
     ];
 
-    public function getNameAttribute(){
+    public function getNameAttribute()
+    {
         return $this->first_name . ' ' . $this->last_name;
     }
 
@@ -65,23 +66,32 @@ class User extends Authenticatable implements HasMedia
     }
 
 
-    public function enrolledSubject(){
-        return $this->belongsToMany(Subject::class,'enrolls','student_id','subject_id')
-         //   ->withPivot('level_id')
+    public function enrolledSubject()
+    {
+        return $this->belongsToMany(Subject::class, 'enrolls', 'student_id', 'subject_id')
+            ->withPivot('level_id')
             ->withTimestamps();
     }
 
-    public function seen(){
-        return $this->belongsToMany(Objective::class,'objective_seen','student_id','objective_id')
+    public function seen()
+    {
+        return $this->belongsToMany(Objective::class, 'objective_seen', 'student_id', 'objective_id')
             ->withTimestamps();
     }
 
 
-    public function rewardPoints(){
-        return $this->hasMany(RewardPoint::class,'student_id','id');
+    public function rewardPoints()
+    {
+        return $this->hasMany(RewardPoint::class, 'student_id', 'id');
     }
 
+    public function rewardPointsSubject($id){
+        return $this->hasMany(RewardPoint::class,'student_id','id')
+            ->where('subject_id',$id)->with('point.pointReason');
+    }
 
-
+    public function enrolledSubjectId($id){
+        return $this->enrolledSubject()->where('subject_id',$id)->first();
+    }
 
 }

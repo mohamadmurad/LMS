@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\enroll_subject;
 
 use App\Events\objective_complete;
+use App\Models\Level;
 use App\Models\Objective;
 use App\Models\Subject;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,7 @@ class EnrollController extends  Controller
         if (!$enroll){
             // new enroll
             $user->enrolledSubject()->attach($subject->id,[
-                //'level_id' => Levels::all()->first()->id,
+                'level_id' => Level::all()->first()->id,
             ]);
 
 

@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{{asset('assets/front/css/front.css')}}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/toastr.css') }}">
-
+    @livewireStyles
 </head>
 <body>
 
@@ -37,7 +37,7 @@
 
 @include('frontend.footer')
 
-
+@livewireScripts
 <!--   Core JS Files   -->
 <script src=" {{asset('assets/js/jquery.min.js')}}"></script>
 <script src=" {{asset('assets/js/fancybox.umd.js')}}"></script>

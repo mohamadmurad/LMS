@@ -6,6 +6,7 @@ use App\Models\Behavior;
 use App\Models\Category;
 use App\Models\Rules;
 use App\Models\Subject;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -175,7 +176,7 @@ class SubjectController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\Models\Subject $subject
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Subject $subject)
     {
@@ -185,5 +186,19 @@ class SubjectController extends Controller
         $subject->delete();
         $this->successFlash('Subject Deleted Successfully');
         return redirect()->route('backend.subjects.index');
+    }
+
+    public function students(Subject $subject){
+        $students = $subject->enrolledStudents;
+        $behaviors = Behavior::showing()->get();
+        return view('backend.subjects.students.index', compact('subject', 'students','behaviors'));
+    }
+
+
+    public function studentInfo(Subject $subject, User $student)
+    {
+        $authPoints = $student->rewardPointsSubject($subject->id)->get();
+
+        return view('backend.subjects.students.info', compact('subject', 'student', 'authPoints'));
     }
 }
