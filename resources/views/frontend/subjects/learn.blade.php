@@ -197,7 +197,20 @@
                                         <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-start text-white">
                                             <a class=""
                                                href="{{route('student.subject.assignment',['subject'=>$subject,'assignment' => $assignment])}}">
-                                                <i class="fa  fa-check me-2"></i>Assignment : {{$assignment->name}}
+                                                <i class="fa  fa-check me-2"></i><b>Assignment:</b> {{$assignment->name}}
+                                            </a>
+
+                                        </li>
+
+                                    @endforeach
+                                </ul>
+
+                                <ul class="list-group">
+                                    @foreach($module->exams as $exam)
+                                        <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-start text-white">
+                                            <a class=""
+                                               href="{{route('student.subject.assignment',['subject'=>$subject,'assignment' => $assignment])}}">
+                                                <i class="fa  fa-pencil-alt me-2"></i><b>Exam:</b> {{$exam->name}}
                                             </a>
 
                                         </li>

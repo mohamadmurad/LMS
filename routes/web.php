@@ -58,6 +58,14 @@ Route::middleware('auth')->group(function () {
         Route::post('subjects/{subject}/assignments/{assignment}/submits/{submit}', [\App\Http\Controllers\AssignmentController::class, 'submitMark'])->name('assignments.submits.mark');
 
 
+        // questions
+        Route::resource('subjects/{subject}/questions', \App\Http\Controllers\QuestionController::class);
+
+
+        // exams
+        Route::resource('subjects/{subject}/exams', \App\Http\Controllers\ExamController::class);
+
+
         Route::resource('students', \App\Http\Controllers\StudentController::class);
 
         // badges

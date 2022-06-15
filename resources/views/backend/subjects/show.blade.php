@@ -27,7 +27,7 @@
                             <div class="course-tool">
                                 <div class="big-icon">
                                     <a href="{{route('backend.subjects.student',$subject)}}">
-                                        <img  src="{{asset('assets/img/members.png')}}" alt="Students" title="Students"/>
+                                        <img src="{{asset('assets/img/members.png')}}" alt="Students" title="Students"/>
                                     </a>
                                 </div>
                                 <div class="content">
@@ -39,7 +39,8 @@
                             <div class="course-tool">
                                 <div class="big-icon">
                                     <a href="{{route('backend.assignments.index',$subject)}}">
-                                        <img  src="{{asset('assets/img/gradebook.png')}}" alt="gradebook" title="gradebook"/>
+                                        <img src="{{asset('assets/img/works.png')}}" alt="Assignments"
+                                             title="gradebook"/>
                                     </a>
                                 </div>
                                 <div class="content">
@@ -50,12 +51,25 @@
                         <div class="col-xs-12 col-sm-4 col-md-3">
                             <div class="course-tool">
                                 <div class="big-icon">
-                                    <a href="#">
-                                        <img  src="{{asset('assets/img/quiz.png')}}" alt="Placement" title="Placement"/>
+                                    <a href="{{route('backend.questions.index',$subject)}}">
+                                        <img src="{{asset('assets/img/gradebook.png')}}" alt="Question Bank"
+                                             title="gradebook"/>
                                     </a>
                                 </div>
                                 <div class="content">
-                                    <a href="#">Placement</a>
+                                    <a href="{{route('backend.assignments.index',$subject)}}">Question Bank</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-3">
+                            <div class="course-tool">
+                                <div class="big-icon">
+                                    <a href="{{route('backend.exams.index',$subject)}}">
+                                        <img src="{{asset('assets/img/quiz.png')}}" alt="Exam" title="Exam"/>
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <a href="{{route('backend.exams.index',$subject)}}">Exam</a>
                                 </div>
                             </div>
                         </div>
@@ -63,7 +77,8 @@
                             <div class="course-tool">
                                 <div class="big-icon">
                                     <a href="{{route('backend.modules.index',$subject)}}">
-                                        <img  src="{{asset('assets/img/course_progress.png')}}" alt="Modules" title="Module"/>
+                                        <img src="{{asset('assets/img/course_progress.png')}}" alt="Modules"
+                                             title="Module"/>
                                     </a>
                                 </div>
                                 <div class="content">

@@ -86,4 +86,9 @@ class Module extends Model
         return $this->hasMany(Assignment::class,'module_id','id');
     }
 
+
+    public function exams(){
+        return $this->hasMany(Exam::class,'module_id','id');
+    }
+
 }

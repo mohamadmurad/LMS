@@ -90,4 +90,14 @@ class Subject extends Model implements HasMedia
         return $this->hasMany(Assignment::class,'subject_id','id');
     }
 
+
+    public function questions(){
+        return $this->hasMany(Question::class,'subject_id','id');
+    }
+
+
+    public function exams(){
+        return $this->hasMany(Exam::class,'subject_id','id');
+    }
+
 }
