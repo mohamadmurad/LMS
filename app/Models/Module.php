@@ -81,4 +81,9 @@ class Module extends Model
         return false;
     }
 
+
+    public function assignments(){
+        return $this->hasMany(Assignment::class,'module_id','id');
+    }
+
 }

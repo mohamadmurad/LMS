@@ -180,15 +180,24 @@
                                     @foreach($module->objectives as $objective)
                                         <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-start text-white">
                                             <a class=""
-                                               href="{{route('student.subject.learnObjective',[
-                                                'subject'=>$subject,
-
-                                                'objective' => $objective
-                                            ])}}">
+                                               href="{{route('student.subject.learnObjective',['subject'=>$subject,'objective' => $objective])}}">
                                                 <i class="fa  {{$objective->type ? 'fa-video' : 'fa-book'}} me-2"></i>{{$objective->name}}
                                                 <br>
-                                                <i class="fa fa-gift me-2"></i>{{$objective->points()->first()->count}} points
+                                                <i class="fa fa-gift me-2"></i>{{$objective->points()->first()->count}}
+                                                points
 
+                                            </a>
+
+                                        </li>
+
+                                    @endforeach
+                                </ul>
+                                <ul class="list-group">
+                                    @foreach($module->assignments as $assignment)
+                                        <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-start text-white">
+                                            <a class=""
+                                               href="{{route('student.subject.assignment',['subject'=>$subject,'assignment' => $assignment])}}">
+                                                <i class="fa  fa-check me-2"></i>Assignment : {{$assignment->name}}
                                             </a>
 
                                         </li>
@@ -206,7 +215,6 @@
                 @endforeach
             </div>
         </div>
-
 
 
     </div>

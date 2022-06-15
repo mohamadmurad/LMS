@@ -26,6 +26,7 @@
                         <tr>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Module</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Submit Count</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                         </tr>
                         </thead>
@@ -34,6 +35,7 @@
                             <tr>
                                 <td>{{$assignment->name}}</td>
                                 <td>{{$assignment->module->name}}</td>
+                                <td>{{$assignment->submits_count}}</td>
 
 
                                 <td>
@@ -42,6 +44,9 @@
                                         method="POST">
                                         @csrf
                                         @method('delete')
+                                        <a class="text-secondary font-weight-bold text-xs btn btn-link"
+                                           href="{{route('backend.assignments.submits',['subject'=>$subject,'assignment'=>$assignment])}}"><i
+                                                class="fa fa-eye me-2"></i> Show Submits </a>
                                         <a class="text-secondary font-weight-bold text-xs btn btn-link"
                                            href="{{route('backend.assignments.show',['subject'=>$subject,'assignment'=>$assignment])}}"><i
                                                 class="fa fa-eye me-2"></i> Show </a>

@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Events\enroll_subject;
 
 use App\Events\objective_complete;
+use App\Models\Assignment;
 use App\Models\Level;
 use App\Models\Objective;
 use App\Models\Subject;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -133,6 +136,32 @@ class EnrollController extends  Controller
    //     event(new subject_complete(Auth::user(),$subject));
 
         return redirect()->route('student.subject.learn', $subject);
+    }
+
+    public function assignment(Subject $subject, Assignment $assignment){
+        $module = $assignment->module;
+        return view('frontend.assignments.show', compact('subject',  'module','assignment'));
+    }
+
+    public function assignmentStore(Request $request,Subject $subject, Assignment $assignment){
+
+        $this->validate($request,[
+            'content' => 'required|string',
+            'file' => 'nullable',
+        ]);
+
+        $submit = $assignment->submits()->create([
+            'content' => $request->get('content'),
+            'student_id' => Auth::id(),
+        ]);
+
+        if ($request->hasFile('file')) {
+            $submit->addMediaFromRequest('file')->toMediaCollection('submit_file');
+        }
+
+        $this->successFlash('Submitted');
+        return redirect()->back();
+
     }
 
 }

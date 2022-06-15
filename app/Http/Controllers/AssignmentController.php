@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assignment;
+use App\Models\AssignmentSubmit;
 use App\Models\Subject;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -19,7 +20,8 @@ class AssignmentController extends Controller
      */
     public function index(Subject $subject)
     {
-        $assignments = $subject->assignments;
+        $assignments = $subject->assignments()->withCount('submits')->get();
+
         return view('backend.assignments.index', compact('subject', 'assignments'));
     }
 
@@ -102,7 +104,7 @@ class AssignmentController extends Controller
             'file' => 'nullable',
         ]);
 
-         $assignment->update([
+        $assignment->update([
             'name' => $request->get('name'),
             'description' => $request->get('description'),
             'module_id' => $request->get('module_id'),
@@ -131,5 +133,33 @@ class AssignmentController extends Controller
         }
         $assignment->delete();
         return redirect()->back();
+    }
+
+
+    public function submits(Subject $subject, Assignment $assignment)
+    {
+
+        $submits = $assignment->submits()->orderBy('status')->get();
+        return view('backend.assignmentsSubmits.index', compact('assignment', 'subject', 'submits'));
+    }
+
+    public function submitShow(Subject $subject, Assignment $assignment, AssignmentSubmit $submit)
+    {
+
+
+        return view('backend.assignmentsSubmits.show', compact('assignment', 'subject', 'submit'));
+    }
+    public function submitMark(Request $request,Subject $subject, Assignment $assignment, AssignmentSubmit $submit)
+    {
+        $this->validate($request,[
+            'mark'=> 'required|numeric|min:0|max:100',
+        ]);
+        $submit->update([
+            'mark' => $request->get('mark'),
+            'status' => 1,
+        ]);
+
+
+       return redirect()->back();
     }
 }

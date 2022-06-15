@@ -53,6 +53,9 @@ Route::middleware('auth')->group(function () {
         Route::get('subjects/{subject}/students/{student}/info', [\App\Http\Controllers\SubjectController::class, 'studentInfo'])->name('subjects.student.info');
 
         Route::resource('subjects/{subject}/assignments', \App\Http\Controllers\AssignmentController::class);
+        Route::get('subjects/{subject}/assignments/{assignment}/submits', [\App\Http\Controllers\AssignmentController::class, 'submits'])->name('assignments.submits');
+        Route::get('subjects/{subject}/assignments/{assignment}/submits/{submit}', [\App\Http\Controllers\AssignmentController::class, 'submitShow'])->name('assignments.submits.show');
+        Route::post('subjects/{subject}/assignments/{assignment}/submits/{submit}', [\App\Http\Controllers\AssignmentController::class, 'submitMark'])->name('assignments.submits.mark');
 
 
         Route::resource('students', \App\Http\Controllers\StudentController::class);
@@ -88,6 +91,10 @@ Route::middleware('auth')->group(function () {
         Route::get('subject/{subject}/learn', [\App\Http\Controllers\EnrollController::class, 'learn'])->name('subject.learn');
         Route::get('subject/{subject}/learn/{objective}', [\App\Http\Controllers\EnrollController::class, 'learnObjective'])->name('subject.learnObjective');
         Route::post('markSeed/{subject}/{objective}', [\App\Http\Controllers\EnrollController::class, 'markObjSeed'])->name('obj.seen');
+
+        // assignment
+        Route::get('subject/{subject}/assignment/{assignment}', [\App\Http\Controllers\EnrollController::class, 'assignment'])->name('subject.assignment');
+        Route::post('subject/{subject}/assignment/{assignment}', [\App\Http\Controllers\EnrollController::class, 'assignmentStore'])->name('subject.assignment.store');
 
 
         Route::get('subject/{subject}/points', [\App\Http\Controllers\FrontContrller::class, 'subjectPoints'])
