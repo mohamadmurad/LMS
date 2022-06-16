@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Behavior;
 use App\Models\Exam;
 use App\Models\Subject;
 use Egulias\EmailValidator\Exception\ExpectingAT;
@@ -57,6 +58,10 @@ class ExamController extends Controller
                 'module_id' => $request->get('module_id'),
                 'name' => $request->get('name')
             ]);
+
+            $this->addPoints($exam,$request->get('exam_points'),'exam_complete');
+            $this->addPoints($exam,$request->get('exam_points_fail'),'exam_fail');
+
 
             $exam->questions()->attach($questionsIDs);
 

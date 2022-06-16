@@ -85,13 +85,41 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany(RewardPoint::class, 'student_id', 'id');
     }
 
-    public function rewardPointsSubject($id){
-        return $this->hasMany(RewardPoint::class,'student_id','id')
-            ->where('subject_id',$id)->with('point.pointReason');
+    public function rewardBadges()
+    {
+        return $this->hasMany(RewardBadge::class, 'user_id', 'id');
+    }
+    public function rewardBadgesSubject($id)
+    {
+        return $this->rewardBadges()
+            ->where('subject_id', $id)->with('badge');
     }
 
-    public function enrolledSubjectId($id){
-        return $this->enrolledSubject()->where('subject_id',$id)->first();
+    public function rewardPointsSubject($id)
+    {
+        return $this->rewardPoints()
+            ->where('subject_id', $id)->with('point.pointReason');
     }
+
+    public function enrolledSubjectId($id)
+    {
+        return $this->enrolledSubject()->where('subject_id', $id)->first();
+    }
+
+    public function totalPoints($subject_id)
+    {
+        return $this->rewardPointsSubject($subject_id)->withSum('point', 'count')->get()->sum('point_sum_count');
+    }
+
+    public function getLevel($subject_id)
+    {
+        return $this->enrolledSubject()->where('subject_id', $subject_id)->first();
+    }
+
+    public function getLevelId($subject_id)
+    {
+        return $this->getLevel($subject_id)->pivot->level_id;
+    }
+
 
 }

@@ -14,4 +14,23 @@ class Level extends Model implements HasMedia
     protected $fillable = [
         'name',
     ];
+
+
+    public function subjects(){
+        return $this->belongsToMany(Subject::class,'subject_levels','level_id','subject_id')
+            ->using(SubjectLevel::class)
+            ->withPivot('point')
+            ->withTimestamps();
+    }
+
+    public function subjectLevelMinPoints($id){
+        $point = $this->subjects()->where('subject_id',$id)->first();
+        if ($point){
+            return  $point->pivot->point;
+        }
+
+        return null;
+
+
+    }
 }

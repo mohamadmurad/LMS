@@ -107,29 +107,6 @@
                                 </div>
                             @endforeach
 
-                            {{--                            <div class="week-section">--}}
-                            {{--                                <div class="rc-WeekAssignmentIcons prev-week-completed ">--}}
-                            {{--                                    <div class="vertical-box">--}}
-                            {{--                                        <div class="hoverable-overlay-trigger">--}}
-                            {{--                                            <div class="icon-wrapper" role="tooltip" tabindex="0"--}}
-                            {{--                                                 aria-describedby="tooltip-description-7cVLr">--}}
-
-                            {{--                                                <svg aria-hidden="false" class="_ufjrdd" viewBox="0 0 48 48" role="img"--}}
-                            {{--                                                     aria-labelledby="Quiz9ab1d2c8-0a8a-44d3-c650-265fa3bed4b7 Quiz9ab1d2c8-0a8a-44d3-c650-265fa3bed4b7Desc"--}}
-                            {{--                                                     xmlns="http://www.w3.org/2000/svg"--}}
-                            {{--                                                     style="fill: rgb(54, 59, 66); height: 24px; width: 24px;"><title--}}
-                            {{--                                                        id="Quiz9ab1d2c8-0a8a-44d3-c650-265fa3bed4b7">Quiz</title>--}}
-                            {{--                                                    <path--}}
-                            {{--                                                        d="M24 47C11.3 47 1 36.7 1 24S11.3 1 24 1s23 10.3 23 23-10.3 23-23 23zm0-1.84c11.7 0 21.16-9.47 21.16-21.16C45.16 12.3 35.7 2.84 24 2.84 12.3 2.84 2.84 12.3 2.84 24c0 11.7 9.47 21.16 21.16 21.16zM21 17h10v2H21v-2zm0 6h10v2H21v-2zm0 6h10v2H21v-2zm-3-10c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm0 6c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm0 6c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-5-21h22v28H13V10zm2 2v24h18V12H15z"--}}
-                            {{--                                                        role="presentation"></path>--}}
-                            {{--                                                </svg>--}}
-                            {{--                                            </div>--}}
-                            {{--                                        </div>--}}
-                            {{--                                        <div class="label horizontal-box align-items-vertical-center">--}}
-                            {{--                                            <span>Week 2</span></div>--}}
-                            {{--                                    </div>--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
                             <div class="end-week-section week-section ">
                                 <div
                                     class="rc-WeekStatusIndicator vertical-box {{$prev_complete ? 'prev-week-completed':''}}">
@@ -209,7 +186,7 @@
                                     @foreach($module->exams as $exam)
                                         <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-start text-white">
                                             <a class=""
-                                               href="{{route('student.subject.assignment',['subject'=>$subject,'assignment' => $assignment])}}">
+                                               href="{{route('student.subject.exam.show',['subject'=>$subject,'exam' => $exam])}}">
                                                 <i class="fa  fa-pencil-alt me-2"></i><b>Exam:</b> {{$exam->name}}
                                             </a>
 

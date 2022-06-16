@@ -49,6 +49,17 @@ class Behavior extends Model
             ->get();
     }
 
+    public function exam_points($id)
+    {
+        return $this->belongsToMany(Points::class, 'points_behaviors', 'behavior_id', 'point_id')
+            ->whereHas('exam',function ($query) use ($id){
+                $query->where('id', '=', $id);
+            })
+            ->withPivot('id')
+            ->withTimestamps()
+            ->get();
+    }
+
 
     public function objective_points($id)
     {

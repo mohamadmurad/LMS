@@ -29,7 +29,7 @@ class FrontContrller extends Controller
     public function subjectInfo(Subject $subject)
     {
         $totalStudent = $subject->enrolledStudents()->count();
-        $totalPoints = Auth::user()->rewardPointsSubject($subject->id)->withSum('point','count')->get()->sum('point_sum_count');
+        $totalPoints = Auth::user()->totalPoints($subject->id);
 
 
         $subject = Auth::user()->enrolledSubjectId($subject->id);
@@ -41,7 +41,11 @@ class FrontContrller extends Controller
 
         $lastLevel = Level::all()->last();
 
-        return view('frontend.subjects.info', compact('subject', 'totalStudent', 'authLevel', 'lastLevel', 'totalPoints'));
+
+        $awardBadges = Auth::user()->rewardBadgesSubject($subject->id)->get();
+
+
+        return view('frontend.subjects.info', compact('subject', 'totalStudent', 'authLevel', 'lastLevel', 'totalPoints','awardBadges'));
     }
 
     public function subjectPoints(Subject $subject)

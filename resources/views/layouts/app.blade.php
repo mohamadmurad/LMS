@@ -18,7 +18,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/toastr.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
-
+    @livewireStyles
 
 </head>
 <body class="g-sidenav-show   bg-gray-100">
@@ -90,5 +90,9 @@
 
 
 @yield('scripts')
+
+
+
+@livewireScripts
 </body>
 </html>

@@ -46,6 +46,15 @@
                         <span>By {{$subject->creator->name}}</span>
 
                     </div>
+                    <div class="badges">
+                        @foreach($awardBadges as $badge)
+                            <div class="badge-item">
+                                @if($badge->badge->hasMedia('icon'))
+                                        <img src="{{$badge->badge->getFirstMediaUrl('icon')}}">
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
                     <div>
                         @if($authLevel)
                             <p>Level <b>{{$authLevel->name}}</b> from <b>{{$lastLevel->name}}</b></p>

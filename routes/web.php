@@ -75,6 +75,11 @@ Route::middleware('auth')->group(function () {
         // levels
         Route::resource('levels', \App\Http\Controllers\LevelController::class);
 
+        // subject levels
+        Route::get('subjects/{subject}/levels', [\App\Http\Controllers\SubjectLevelController::class, 'show'])->name('subject.level.show');
+        Route::post('subjects/{subject}/levels', [\App\Http\Controllers\SubjectLevelController::class, 'update'])->name('subject.level.update');
+
+
         // behaviors
         Route::resource('behaviors', \App\Http\Controllers\BehaviorController::class);
 
@@ -103,6 +108,13 @@ Route::middleware('auth')->group(function () {
         // assignment
         Route::get('subject/{subject}/assignment/{assignment}', [\App\Http\Controllers\EnrollController::class, 'assignment'])->name('subject.assignment');
         Route::post('subject/{subject}/assignment/{assignment}', [\App\Http\Controllers\EnrollController::class, 'assignmentStore'])->name('subject.assignment.store');
+
+
+        // exam
+        Route::get('subject/{subject}/exam/{exam}', [\App\Http\Controllers\ExamFrontController::class, 'show'])->name('subject.exam.show');
+        Route::post('subject/{subject}/exam/{exam}', [\App\Http\Controllers\ExamFrontController::class, 'store'])->name('subject.exam.submit');
+
+
 
 
         Route::get('subject/{subject}/points', [\App\Http\Controllers\FrontContrller::class, 'subjectPoints'])

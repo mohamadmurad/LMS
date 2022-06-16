@@ -72,13 +72,9 @@ class SubjectController extends Controller
                 'creator_id' => Auth::id(),
                 'category_id' => $request->get('category_id'),
             ]);
-            $point = $subject->points()->create([
-                'count' => $request->get('process_points'),
-            ]);
 
-            $enroll_subject = Behavior::where('name', 'enroll_subject')->first()->id;
+            $this->addPoints($subject, $request->get('process_points'), 'enroll_subject');
 
-            $point->behavior()->attach($enroll_subject);
 
             if ($request->hasFile('cover')) {
                 $subject->addMediaFromRequest('cover')->toMediaCollection('cover');
@@ -188,10 +184,11 @@ class SubjectController extends Controller
         return redirect()->route('backend.subjects.index');
     }
 
-    public function students(Subject $subject){
+    public function students(Subject $subject)
+    {
         $students = $subject->enrolledStudents;
         $behaviors = Behavior::showing()->get();
-        return view('backend.subjects.students.index', compact('subject', 'students','behaviors'));
+        return view('backend.subjects.students.index', compact('subject', 'students', 'behaviors'));
     }
 
 

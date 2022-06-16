@@ -37,7 +37,6 @@
 
 @include('frontend.footer')
 
-@livewireScripts
 <!--   Core JS Files   -->
 <script src=" {{asset('assets/js/jquery.min.js')}}"></script>
 <script src=" {{asset('assets/js/fancybox.umd.js')}}"></script>
@@ -100,6 +99,9 @@
         toastr.info('{{ Session::get('info') }}');
         @endif
 
+        @if(Session::has('level'))
+        toastr.info('{{ Session::get('level') }}');
+        @endif
         @if(Session::has('points'))
         @foreach(Session::get('points') as $p)
         toastr.info('{{ $p }}');
@@ -110,5 +112,9 @@
 
 </script>
 @yield('scripts')
+
+
+
+@livewireScripts
 </body>
 </html>

@@ -61,42 +61,9 @@ class EnrollController extends  Controller
 
     public function learn(Subject $subject){
         $modules = $subject->modules;
-
         $lastSeenObjective = $this->getLastSeenObjective($modules);
-
         return view('frontend.subjects.learn', compact('subject', 'lastSeenObjective'));
     }
-
-
-    private function getLastSeenObjective($modules)
-    {
-        $lastSeenObjective = null;
-
-        foreach ($modules as $index => $module) {
-            $objectives = $module->objectives;
-
-            if ($index == 0) {
-                $lastSeenObjective = $objectives[0] ?? null;
-            }
-
-            //  $temp = $lastSeenObjective;
-
-            foreach ($objectives as $objective) {
-
-                if ($objective->isSeenObj($objective->id)->count() == 0) {
-                    return $objective;
-                }
-
-            }
-//            if ($temp != $lastSeenObjective){
-//                break;
-//            }
-
-        }
-
-        return $lastSeenObjective;
-    }
-
 
     public function learnObjective(Subject $subject, Objective $objective){
         $module = $objective->module;
@@ -128,9 +95,10 @@ class EnrollController extends  Controller
             $newObjective = Objective::findOrFail($newObjective);
             return redirect()->route('student.subject.learnObjective', ['objective' => $newObjective, 'subject' => $subject]);
         }
-        $test = $objective->module->exam;
-        if ($test) {
-            return redirect()->route('student.exam.show', ['module' => $objective->module, 'exam' => $test]);
+
+        $exam = $objective->module->exams()->first();
+        if ($exam) {
+            return redirect()->route('student.subject.exam.show', ['subject'=>$subject,'exam'=>$exam]);
         }
 
    //     event(new subject_complete(Auth::user(),$subject));

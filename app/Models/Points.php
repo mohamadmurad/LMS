@@ -30,6 +30,10 @@ class Points extends Model  implements HasMedia
     {
         return $this->morphTo(Subject::class, 'model_type', 'model_id');
     }
+    public function exam()
+    {
+        return $this->morphTo(Exam::class, 'model_type', 'model_id');
+    }
 
     public function objective()
     {

@@ -87,6 +87,20 @@
                             </div>
                         </div>
 
+                        <div class="col-xs-12 col-sm-4 col-md-3">
+                            <div class="course-tool">
+                                <div class="big-icon">
+                                    <a href="{{route('backend.subject.level.show',$subject)}}">
+                                        <img src="{{asset('assets/img/course_progress.png')}}" alt="Levels"
+                                             title="Levels"/>
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <a href="{{route('backend.subject.level.show',$subject)}}">Levels</a>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
