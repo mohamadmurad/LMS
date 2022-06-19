@@ -13,15 +13,32 @@
 
     <div class="row mt-2">
         <div class="card mb-4">
-            <div class="card-header">
-                <span class="font-weight-bold text-lg">Student {{$student->name}} Info</span>
-                <span class="d-block font-weight-bold text-lg">Subject {{$subject->name}}</span>
+            <div class="card-header d-flex justify-content-between">
+                <div>
+                    <span class="font-weight-bold text-lg">Student {{$student->name}} Info</span>
+                    <span class="d-block font-weight-bold text-lg">Subject {{$subject->name}}</span>
+                </div>
+                <a href="{{route('backend.subjects.student.placement.info',['subject'=>$subject,'student'=>$student,'placement'=>$student->subject_placement_submit($subject->id)])}}"
+                   class="btn btn-primary">Placement info</a>
+
             </div>
             <div class="card-body px-0 pt-0 pb-2">
-
+                <div class="badges">
+                    @foreach($awardBadges as $badge)
+                        <div class="badge-item">
+                            @if($badge->badge->hasMedia('icon'))
+                                <img src="{{$badge->badge->getFirstMediaUrl('icon')}}" alt="{{$badge->badge->name}}"
+                                     title="{{$badge->badge->name}}">
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
+
+
+    {{--        points--}}
     <div class="row mt-2">
         <div class="card mb-4">
             <div class="card-header">
@@ -57,6 +74,7 @@
         </div>
     </div>
 
+    {{--        exams--}}
     <div class="row mt-2">
         <div class="card mb-4">
             <div class="card-header">
@@ -69,33 +87,29 @@
                         <tr>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Exam</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mark</th>
-{{--                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Count</th>--}}
-{{--                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>--}}
+
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                         </tr>
                         </thead>
                         <tbody>
 
-{{--                        @foreach($student->exam_submit as $exam)--}}
-{{--                            <tr>--}}
-{{--                                <td><a href="{{route('teacher.subjects.student.exam.info',[--}}
-{{--                                            'subject'=> $subject,--}}
-{{--                                            'student'=>$student,--}}
-{{--                                            'exam' => $exam,--}}
-{{--                                        ])}}">{{$exam->name}}</a></td>--}}
-{{--                                <td>{{$exam->pivot->final_mark}}</td>--}}
+                        @foreach($student->subject_exam_submit($subject->id) as $exam)
 
-{{--                                --}}{{--                                    <td>{{$point->point->rule->human_name}}</td>--}}
-{{--                                --}}{{--                                    <td>{{$point->count}}</td>--}}
-{{--                                --}}{{--                                    <td>{{$point->created_at}}</td>--}}
-{{--                            </tr>--}}
-{{--                        @endforeach--}}
+                            <tr>
+                                <td>{{$exam->name}}</td>
+                                <td>{{$exam->pivot->final_mark}}</td>
+                                <td>
+                                    <a class="btn btn-link"
+                                       href="{{route('backend.subjects.student.exam.info',['subject'=>$subject,'student'=>$student,'exam'=>$exam])}}">Info</a>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-
 
 
 </x-app-layout>

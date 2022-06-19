@@ -32,11 +32,11 @@ class FrontContrller extends Controller
         $totalPoints = Auth::user()->totalPoints($subject->id);
 
 
-        $subject = Auth::user()->enrolledSubjectId($subject->id);
+        $subject_enroll = Auth::user()->enrolledSubjectId($subject->id);
 
         $authLevel = null;
-        if ($subject) {
-            $authLevel = Level::findOrFail($subject->pivot->level_id);
+        if ($subject_enroll) {
+            $authLevel = Level::findOrFail($subject_enroll->pivot->level_id);
         }
 
         $lastLevel = Level::all()->last();

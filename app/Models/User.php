@@ -89,6 +89,7 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->hasMany(RewardBadge::class, 'user_id', 'id');
     }
+
     public function rewardBadgesSubject($id)
     {
         return $this->rewardBadges()
@@ -119,6 +120,32 @@ class User extends Authenticatable implements HasMedia
     public function getLevelId($subject_id)
     {
         return $this->getLevel($subject_id)->pivot->level_id;
+    }
+
+
+    public function exam_submit()
+    {
+        return $this->belongsToMany(Exam::class, 'exam_submits', 'student_id', 'exam_id')
+            ->withPivot(['final_mark'])
+            ->join('exam_submit_answers', 'exam_submits_id', '=', 'exam_submits.id')
+            ->withTimestamps();
+    }
+
+    public function subject_exam_submit($subject_id)
+    {
+        return $this->exam_submit()->where('subject_id', $subject_id)->get();
+    }
+
+    public function placement_submit()
+    {
+        return $this->belongsToMany(Placement::class, 'placement_submits', 'student_id', 'placement_id')
+            ->join('placement_submit_answers', 'placement_submits_id', '=', 'placement_submits.id')
+            ->withTimestamps();
+    }
+
+    public function subject_placement_submit($subject_id)
+    {
+        return $this->placement_submit()->where('subject_id', $subject_id)->first();
     }
 
 

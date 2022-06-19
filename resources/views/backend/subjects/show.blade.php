@@ -76,6 +76,18 @@
                         <div class="col-xs-12 col-sm-4 col-md-3">
                             <div class="course-tool">
                                 <div class="big-icon">
+                                    <a href="{{route('backend.placements.index',$subject)}}">
+                                        <img src="{{asset('assets/img/quiz.png')}}" alt="Placements" title="Placements"/>
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <a href="{{route('backend.placements.index',$subject)}}">Placements</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-3">
+                            <div class="course-tool">
+                                <div class="big-icon">
                                     <a href="{{route('backend.modules.index',$subject)}}">
                                         <img src="{{asset('assets/img/course_progress.png')}}" alt="Modules"
                                              title="Module"/>
@@ -86,7 +98,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-xs-12 col-sm-4 col-md-3">
                             <div class="course-tool">
                                 <div class="big-icon">

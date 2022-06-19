@@ -51,6 +51,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('subjects/{subject}/modules/{module}/objectives', \App\Http\Controllers\ObjectiveController::class);
         Route::get('subjects/{subject}/students', [\App\Http\Controllers\SubjectController::class, 'students'])->name('subjects.student');
         Route::get('subjects/{subject}/students/{student}/info', [\App\Http\Controllers\SubjectController::class, 'studentInfo'])->name('subjects.student.info');
+        Route::get('subjects/{subject}/students/{student}/exam/{exam}/info', [\App\Http\Controllers\SubjectController::class, 'studentExamInfo'])->name('subjects.student.exam.info');
+        Route::get('subjects/{subject}/students/{student}/placement/{placement}/info', [\App\Http\Controllers\SubjectController::class, 'studentPlacementInfo'])->name('subjects.student.placement.info');
 
         Route::resource('subjects/{subject}/assignments', \App\Http\Controllers\AssignmentController::class);
         Route::get('subjects/{subject}/assignments/{assignment}/submits', [\App\Http\Controllers\AssignmentController::class, 'submits'])->name('assignments.submits');
@@ -65,6 +67,8 @@ Route::middleware('auth')->group(function () {
         // exams
         Route::resource('subjects/{subject}/exams', \App\Http\Controllers\ExamController::class);
 
+        // placement
+        Route::resource('placements', \App\Http\Controllers\PlacementController::class);
 
         Route::resource('students', \App\Http\Controllers\StudentController::class);
 
@@ -114,7 +118,9 @@ Route::middleware('auth')->group(function () {
         Route::get('subject/{subject}/exam/{exam}', [\App\Http\Controllers\ExamFrontController::class, 'show'])->name('subject.exam.show');
         Route::post('subject/{subject}/exam/{exam}', [\App\Http\Controllers\ExamFrontController::class, 'store'])->name('subject.exam.submit');
 
-
+        // placement
+        Route::get('subject/{subject}/placement/{placement}', [\App\Http\Controllers\ExamFrontController::class, 'showPlacement'])->name('subject.placement.show');
+        Route::post('subject/{subject}/placement/{placement}', [\App\Http\Controllers\ExamFrontController::class, 'storePlacement'])->name('subject.placement.submit');
 
 
         Route::get('subject/{subject}/points', [\App\Http\Controllers\FrontContrller::class, 'subjectPoints'])

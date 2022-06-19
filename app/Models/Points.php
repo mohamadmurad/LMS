@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Points extends Model  implements HasMedia
+class Points extends Model implements HasMedia
 {
     use HasFactory, HasMediaTrait;
 
@@ -30,9 +30,15 @@ class Points extends Model  implements HasMedia
     {
         return $this->morphTo(Subject::class, 'model_type', 'model_id');
     }
+
     public function exam()
     {
         return $this->morphTo(Exam::class, 'model_type', 'model_id');
+    }
+
+    public function placement()
+    {
+        return $this->morphTo(Placement::class, 'model_type', 'model_id');
     }
 
     public function objective()

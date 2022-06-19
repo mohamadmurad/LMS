@@ -20,9 +20,8 @@ class EnrollController extends  Controller
     public function enroll(Subject $subject){
         $user = Auth::user();
 
+        $placement = $subject->placement;
 
-        //$placement = $subject->exam()->first();
-        $placement = null;
         $enroll = $subject->authEnrolledStudent();
         if (!$enroll){
             // new enroll
@@ -40,7 +39,7 @@ class EnrollController extends  Controller
 
                 ]);
             }
-            return redirect()->route('student.placement.show', [
+            return redirect()->route('student.subject.placement.show', [
                 'subject' => $subject,
                 'placement' => $placement,
             ]);
@@ -76,9 +75,9 @@ class EnrollController extends  Controller
         try {
 
             $user = Auth::user();
-            $user->seen()->attach($objective->id);
-
-            event(new objective_complete($user, $objective, $subject));
+            $this->objectiveSeen($user,$objective,$subject);
+//            $user->seen()->attach($objective->id);
+//            event(new objective_complete($user, $objective, $subject));
 
             DB::commit();
         } catch (\Exception $e) {

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Exam extends Model
 {
-    use HasFactory,HasPoints;
+    use HasFactory, HasPoints;
 
     protected $fillable = [
         'name',
@@ -30,10 +30,23 @@ class Exam extends Model
             ->using(ExamQuestion::class);
     }
 
-    public function authSubmit()
+    public function submits()
     {
         return $this->hasMany(ExamSubmit::class, 'exam_id', 'id')
-            ->where('student_id', Auth::id())
             ->with('answers');
+    }
+
+    public function authSubmit()
+    {
+        return $this->submits()
+            ->where('student_id', Auth::id());
+    }
+
+    public function userSubmit($id)
+    {
+        return $this->submits()
+            ->where('student_id', $id);
+
+
     }
 }

@@ -32,6 +32,8 @@ class Behavior extends Model
             ->withTimestamps();
     }
 
+
+
     public function behaviorPoints()
     {
         return $this->belongsToMany(Points::class, 'point_custom_behaviors', 'behavior_id', 'point_id')
@@ -53,6 +55,17 @@ class Behavior extends Model
     {
         return $this->belongsToMany(Points::class, 'points_behaviors', 'behavior_id', 'point_id')
             ->whereHas('exam',function ($query) use ($id){
+                $query->where('id', '=', $id);
+            })
+            ->withPivot('id')
+            ->withTimestamps()
+            ->get();
+    }
+
+    public function placement_points($id)
+    {
+        return $this->belongsToMany(Points::class, 'points_behaviors', 'behavior_id', 'point_id')
+            ->whereHas('placement',function ($query) use ($id){
                 $query->where('id', '=', $id);
             })
             ->withPivot('id')

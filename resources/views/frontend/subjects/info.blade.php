@@ -50,7 +50,8 @@
                         @foreach($awardBadges as $badge)
                             <div class="badge-item">
                                 @if($badge->badge->hasMedia('icon'))
-                                        <img src="{{$badge->badge->getFirstMediaUrl('icon')}}">
+                                        <img src="{{$badge->badge->getFirstMediaUrl('icon')}}" alt="{{$badge->badge->name}}"
+                                             title="{{$badge->badge->name}}">
                                 @endif
                             </div>
                         @endforeach

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\objective_complete;
+use App\Models\Badge;
 use App\Models\Behavior;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -36,6 +38,14 @@ class Controller extends BaseController
         $point->behavior()->attach($exam_complete);
     }
 
+    public function addbadge($model,$badge_id,$behavior,$subject_id){
+        $badge = Badge::findOrFail($badge_id);
+        $exam_complete = Behavior::where('name',$behavior)->first()->id;
+        $badge->behavior()->attach($exam_complete,[
+            'subject_id' => $subject_id
+        ]);
+    }
+
     protected function getLastSeenObjective($modules)
     {
 
@@ -57,5 +67,10 @@ class Controller extends BaseController
         }
 
         return $lastSeenObjective;
+    }
+
+    public function objectiveSeen($user,$objective,$subject){
+        $user->seen()->attach($objective->id);
+        event(new objective_complete($user, $objective, $subject));
     }
 }

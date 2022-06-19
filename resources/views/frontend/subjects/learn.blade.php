@@ -39,9 +39,9 @@
                href="{{route('student.subject.learnObjective',['subject'=>$subject,'objective'=>$lastSeenObjective])}}">continue</a>
         @endif
 
-        @if($subject->exam)
+        @if($subject->placement)
             <a class="btn btn-info"
-               href="{{route('student.placement.show',['subject'=>$subject,'placement'=>$subject->exam])}}">Placement</a>
+               href="{{route('student.subject.placement.show',['subject'=>$subject,'placement'=>$subject->placement])}}">Placement</a>
 
         @endif
 

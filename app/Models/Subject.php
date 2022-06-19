@@ -100,6 +100,10 @@ class Subject extends Model implements HasMedia
         return $this->hasMany(Exam::class,'subject_id','id');
     }
 
+   public function placement(){
+        return $this->hasOne(Placement::class,'subject_id','id');
+    }
+
 
     public function levels(){
         return $this->belongsToMany(Level::class,'subject_levels','subject_id','level_id')

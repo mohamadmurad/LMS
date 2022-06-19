@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ExamSubmit extends Model
+class PlacementSubmit extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'final_mark',
         'student_id',
-        'exam_id',
+        'placement_id',
     ];
 
     public function student()
@@ -20,16 +19,16 @@ class ExamSubmit extends Model
         return $this->belongsTo(User::class, 'student_id', 'id');
     }
 
-    public function exam()
+    public function placement()
     {
-        return $this->belongsTo(Exam::class, 'exam_id', 'id');
+        return $this->belongsTo(Placement::class, 'placement_id', 'id');
     }
 
     public function answers()
     {
-        return $this->belongsToMany(Question::class, 'exam_submit_answers',
-            'exam_submits_id', 'question_id')
-            ->using(ExamSubmitAnswers::class)
+        return $this->belongsToMany(Question::class, 'placement_submit_answers',
+            'placement_submits_id', 'question_id')
+            ->using(PlacementSubmitAnswers::class)
             ->withPivot(['option_id', 'correct'])
             ->withTimestamps();
     }
@@ -57,8 +56,9 @@ class ExamSubmit extends Model
         if ($answer) {
             $oid = $answer->pivot->option_id;
         }
+
+
         return $oid;
 
     }
-
 }

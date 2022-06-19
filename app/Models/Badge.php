@@ -14,4 +14,11 @@ class Badge extends Model implements HasMedia
     protected $fillable = [
         'name',
     ];
+
+    public function behavior()
+    {
+        return $this->belongsToMany(Behavior::class, 'badge_behaviors', 'badge_id', 'behavior_id')
+            ->withTimestamps();
+    }
+
 }
