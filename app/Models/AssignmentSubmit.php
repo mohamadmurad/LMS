@@ -24,6 +24,7 @@ class AssignmentSubmit extends Model  implements HasMedia
         return $this->belongsTo(Assignment::class,'assignment_id','id');
     }
     public function student(){
+
         return $this->belongsTo(User::class,'student_id','id');
     }
 

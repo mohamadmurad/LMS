@@ -27,7 +27,7 @@ class CreateRewardPointsTable extends Migration
                 ->references('id')
                 ->onDelete('cascade');
 
-            $table->foreignId('badge_id');
+            $table->foreignId('subject_id');
             $table->foreign('subject_id')
                 ->references('id')
                 ->on('subjects')

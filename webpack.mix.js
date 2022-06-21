@@ -10,8 +10,9 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-mix.sass('resources/scss/lms.scss','public/assets/front/css/front.css');
 
+mix.sass('resources/scss/lms.scss','public/assets/front/css/front.css');
+// mix.js('resources/js/htmlifier.js', 'public/js');
 // mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
 //     require('tailwindcss'),
 //     require('autoprefixer'),

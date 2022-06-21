@@ -26,6 +26,10 @@
                     {!! $submit->content !!}
                 </div>
 
+{{--                @if($submit->getFirstMedia('submit_file')->getExtensionAttribute() == 'sb3')--}}
+{{--                    ds--}}
+{{--                @endif--}}
+
                 @if($submit->hasMedia('submit_file'))
 
                     <div class="">

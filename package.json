@@ -17,5 +17,9 @@
         "resolve-url-loader": "^5.0.0",
         "sass": "^1.52.3",
         "sass-loader": "^12.1.0"
+    },
+    "dependencies": {
+        "@sheeptester/htmlifier": "^1.0.3",
+        "@turbowarp/packager": "1.0.0"
     }
 }
