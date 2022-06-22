@@ -11,7 +11,10 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.sass('resources/scss/lms.scss','public/assets/front/css/front.css');
+// mix.sass('resources/scss/lms.scss','public/assets/front/css/front.css');
+mix.sass('resources/scss/frontall.scss','public/css/frontall.css');
+// mix.js('resources/js/frontall.js','public/js/frontall.js');
+
 // mix.js('resources/js/htmlifier.js', 'public/js');
 // mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
 //     require('tailwindcss'),

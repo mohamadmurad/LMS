@@ -8,24 +8,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
 
-    <!-- CSS here -->
-    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/front/css/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/front/css/slicknav.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/front/css/flaticon.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/front/css/progressbar_barfiller.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/front/css/gijgo.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/front/css/animate.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/front/css/animated-headline.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/front/css/magnific-popup.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/front/css/fontawesome-all.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/front/css/themify-icons.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/front/css/slick.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/front/css/nice-select.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/front/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/front/css/front.css')}}">
+    <link rel="stylesheet" href="{{ mix('css/frontall.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/toastr.css') }}">
     @livewireStyles
 </head>
 <body>
@@ -38,6 +22,7 @@
 @include('frontend.footer')
 
 <!--   Core JS Files   -->
+{{--<script src=" {{mix('js/frontall.js')}}"></script>--}}
 <script src=" {{asset('assets/js/jquery.min.js')}}"></script>
 <script src=" {{asset('assets/js/fancybox.umd.js')}}"></script>
 <script src=" {{asset('assets/js/core/popper.min.js')}}"></script>
