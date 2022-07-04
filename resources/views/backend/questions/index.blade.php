@@ -29,6 +29,7 @@
                         <tr>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Question
                             </th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Level</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Objective
                             </th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Options</th>
@@ -39,10 +40,22 @@
                         @foreach($questions as $question)
                             <tr>
                                 <td>{{$question->question}}</td>
+                                <td>
+                                    @if($question->level == 0)
+                                        Easy
+                                    @elseif($question->level == 1)
+                                        Medium
+                                    @else
+                                        Hard
+                                    @endif
+
+
+                                </td>
                                 <td>{{$question->objective->module->name}} --> {{$question->objective->name}}</td>
                                 <td>
                                     @foreach($question->options as $op)
-                                        <span class="badge {{$op->correct? 'bg-success':"bg-info"}}">{{$op->option}}</span>
+                                        <span
+                                            class="badge {{$op->correct? 'bg-success':"bg-info"}}">{{$op->option}}</span>
                                     @endforeach
                                 </td>
 
@@ -54,15 +67,16 @@
                                         @csrf
                                         @method('delete')
                                         @if($question->hasMedia('q_files'))
-                                        <a class="text-secondary font-weight-bold text-xs btn btn-link" target="_blank"
-                                           href="{{$question->getFirstMediaUrl('q_files')}}"><i
-                                                class="fa fa-eye me-2"></i>
-                                            Show File</a>
+                                            <a class="text-secondary font-weight-bold text-xs btn btn-link"
+                                               target="_blank"
+                                               href="{{$question->getFirstMediaUrl('q_files')}}"><i
+                                                    class="fa fa-eye me-2"></i>
+                                                Show File</a>
 
                                         @endif
-{{--                                        <a class="text-secondary font-weight-bold text-xs btn btn-link"--}}
-{{--                                           href="{{route('backend.questions.show',['question'=>$question,'subject'=>$subject])}}"><i--}}
-{{--                                                class="fa fa-eye me-2"></i> Show </a>--}}
+                                        {{--                                        <a class="text-secondary font-weight-bold text-xs btn btn-link"--}}
+                                        {{--                                           href="{{route('backend.questions.show',['question'=>$question,'subject'=>$subject])}}"><i--}}
+                                        {{--                                                class="fa fa-eye me-2"></i> Show </a>--}}
                                         <a class="text-secondary font-weight-bold text-xs btn btn-link"
                                            href="{{route('backend.questions.edit',['question'=>$question,'subject'=>$subject])}}"><i
                                                 class="fa fa-pencil me-2"></i> edit </a>

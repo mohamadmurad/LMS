@@ -63,4 +63,8 @@ class Objective extends Model implements HasMedia
     public function questions(){
         return $this->hasMany(Question::class,'objective_id','id');
     }
+
+    public function achieved(){
+
+    }
 }

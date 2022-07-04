@@ -13,6 +13,7 @@ class Question extends Model implements HasMedia
 
     protected $fillable = [
         'question',
+        'level',
         'subject_id',
         'objective_id',
     ];

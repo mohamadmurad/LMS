@@ -27,7 +27,13 @@ class AssignmentSubmit extends Model  implements HasMedia
 
         return $this->belongsTo(User::class,'student_id','id');
     }
+    public function objectives(){
+        return $this->hasMany(assignmentSubmitObjectives::class,'submit_id','id');
+    }
 
+    public function achieved(){
+        return $this->objectives()->where('is_achieved',true)->pluck('objective_id')->toArray();
+    }
 
 
 }

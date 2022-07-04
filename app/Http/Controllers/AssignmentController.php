@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Assignment;
 use App\Models\AssignmentSubmit;
+use App\Models\assignmentSubmitObjectives;
 use App\Models\Subject;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Http;
 
 class AssignmentController extends Controller
 {
@@ -72,6 +74,7 @@ class AssignmentController extends Controller
      */
     public function show(Subject $subject, Assignment $assignment)
     {
+
         return view('backend.assignments.show', compact('subject', 'assignment'));
     }
 
@@ -146,19 +149,44 @@ class AssignmentController extends Controller
     public function submitShow(Subject $subject, Assignment $assignment, AssignmentSubmit $submit)
     {
 
+        $objectives = $assignment->module->objectives;
 
-        return view('backend.assignmentsSubmits.show', compact('assignment', 'subject', 'submit'));
+        return view('backend.assignmentsSubmits.show', compact('assignment', 'subject', 'submit','objectives'));
     }
     public function submitMark(Request $request,Subject $subject, Assignment $assignment, AssignmentSubmit $submit)
     {
+
         $this->validate($request,[
             'mark'=> 'required|numeric|min:0|max:100',
         ]);
+
+
+
+
+        if ($request->has('objective')){
+            $objectives = $assignment->module->objectives;
+            $achievedObjective = ($request->get('objective'));
+            foreach ($objectives as $objective){
+                $data = [
+                    'objective_id' =>  $objective->id,
+                    'submit_id' => $submit->id,
+                ];
+                if (array_key_exists($objective->id, $achievedObjective)  ){
+                    $data['is_achieved'] = true;
+
+                }else{
+                    $data['is_achieved'] = false;
+
+                }
+                assignmentSubmitObjectives::create($data);
+
+            }
+
+        }
         $submit->update([
             'mark' => $request->get('mark'),
             'status' => 1,
         ]);
-
 
        return redirect()->back();
     }

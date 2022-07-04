@@ -42,13 +42,27 @@ class ExamController extends Controller
      */
     public function store(Request $request,Subject $subject)
     {
+
+
+
+
+
         $this->validate($request,[
             'name' => 'required|string',
+            'count' => 'required|numeric',
+            'level' => 'required|in:0,1,2',
             'module_id' => 'required',
-            'question' => 'required|array',
-            'question.*' => 'required'
+            //'question' => 'required|array',
+          //  'question.*' => 'required'
         ]);
-        $questionsIDs = array_keys($request->get('question'));
+
+        $questionsIDs = $subject->questions()->whereHas('objective',function ($query)use ($request){
+            $query->where('module_id',$request->get('module_id'));
+        })->where('level',$request->get('level'))->inRandomOrder()->limit($request->get('count'))->pluck('id');
+
+
+
+     //   $questionsIDs = array_keys($request->get('question'));
 
         DB::beginTransaction();
         try {

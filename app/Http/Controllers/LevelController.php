@@ -95,9 +95,11 @@ class LevelController extends Controller
         $level->update([
             'name' => $request->get('name'),
         ]);
+
         if ($request->hasFile('icon')) {
             $level->getFirstMedia('icon')->delete();
-            $level->addMediaFromRequest('icon')->toMediaCollection('icon');
+            $level->addMediaFromRequest('icon')
+                ->toMediaCollection('icon');
         }
 
         return redirect()->route('backend.levels.index');

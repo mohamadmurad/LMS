@@ -5,7 +5,9 @@ namespace App\Models;
 use App\Traits\HasPoints;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -65,9 +67,10 @@ class Subject extends Model implements HasMedia
 
     public function enrolledStudents()
     {
-        return $this->belongsToMany(User::class, 'enrolls', 'subject_id', 'student_id')->withPivot('level_id')
+        return $this->belongsToMany(User::class, 'enrolls', 'subject_id', 'student_id')->withPivot('level_id','points')
+
             ->join('levels', 'levels.id', '=', 'level_id')
-            ->select(['users.*', 'levels.name as level_name'])
+            ->select(['users.*', 'levels.name as level_name','enrolls.points as points'])
             ->withTimestamps();
     }
 
@@ -111,6 +114,20 @@ class Subject extends Model implements HasMedia
             ->withPivot('point')
             ->withTimestamps()
             ->orderBy('pivot_point', 'asc');
+    }
+
+    public function getLeaderBoard($start,$end){
+        return RewardPoint::with(['student', 'point'])
+            ->where('reward_points.subject_id', $this->id)
+            ->whereBetween('reward_points.created_at',[$start,$end])
+           // ->join('users', 'reward_points.student_id', '=', 'users.id')
+            ->join('points', 'reward_points.point_id', '=', 'points.id')
+//            ->join('enrolls', 'reward_points.student_id', '=', 'enrolls.student_id')
+//            ->join('levels', 'reward_points.student_id', '=', 'enrolls.student_id')
+            ->select( DB::raw('SUM(points.count) as points'), 'reward_points.student_id')
+            ->groupBy('reward_points.student_id')
+            ->orderBy('points')
+            ->get();
     }
 
 }

@@ -11,6 +11,7 @@ use App\Models\Objective;
 use App\Models\Subject;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -128,6 +129,15 @@ class EnrollController extends  Controller
 
         $this->successFlash('Submitted');
         return redirect()->back();
+
+    }
+
+    public function leaderboard (Subject $subject){
+        $students = $subject->getLeaderBoard(Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek());
+        $studentMonth = $subject->getLeaderBoard(Carbon::now()->startOfMonth(),Carbon::now()->endOfMonth());
+
+        return view('frontend.LeaderBoard.index',compact('students','subject','studentMonth'));
+
 
     }
 

@@ -10,9 +10,15 @@ class SubjectLevel extends Pivot
 {
     use HasFactory;
 
+    protected $table = 'subject_levels';
+
     protected $fillable = [
         'level_id',
         'subject_id',
         'point',
     ];
+
+    public function level(){
+        return $this->belongsTo(Level::class,'level_id','id');
+    }
 }

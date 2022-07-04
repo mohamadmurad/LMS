@@ -70,6 +70,7 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->belongsToMany(Subject::class, 'enrolls', 'student_id', 'subject_id')
             ->withPivot('level_id')
+            ->using(Enroll::class)
             ->withTimestamps();
     }
 
@@ -110,6 +111,10 @@ class User extends Authenticatable implements HasMedia
     public function totalPoints($subject_id)
     {
         return $this->rewardPointsSubject($subject_id)->withSum('point', 'count')->get()->sum('point_sum_count');
+    }
+    public function totalPoint()
+    {
+        return $this->rewardPoints()->withSum('point', 'count');
     }
 
     public function getLevel($subject_id)

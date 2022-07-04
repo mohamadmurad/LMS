@@ -24,17 +24,15 @@
                             <div class="properties__footer d-flex justify-content-between align-items-center">
                                 <div class="restaurant-name">
                                     <div class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half"></i>
+                                        @for($i = 0; $i< floor($subject->reviews()->avg('stars')) ;$i++)
+                                            <i class="fas fa-star"></i>
+                                        @endfor
+
+
                                     </div>
-                                    <p><span>(4.5)</span> based on 120</p>
+                                    <p><span>({{floor($subject->reviews()->avg('stars'))}})</span> based on {{$subject->reviews()->count()}}</p>
                                 </div>
-                                <div class="price">
-                                    <span>$135</span>
-                                </div>
+
                             </div>
                             <a href="{{route('subjects.info',$subject)}}" class="border-btn border-btn2">Find out more</a>
                         </div>

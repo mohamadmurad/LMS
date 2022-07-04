@@ -29,7 +29,7 @@
                             <tr>
                                 <td>{{$answer->question}}</td>
                                 <td>{{$answer->pivot->option->option }}</td>
-                                <td><span class="badge bg-success">{{$answer->pivot->option->correct ? 'Yes':'No'}}</span></td>
+                                <td><span class="badge {{$answer->pivot->option->correct ? 'bg-success':'bg-danger'}} ">{{$answer->pivot->option->correct ? 'Yes':'No'}}</span></td>
 
                             </tr>
                         @endforeach

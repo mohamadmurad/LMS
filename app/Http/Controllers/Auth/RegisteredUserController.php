@@ -82,7 +82,7 @@ class RegisteredUserController extends Controller
 
 
         if ($request->get('status') == 0) {
-            return redirect()->route('student.dashboard.index');
+            return redirect()->route('home');
         } else {
 
             return redirect(RouteServiceProvider::HOME);

@@ -42,6 +42,7 @@ class QuestionController extends Controller
 
         $this->validate($request, [
             'question' => 'required|string',
+            'level' => 'required|in:0,1,2',
             'objective_id' => 'required',
             'option_1' => 'required|string',
             'option_2' => 'required|string',
@@ -54,6 +55,7 @@ class QuestionController extends Controller
         try {
             $question = Question::create([
                 'question' => $request->get('question'),
+                'level' => $request->get('level'),
                 'objective_id' => $request->get('objective_id'),
                 'subject_id' => $subject->id,
             ]);
@@ -115,6 +117,7 @@ class QuestionController extends Controller
 
         $this->validate($request, [
             'question' => 'required|string',
+            'level' => 'required|in:0,1,2',
             'objective_id' => 'required',
             'option_1' => 'required|string',
             'option_2' => 'required|string',
@@ -127,6 +130,7 @@ class QuestionController extends Controller
         try {
             $question->update([
                 'question' => $request->get('question'),
+                'level' => $request->get('level'),
                 'objective_id' => $request->get('objective_id'),
               //  'subject_id' => $subject->id,
             ]);

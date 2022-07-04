@@ -12,6 +12,8 @@ class CreateExamForm extends Component
     public $subject;
     public $questions = [];
     public $x  = null;
+    public $level = 0;
+    public $max = 0;
 
     public function mount(Subject  $subject)
     {
@@ -20,7 +22,8 @@ class CreateExamForm extends Component
         $this->x = $this->modules[0]->id;
         $this->questions = $this->subject->questions()->whereHas('objective',function ($query){
             $query->where('module_id',$this->x);
-        })->get();
+        })->where('level',$this->level)->get();
+        $this->max = count($this->questions);
     }
     public function updatedX()
     {
@@ -28,6 +31,14 @@ class CreateExamForm extends Component
         $this->questions = $this->subject->questions()->whereHas('objective',function ($query){
             $query->where('module_id',$this->x);
         })->get();
+    }
+    public function updatedLevel()
+    {
+
+        $this->questions = $this->subject->questions()->whereHas('objective',function ($query){
+            $query->where('module_id',$this->x);
+        })->where('level',$this->level)->get();
+        $this->max = count($this->questions);
     }
     public function render()
     {

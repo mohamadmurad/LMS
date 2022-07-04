@@ -7,10 +7,12 @@ use App\Models\Category;
 use App\Models\Exam;
 use App\Models\ExamSubmit;
 use App\Models\Placement;
+use App\Models\RewardPoint;
 use App\Models\Rules;
 use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -199,17 +201,33 @@ class SubjectController extends Controller
     {
         $authPoints = $student->rewardPointsSubject($subject->id)->get();
         $awardBadges = $student->rewardBadgesSubject($subject->id)->get();
-        return view('backend.subjects.students.info', compact('subject', 'student', 'authPoints','awardBadges'));
+        return view('backend.subjects.students.info', compact('subject', 'student', 'authPoints', 'awardBadges'));
     }
 
-    public function studentExamInfo(Subject $subject, User $student,Exam $exam){
+    public function studentExamInfo(Subject $subject, User $student, Exam $exam)
+    {
 
-        $submitExam= $exam->userSubmit($student->id)->first();
-        return view('backend.subjects.students.examInfo', compact('subject', 'student','submitExam'));
+        $submitExam = $exam->userSubmit($student->id)->first();
+        return view('backend.subjects.students.examInfo', compact('subject', 'student', 'submitExam'));
     }
-    public function studentPlacementInfo (Subject $subject, User $student,Placement $placement){
 
-        $submitExam= $placement->userSubmit($student->id)->first();
-        return view('backend.subjects.students.placementInfo', compact('subject', 'student','submitExam'));
+    public function studentPlacementInfo(Subject $subject, User $student, Placement $placement)
+    {
+
+        $submitExam = $placement->userSubmit($student->id)->first();
+        return view('backend.subjects.students.placementInfo', compact('subject', 'student', 'submitExam'));
+    }
+
+
+    public function leaderboard(Subject $subject)
+    {
+
+        $students = $subject->getLeaderBoard(Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek());
+        $studentMonth = $subject->getLeaderBoard(Carbon::now()->startOfMonth(),Carbon::now()->endOfMonth());
+
+        return view('backend.LeaderBoard.index',compact('students','subject','studentMonth'));
+
+
+
     }
 }

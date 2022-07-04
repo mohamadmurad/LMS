@@ -2,6 +2,8 @@
 
 namespace App\Events;
 
+use App\Models\Enroll;
+use App\Models\User;
 use Illuminate\Support\Facades\Session;
 
 class baseEvent
@@ -18,7 +20,7 @@ class baseEvent
     }
 
 
-    public function rewardPoints($user,$points,$subject_id){
+    public function rewardPoints(User $user,$points,$subject_id){
 
         foreach ($points as $point) {
 
@@ -30,6 +32,12 @@ class baseEvent
                 'count' => $point->count,
                 'subject_id'=> $subject_id
             ]);
+            $enroll = Enroll::where('student_id',$user->id)->where('subject_id',$subject_id)->first();
+
+            Enroll::where('student_id',$user->id)->where('subject_id',$subject_id)->update([
+                'points'=>$enroll->points + $point->count
+            ]);
+
 
             $this->pointSession('You are Reward ' . $point->count . ' Points');
         }

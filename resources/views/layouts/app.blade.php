@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+{{--<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">--}}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+{{--    <meta name="csrf-token" content="{{ csrf_token() }}">--}}
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+{{--    <title>{{ config('app.name', 'Laravel') }}</title>--}}
 
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/nucleo-svg.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/fancybox.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+{{--    <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">--}}
+{{--    <link rel="stylesheet" href="{{ asset('assets/css/nucleo-svg.css') }}">--}}
+{{--    <link rel="stylesheet" href="{{ asset('assets/css/fancybox.css') }}">--}}
+{{--    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">--}}
     <link rel="stylesheet" href="{{ asset('assets/css/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/argon-dashboard.css') }}">
 
@@ -52,6 +52,7 @@
 <script src=" {{asset('assets/js/toastr.js')}}"></script>
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{{asset('assets/js/argon-dashboard.min.js?v=2.0.1')}}"></script>
+{{--<script src="{{asset('js/index.bundle.min.js')}}"></script>--}}
 @include('layouts.scripts')
 
 
@@ -85,6 +86,8 @@
         toastr.info('{{ Session::get('info') }}');
         @endif
     });
+
+
 
 </script>
 

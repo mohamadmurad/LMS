@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\AssignmentSubmit;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +19,13 @@ Route::get('/', [\App\Http\Controllers\FrontContrller::class, 'home'])->name('ho
 Route::get('/subjects', [\App\Http\Controllers\FrontContrller::class, 'subjects'])->name('subjects');
 Route::get('/subjects/{subject}', [\App\Http\Controllers\FrontContrller::class, 'subjectInfo'])->name('subjects.info');
 
-
+Route::get('/ss/{submit}',function (\App\Models\AssignmentSubmit  $submit){
+   // dd($submit);
+    $response = Http::get('http://localhost:3000',['url'=>$submit->getFirstMediaPath('submit_file')]);
+//        dd($response->json());
+    $html = $response->json('someData');
+    return view('v',compact('html'));
+})->name('ss');
 Route::middleware('auth')->group(function () {
 
 
@@ -91,6 +99,7 @@ Route::middleware('auth')->group(function () {
         // student behaviors
         Route::post('studentBehavior', [\App\Http\Controllers\BehaviorController::class, 'addBehaviorToStudent'])->name('studentBehavior.store');
 
+        Route::get('/subjects/{subject}/leaderboard',[\App\Http\Controllers\SubjectController::class,'leaderboard'])->name('subject.leaderboard.show');
 
         // points
         Route::resource('points', \App\Http\Controllers\PointsController::class);
@@ -109,6 +118,10 @@ Route::middleware('auth')->group(function () {
         Route::get('subject/{subject}/learn/{objective}', [\App\Http\Controllers\EnrollController::class, 'learnObjective'])->name('subject.learnObjective');
         Route::post('markSeed/{subject}/{objective}', [\App\Http\Controllers\EnrollController::class, 'markObjSeed'])->name('obj.seen');
 
+
+        Route::get('subject/{subject}/leaderboard',[\App\Http\Controllers\EnrollController::class,'leaderboard'])->name('leaderboard');
+
+
         // assignment
         Route::get('subject/{subject}/assignment/{assignment}', [\App\Http\Controllers\EnrollController::class, 'assignment'])->name('subject.assignment');
         Route::post('subject/{subject}/assignment/{assignment}', [\App\Http\Controllers\EnrollController::class, 'assignmentStore'])->name('subject.assignment.store');
@@ -125,6 +138,9 @@ Route::middleware('auth')->group(function () {
 
         Route::get('subject/{subject}/points', [\App\Http\Controllers\FrontContrller::class, 'subjectPoints'])
             ->name('subject.points');
+
+
+
 
     });
 

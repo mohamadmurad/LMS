@@ -20,7 +20,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">question</label>
-                                    <input class="form-control" type="text" name="question" value="{{old('question')}}" required
+                                    <input class="form-control" type="text" name="question" value="{{old('question')}}"
+                                           required
                                     >
                                 </div>
                             </div>
@@ -38,11 +39,21 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="example-text-input" class="form-control-label">Level</label>
+                                    <select name="level" class="form-control" required>
+                                        <option value="0">Easy</option>
+                                        <option value="1">medium</option>
+                                        <option value="2">Hard</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">File (optional)</label>
                                     <input class="form-control" type="file"
-                                           name="file" value="{{old('file')}}" autocomplete="subject" >
+                                           name="file" value="{{old('file')}}" autocomplete="subject">
                                 </div>
                             </div>
                             <hr>
@@ -50,60 +61,68 @@
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="radio" name="option_correct" value="1" id="option_1_correct" required>
-                                            <label class="form-check-label" for="option_1_correct" >Correct?</label>
+                                            <input class="form-check-input" type="radio" name="option_correct" value="1"
+                                                   id="option_1_correct" required>
+                                            <label class="form-check-label" for="option_1_correct">Correct?</label>
                                         </div>
 
                                     </div>
                                     <div class="col-md-10">
                                         <div class="form-group">
                                             <input class="form-control" type="text"
-                                                   name="option_1" value="{{old('option_1')}}" autocomplete="subject" placeholder="Option 1" required>
+                                                   name="option_1" value="{{old('option_1')}}" autocomplete="subject"
+                                                   placeholder="Option 1" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="radio" name="option_correct" value="2" id="option_2_correct" required>
-                                            <label class="form-check-label" for="option_2_correct" >Correct?</label>
+                                            <input class="form-check-input" type="radio" name="option_correct" value="2"
+                                                   id="option_2_correct" required>
+                                            <label class="form-check-label" for="option_2_correct">Correct?</label>
                                         </div>
 
                                     </div>
                                     <div class="col-md-10">
                                         <div class="form-group">
                                             <input class="form-control" type="text"
-                                                   name="option_2" value="{{old('option_2')}}" autocomplete="subject" placeholder="Option 2" required>
+                                                   name="option_2" value="{{old('option_2')}}" autocomplete="subject"
+                                                   placeholder="Option 2" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="radio" name="option_correct" value="3" id="option_3_correct" required>
-                                            <label class="form-check-label" for="option_3_correct" >Correct?</label>
+                                            <input class="form-check-input" type="radio" name="option_correct" value="3"
+                                                   id="option_3_correct" required>
+                                            <label class="form-check-label" for="option_3_correct">Correct?</label>
                                         </div>
 
                                     </div>
                                     <div class="col-md-10">
                                         <div class="form-group">
                                             <input class="form-control" type="text"
-                                                   name="option_3" value="{{old('option_3')}}" autocomplete="subject" placeholder="Option 3" required>
+                                                   name="option_3" value="{{old('option_3')}}" autocomplete="subject"
+                                                   placeholder="Option 3" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="radio" name="option_correct" value="4" id="option_4_correct" required>
-                                            <label class="form-check-label" for="option_4_correct" >Correct?</label>
+                                            <input class="form-check-input" type="radio" name="option_correct" value="4"
+                                                   id="option_4_correct" required>
+                                            <label class="form-check-label" for="option_4_correct">Correct?</label>
                                         </div>
 
                                     </div>
                                     <div class="col-md-10">
                                         <div class="form-group">
                                             <input class="form-control" type="text"
-                                                   name="option_4" value="{{old('option_4')}}" autocomplete="subject" placeholder="Option 4" required>
+                                                   name="option_4" value="{{old('option_4')}}" autocomplete="subject"
+                                                   placeholder="Option 4" required>
                                         </div>
                                     </div>
                                 </div>
