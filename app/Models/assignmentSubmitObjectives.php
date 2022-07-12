@@ -12,6 +12,7 @@ class assignmentSubmitObjectives extends Model
     protected $fillable = [
         'objective_id',
         'submit_id',
+        'subject_id',
         'is_achieved',
     ];
 
@@ -21,5 +22,9 @@ class assignmentSubmitObjectives extends Model
 
     public function submit(){
         return $this->belongsTo(AssignmentSubmit::class,'submit_id','id');
+    }
+
+    public function subject(){
+        return $this->belongsTo(Subject::class,'subject_id','id');
     }
 }

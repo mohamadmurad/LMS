@@ -60,6 +60,7 @@ class EnrollController extends  Controller
 
 
     public function learn(Subject $subject){
+    //    dd($subject->notAchievedObjective());
         $modules = $subject->modules;
         $lastSeenObjective = $this->getLastSeenObjective($modules);
         return view('frontend.subjects.learn', compact('subject', 'lastSeenObjective'));
@@ -108,7 +109,8 @@ class EnrollController extends  Controller
 
     public function assignment(Subject $subject, Assignment $assignment){
         $module = $assignment->module;
-        return view('frontend.assignments.show', compact('subject',  'module','assignment'));
+        $objectives = $assignment->module->objectives;
+        return view('frontend.assignments.show', compact('subject',  'module','objectives','assignment'));
     }
 
     public function assignmentStore(Request $request,Subject $subject, Assignment $assignment){

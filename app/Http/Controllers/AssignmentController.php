@@ -170,6 +170,7 @@ class AssignmentController extends Controller
                 $data = [
                     'objective_id' =>  $objective->id,
                     'submit_id' => $submit->id,
+                    'subject_id' => $subject->id,
                 ];
                 if (array_key_exists($objective->id, $achievedObjective)  ){
                     $data['is_achieved'] = true;

@@ -179,6 +179,49 @@
                     </div>
 
                 @endforeach
+
+                    <div class="accordion-item card my-3 moduleItem" >
+                        <h2 class="card-header p-0" id="heading_{{$index+9}}">
+                            <button @class('accordion-button text-bold')  class type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#collapse_{{$index+9}}" aria-expanded="true"
+                                    aria-controls="collapse_{{$index+9}}">
+
+                               Not Achieved Objective
+                            </button>
+                        </h2>
+                        <div id="collapse_{{$index+9}}"
+                             @class('accordion-collapse collapse') class="accordion-collapse collapse "
+                             aria-labelledby="heading_{{$index+9}}" data-bs-parent="#accordionExample">
+                            <div class="accordion-body card-body ">
+
+                                <h5>Objectives</h5>
+                                <ul class="list-group">
+                                    @foreach($subject->notAchievedObjective() as $notAchievedObjective)
+                                        <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-start text-white">
+                                            <a class=""
+                                               href="{{route('student.subject.learnObjective',['subject'=>$subject,'objective' => $notAchievedObjective->objective])}}">
+                                                <i class="fa  {{ $notAchievedObjective->objective->type ? 'fa-video' : 'fa-book'}} me-2"></i>{{ $notAchievedObjective->objective->name}}
+                                                <br>
+                                                <i class="fa fa-gift me-2"></i>{{ $notAchievedObjective->objective->points()->first()->count}}
+                                                points
+
+                                            </a>
+
+                                        </li>
+
+                                    @endforeach
+                                </ul>
+
+
+                            </div>
+                            <div class="card-footer d-flex justify-content-center align-items-center gap-2">
+
+
+                            </div>
+                        </div>
+                    </div>
+
             </div>
         </div>
 

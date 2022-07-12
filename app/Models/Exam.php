@@ -49,4 +49,8 @@ class Exam extends Model
 
 
     }
+
+    public function correctOptionId($q_id){
+        return $this->questions()->where('question_id',$q_id)->correctOption->id;
+    }
 }

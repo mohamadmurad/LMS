@@ -20,7 +20,8 @@
                         <!-- Logo -->
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo">
-                                <a href="{{route('home')}}"><img src="{{asset('assets/front/img/logo/logo.png')}}" alt=""></a>
+                                <a href="{{route('home')}}"><img src="{{asset('assets/front/img/logo/logo.png')}}"
+                                                                 alt=""></a>
                             </div>
                         </div>
                         <div class="col-xl-10 col-lg-10">
@@ -29,26 +30,44 @@
                                 <div class="main-menu d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li class="active" ><a href="{{route('home')}}">Home</a></li>
+                                            <li class="active"><a href="{{route('home')}}">Home</a></li>
                                             <li><a href="{{route('subjects')}}">Subjects</a></li>
-{{--                                            <li><a href="about.html">About</a></li>--}}
-{{--                                            <li><a href="#">Blog</a>--}}
-{{--                                                <ul class="submenu">--}}
-{{--                                                    <li><a href="blog.html">Blog</a></li>--}}
-{{--                                                    <li><a href="blog_details.html">Blog Details</a></li>--}}
-{{--                                                    <li><a href="elements.html">Element</a></li>--}}
-{{--                                                </ul>--}}
-{{--                                            </li>--}}
-{{--                                            <li><a href="contact.html">Contact</a></li>--}}
+                                            {{--                                            <li><a href="about.html">About</a></li>--}}
+                                            {{--                                            <li><a href="#">Blog</a>--}}
+                                            {{--                                                <ul class="submenu">--}}
+                                            {{--                                                    <li><a href="blog.html">Blog</a></li>--}}
+                                            {{--                                                    <li><a href="blog_details.html">Blog Details</a></li>--}}
+                                            {{--                                                    <li><a href="elements.html">Element</a></li>--}}
+                                            {{--                                                </ul>--}}
+                                            {{--                                            </li>--}}
+                                            {{--                                            <li><a href="contact.html">Contact</a></li>--}}
                                             <!-- Button -->
                                             @auth
 
-                                                <li class="button-header"><a href="{{ route('backend.dashboard.index') }}" class="btn hero-btn">Dashboard</a></li>
+                                                @if(\Illuminate\Support\Facades\Auth::user()->hasRole('student'))
+                                                    <form method="POST"
+                                                          action="{{ route('logout') }}" @class('d-inline')>
+                                                        @csrf
+
+                                                        <span type="submit" class="btn hero-btn"
+                                                              :href="route('logout')"
+                                                              onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                              {{ __('Log Out') }}
+                            </span>
+                                                    </form>
+                                                @else
+                                                    <li class="button-header"><a
+                                                            href="{{ route('backend.dashboard.index') }}"
+                                                            class="btn hero-btn">Dashboard</a></li>
+                                                @endif
                                             @else
 
-                                                <li class="button-header"><a href="{{ route('login') }}" class="btn btn3">Log in</a></li>
+                                                <li class="button-header"><a href="{{ route('login') }}"
+                                                                             class="btn btn3">Log in</a></li>
                                                 @if (Route::has('register'))
-                                                    <li class="button-header margin-left "><a href="{{ route('register') }}" class="btn">Join</a></li>
+                                                    <li class="button-header margin-left "><a
+                                                            href="{{ route('register') }}" class="btn">Join</a></li>
 
                                                 @endif
                                             @endauth

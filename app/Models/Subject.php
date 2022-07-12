@@ -130,4 +130,12 @@ class Subject extends Model implements HasMedia
             ->get();
     }
 
+
+
+
+    public function notAchievedObjective(){
+        return $this->hasMany(assignmentSubmitObjectives::class,'subject_id','id')
+            ->where('is_achieved',0)->get();
+    }
+
 }

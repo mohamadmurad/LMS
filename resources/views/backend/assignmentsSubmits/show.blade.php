@@ -32,17 +32,17 @@
                     {!! $submit->content !!}
                 </div>
 
-                @if($submit->getFirstMedia('submit_file')->getExtensionAttribute() == 'sb3')
-                    <div class="w-100">
-                        <iframe id="myframe" src="{{route('ss',['submit'=>$submit])}}" style="    width: 100%;    height: 500px;"></iframe>
-                    </div>
-
-                @endif
 
 
 
                 @if($submit->hasMedia('submit_file'))
 
+                    @if($submit->getFirstMedia('submit_file')->getExtensionAttribute() == 'sb3')
+                        <div class="w-100">
+                            <iframe id="myframe" src="{{route('ss',['submit'=>$submit])}}" style="    width: 100%;    height: 500px;"></iframe>
+                        </div>
+
+                    @endif
                     <div class="">
                         <a class="" target="_blank" href="{{$submit->getFirstMediaUrl('submit_file')}}"><i
                                 class="fa fa-file me-2"></i>View</a>

@@ -92,6 +92,29 @@
                         </div>
                     @endif
                 </div>
+                @if($assignment->submitAuth->status)
+                <div class="questions">
+
+                    <h3>You have achieved this objective</h3>
+
+                    <div class="row">
+                        @foreach($objectives as $objective)
+                            <div class="col-md-2">
+                                <p>{{$objective->name}}
+                                    @if(in_array($objective->id, $assignment->submitAuth->achieved()) )
+                                        <i class="fas fa-check-circle color-green"></i>
+                                    @else
+                                        <i class="fas fa-times-circle color-red"></i>
+                                    @endif
+                                </p>
+                            </div>
+                        @endforeach
+
+                    </div>
+
+
+                </div>
+                @endif
             @endif
 
 

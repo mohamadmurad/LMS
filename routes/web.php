@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\AssignmentSubmit;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
@@ -148,3 +149,182 @@ Route::middleware('auth')->group(function () {
 
 
 require __DIR__ . '/auth.php';
+
+Route::get('/cccc',function (Request $request){
+
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
+//
+//echo 'dfdf';
+//
+
+
+
+
+    $stdnum = $request->get('stdnum');
+    $city = $request->city;
+    $fr3 = $request->fr3;
+    $pro = '';
+    dd('d');
+    if($fr3 == '5' || $fr3 == '6'){ $pro = $_POST['pro']; }
+
+
+
+    /* for https://www.3lom4all.com/syria-results/go.php */
+    /*
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => "https://www.3lom4all.com/syria-results/go.php",
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => "",
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 30,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => "POST",
+      CURLOPT_POSTFIELDS => "fr3=".$fr3."&mtype=21&city=". $city . "&stdnum=".$stdnum,
+      CURLOPT_HTTPHEADER => array(
+
+
+      ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    */
+    /* for http://moed.gov.sy/asasy/result.php */
+
+    $url = '';
+    if($fr3 =='1'){
+
+        $url = 'http://213.178.255.213/scientific/result.php';
+
+
+    }else if($fr3 == '2'){
+
+        $url = 'http://213.178.255.213/literary/result.php';
+
+    }else if($fr3 == '3'){
+
+        $url = 'http://213.178.255.213/sharie/result.php';
+
+    }else if($fr3 == '4'){
+
+        $url = 'http://213.178.255.213/trading/result.php';
+
+    }else if($fr3 == '5'){
+
+        $url = 'http://213.178.255.213/feminine/'. $pro .'/result.php';
+
+    }else if($fr3 == '6'){
+
+        $url = 'http://213.178.255.213/industrial/'. $pro .'/result.php';
+
+    }
+
+
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => "city=". $city . "&stdnum=".$stdnum,
+        CURLOPT_HTTPHEADER => array(
+
+
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+
+    if ($err) {
+        echo "<h5>الرجاء اعادة المحاولة</h5>";
+    } else {
+
+
+
+        if(strpos($response, 'not found') || !strpos($response, '<div class="col-sm-12 user-row">')){
+            echo '<div class="alert alert-danger">الرجاء ادخال معلومات صحيحة</div>';
+
+        }else{
+
+            /*  for  https://www.3lom4all.com/syria-results/go.php */
+            /*
+                $ss= str_replace("..","https://syad.000webhostapp.com",$response);
+
+                $ss1= str_replace(" http://www.3lom4all.com ","https://www.facebook.com/syrianaddicted/",$ss);
+
+                $ss2= str_replace("https://www.3lom4all.com","https://www.facebook.com/syrianaddicted/",$ss1);
+
+
+                $fpos = strpos($ss2,'<div  dir="rtl">');
+
+                $ss3 =  substr($ss2,$fpos);
+
+
+                $tpos = strpos($ss3,'<br>https://www.facebook.com/syrianaddicted/');
+
+                $ss4 =  substr($ss3,0,$tpos-1);
+
+                $t2pos = strrpos($ss4,'</div>');
+
+                $ss5 =  substr($ss4,0,$t2pos-1);
+
+
+
+
+
+                $t3pos = strpos($ss5,'<div align="center">');
+
+                $ss6 =  substr($ss5,0,$t3pos-1);
+
+
+                $t4pos = strpos($ss5,'<div class="a-table mark-table">');
+
+                $ss7 =  substr($ss5,$t4pos);
+
+                echo $ss6.''.$ss7;
+
+                */
+
+
+            /* for http://moed.gov.sy/asasy/result.php */
+
+            $ss= str_replace("..","https://syad.000webhostapp.com",$response);
+
+
+
+            $fpos = strpos($ss,'<div class="col-sm-12 user-row">');
+
+            $ss1 =  substr($ss,$fpos);
+
+
+
+            $tpos = strpos($ss1,'<div class="col-sm-12 icons-refers">');
+
+            $ss2 =  substr($ss1,0,$tpos-1);
+
+            $ss3= str_replace("https://syad.000webhostapp.com/https://syad.000webhostapp.com","https://syad.000webhostapp.com",$ss2);
+            echo $ss3;
+
+
+
+        }
+
+
+    }
+});
