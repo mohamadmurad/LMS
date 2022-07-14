@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\enroll_subject;
 
 use App\Events\objective_complete;
+use App\Helpers\MainHelper;
 use App\Models\Assignment;
 use App\Models\Level;
 use App\Models\Objective;
@@ -28,8 +29,14 @@ class EnrollController extends  Controller
             // new enroll
             $user->enrolledSubject()->attach($subject->id,[
                 'level_id' => Level::all()->first()->id,
+                'points' => 0,
             ]);
-
+            (new MainHelper)->notify_user([
+                'user_id'=>1,
+                'message'=>"Student $user->name has enroll $subject->name Subject" ,
+                'url'=>"http://example.com",
+                'methods'=>['database']
+            ]);
 
             event(new enroll_subject($user,$subject));
 

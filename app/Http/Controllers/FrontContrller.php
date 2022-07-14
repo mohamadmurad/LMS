@@ -45,9 +45,12 @@ class FrontContrller extends Controller
         if ($subject_enroll) {
             $authLevel = Level::findOrFail($subject_enroll->pivot->level_id);
             $thisLevel =SubjectLevel::where('subject_id', $subject->id)->where('level_id',$authLevel->id)->first();
-            $nextLevel = SubjectLevel::where('subject_id', $subject->id)
-                ->orderBy('point')->where('point', '>',$thisLevel->point)
-                ->where('level_id','!=',$thisLevel->id)->first();
+            if ($thisLevel){
+                $nextLevel = SubjectLevel::where('subject_id', $subject->id)
+                    ->orderBy('point')->where('point', '>',$thisLevel->point)
+                    ->where('level_id','!=',$thisLevel->id)->first();
+            }
+
 
         }
 

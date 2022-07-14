@@ -18,8 +18,16 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/toastr.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @livewireStyles
-
+    @if(auth()->check())
+        @php
+            if(session('seen_notifications')==null)
+                session(['seen_notifications'=>0]);
+            $notifications=auth()->user()->notifications()->orderBy('created_at','DESC')->limit(50)->get();
+            $unreadNotifications=auth()->user()->unreadNotifications()->count();
+        @endphp
+    @endif
 </head>
 <body class="g-sidenav-show   bg-gray-100">
 <div class="min-height-300 bg-primary position-absolute w-100"></div>

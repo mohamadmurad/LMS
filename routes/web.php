@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NotificationsController;
 use App\Models\AssignmentSubmit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -27,7 +28,14 @@ Route::get('/ss/{submit}',function (\App\Models\AssignmentSubmit  $submit){
     $html = $response->json('someData');
     return view('v',compact('html'));
 })->name('ss');
+
 Route::middleware('auth')->group(function () {
+
+    Route::prefix('notifications')->name('notifications.')->group(function () {
+        Route::get('/',[NotificationsController::class,'index'])->name('index');
+        Route::get('/ajax',[NotificationsController::class,'notifications_ajax'])->name('ajax');
+        Route::post('/see',[NotificationsController::class,'notifications_see'])->name('see');
+    });
 
 
     Route::group(['prefix' => 'teacher', 'as' => 'backend.', 'middleware' => ['role:Admin']], function () {

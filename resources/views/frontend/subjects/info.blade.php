@@ -11,24 +11,27 @@
                             <div class="widget-content">
                                 <div class="content">
                                     <div class="price">Level</div>
-                                    <div class="form-progress">
-                                        <progress class="form-progress-bar" min="{{$thisLevel->point}}"
-                                                  max="{{$nextLevel? $nextLevel->point : $thisLevel->point}}"
-                                                  value="{{$totalPoints}}"
-                                                  aria-labelledby="form-progress-completion"></progress>
+                                    @if(\Illuminate\Support\Facades\Auth::check() && $subject->authEnrolledStudent())
+                                        <div class="form-progress">
+                                            <progress class="form-progress-bar" min="{{$thisLevel->point ?? 0}}"
+                                                      max="{{$nextLevel? $nextLevel->point ?? 0 : $thisLevel->point ?? 0}}"
+                                                      value="{{$totalPoints}}"
+                                                      aria-labelledby="form-progress-completion"></progress>
 
-                                        <div class="form-progress-indicator one active">
-                                            <img src="   {{$thisLevel->level->getFirstMediaUrl('icon')}}">
-                                        </div>
-                                        <div class="form-progress-indicator two {{$nextLevel ? '':'active'}}">
-                                            @if($nextLevel)
-                                                <img src="   {{$nextLevel->level->getFirstMediaUrl('icon')}}">
-                                            @else
-                                                <img src="   {{$thisLevel->level->getFirstMediaUrl('icon')}}">
-                                            @endif
-                                        </div>
+                                            <div class="form-progress-indicator one active">
+                                                <img src="   {{$thisLevel ? $thisLevel->level->getFirstMediaUrl('icon') : null }}">
+                                            </div>
+                                            <div class="form-progress-indicator two {{$nextLevel ? '':'active'}}">
+                                                @if($nextLevel)
+                                                    <img src="   {{$nextLevel->level->getFirstMediaUrl('icon')}}">
+                                                @else
+{{--                                                    <img src="   {{$thisLevel->level->getFirstMediaUrl('icon')}}">--}}
+                                                @endif
+                                            </div>
 
-                                    </div>
+                                        </div>
+                                    @endif
+
                                     <div>
 {{--                                        @if($authLevel)--}}
 {{--                                            <p>Level <b>{{$authLevel->name}}</b> from <b>{{$lastLevel->name}}</b></p>--}}

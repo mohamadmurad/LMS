@@ -128,29 +128,29 @@
             }
         })
     }
-    {{--var notificationDropdown = document.getElementById('notificationDropdown')--}}
-    {{--notificationDropdown.addEventListener('show.bs.dropdown', function() {--}}
-    {{--    $.ajax({--}}
-    {{--        method: "POST",--}}
-    {{--        url: "{{route('admin.notifications.see')}}",--}}
-    {{--        data: { _token: "{{csrf_token()}}" }--}}
-    {{--    }).done(function(res) {--}}
-    {{--        $('#dropdown-notifications-icon').fadeOut();--}}
-    {{--        favicon.badge(0);--}}
-    {{--    });--}}
-    {{--});--}}
-    {{--function append_notification_notifications(msg) {--}}
-    {{--    if (msg.count_unseen_notifications > 0) {--}}
-    {{--        $('#dropdown-notifications-icon').fadeIn(0);--}}
-    {{--        $('#dropdown-notifications-icon').text(msg.count_unseen_notifications);--}}
-    {{--    } else {--}}
-    {{--        $('#dropdown-notifications-icon').fadeOut(0);--}}
-    {{--        favicon.badge(0);--}}
-    {{--    }--}}
-    {{--    $('.notifications-container').empty();--}}
-    {{--    $('.notifications-container').append(msg.response);--}}
-    {{--    $('.notifications-container a').on('click', function() { window.location.href = $(this).attr('href'); });--}}
-    {{--} --}}
+    var notificationDropdown = document.getElementById('notificationDropdown')
+    notificationDropdown.addEventListener('show.bs.dropdown', function() {
+        $.ajax({
+            method: "POST",
+            url: "{{route('notifications.see')}}",
+            data: { _token: "{{csrf_token()}}" }
+        }).done(function(res) {
+            $('#dropdown-notifications-icon').fadeOut();
+            favicon.badge(0);
+        });
+    });
+    // function append_notification_notifications(msg) {
+    //     if (msg.count_unseen_notifications > 0) {
+    //         $('#dropdown-notifications-icon').fadeIn(0);
+    //         $('#dropdown-notifications-icon').text(msg.count_unseen_notifications);
+    //     } else {
+    //         $('#dropdown-notifications-icon').fadeOut(0);
+    //         favicon.badge(0);
+    //     }
+    //     $('.notifications-container').empty();
+    //     $('.notifications-container').append(msg.response);
+    //     $('.notifications-container a').on('click', function() { window.location.href = $(this).attr('href'); });
+    // }
     {{--function get_notifications() {--}}
     {{--    $.ajax({--}}
     {{--        method: "GET",--}}
