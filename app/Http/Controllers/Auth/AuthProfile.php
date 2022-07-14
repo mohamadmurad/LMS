@@ -8,7 +8,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 class AuthProfile extends Controller
 {
     /**
@@ -31,6 +32,7 @@ class AuthProfile extends Controller
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,id,' . $user->id],
             'birthdate' => ['required', 'date'],
+            'new_password' => ['nullable', Rules\Password::defaults()],
         ]);
 
         $user->update([
@@ -40,6 +42,11 @@ class AuthProfile extends Controller
             'birthDate' => Carbon::create($request->get('birthdate')),
         ]);
 
+        if ($request->get('new_password')){
+            Auth::user()->update([
+                'password' => $request->get('new_password'),
+            ]);
+        }
         $this->successFlash('Profile Information Updated Successfully');
 
         return redirect()->back();

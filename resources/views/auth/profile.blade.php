@@ -95,6 +95,7 @@
                                         <input class="form-control" type="text" value="{{$user->first_name}}"
                                                name="first_name" onfocus="focused(this)" onfocusout="defocused(this)"
                                                required>
+                                        @error('first_name') <span class="text-danger d-block">{{ $errors->first('first_name') }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -103,6 +104,7 @@
                                         <input class="form-control" type="text" value="{{$user->last_name}}"
                                                name="last_name" onfocus="focused(this)" onfocusout="defocused(this)"
                                                required>
+                                        @error('last_name') <span class="text-danger d-block">{{ $errors->first('last_name') }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -111,6 +113,7 @@
                                         <input class="form-control" type="email"
                                                value="{{$user->email}}" name="email" onfocus="focused(this)"
                                                onfocusout="defocused(this)" required>
+                                        @error('email') <span class="text-danger d-block">{{ $errors->first('email') }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -119,9 +122,23 @@
                                         <input class="form-control" type="text" data-date="dirthdate"
                                                name="birthdate" onfocus="focused(this)"
                                                onfocusout="defocused(this)" required>
+                                        @error('birthdate') <span class="text-danger d-block">{{ $errors->first('birthdate') }}</span>@enderror
                                     </div>
                                 </div>
 
+
+                                <p>Password</p>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">New Password</label>
+                                        <input class="form-control" type="password"
+                                              name="new_password" onfocus="focused(this)"
+                                               onfocusout="defocused(this)" >
+                                        @error('new_password') <span class="text-danger d-block">{{ $errors->first('new_password') }}</span>@enderror
+                                        <small>Keep it empty if not want to change password</small>
+                                    </div>
+
+                                </div>
 
                             </div>
 
@@ -135,14 +152,26 @@
 
     @section('scripts')
         <script>
+            @if($user->birthDate != null)
             birthdate.daterangepicker({
-                startDate: "{{\Illuminate\Support\Carbon::make($user->birthDate)->format('d/m/y')}}",
+                startDate: "{{\Illuminate\Support\Carbon::make($user->birthDate)->format('m/d/Y')}}",
                 //  autoUpdateInput: false,
                 singleDatePicker: true,
                 showDropdowns: true,
                 minYear: 1901,
                 maxYear: parseInt(moment().format('YYYY'), 10)
             });
+            @else
+            birthdate.daterangepicker({
+                startDate: "{{\Illuminate\Support\Carbon::now()->format('m/d/Y')}}",
+                //  autoUpdateInput: false,
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 1901,
+                maxYear: parseInt(moment().format('YYYY'), 10)
+            });
+            @endif
+
         </script>
     @endsection
 </x-app-layout>

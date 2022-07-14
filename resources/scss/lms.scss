@@ -937,3 +937,18 @@ a:hover{
     color: #000;
     background: #efefef;
 }
+.btn{
+    background: #7e7067;
+}
+.btn:hover{
+    color: #000 !important;
+}
+.btn::before{
+    background: #ffffff;
+}
+.btn.btn3:hover::before{
+    background: #fff;
+}
+.border-btn::before ,.courses-area .properties:hover .border-btn2{
+            background: #7e7067;
+}

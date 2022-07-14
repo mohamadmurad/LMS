@@ -93,26 +93,26 @@
                         <span class="nav-link-text ms-1">Badges</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{request()->routeIs('backend.badgeBehaviors.index')? 'active': ''}}"
-                       href="{{route('backend.badgeBehaviors.index')}}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fa fa-certificate text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Badge Behavior</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{request()->routeIs('backend.subjects.*')? 'active': ''}}"
-                       href="{{route('backend.subjects.index')}}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fa fa-book-bookmark text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Subjects</span>
-                    </a>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link {{request()->routeIs('backend.badgeBehaviors.index')? 'active': ''}}"--}}
+{{--                       href="{{route('backend.badgeBehaviors.index')}}">--}}
+{{--                        <div--}}
+{{--                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">--}}
+{{--                            <i class="fa fa-certificate text-primary text-sm opacity-10"></i>--}}
+{{--                        </div>--}}
+{{--                        <span class="nav-link-text ms-1">Badge Behavior</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link {{request()->routeIs('backend.subjects.*')? 'active': ''}}"--}}
+{{--                       href="{{route('backend.subjects.index')}}">--}}
+{{--                        <div--}}
+{{--                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">--}}
+{{--                            <i class="fa fa-book-bookmark text-primary text-sm opacity-10"></i>--}}
+{{--                        </div>--}}
+{{--                        <span class="nav-link-text ms-1">Subjects</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 {{--                <li class="nav-item">--}}
                 {{--                    <a class="nav-link {{request()->routeIs('backend.studentBehavior.index')? 'active': ''}}"--}}
                 {{--                       href="{{route('backend.studentBehavior.index')}}">--}}
@@ -133,26 +133,26 @@
                         <span class="nav-link-text ms-1">Points</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{request()->routeIs('backend.pointsBehavior.index')? 'active': ''}}"
-                       href="{{route('backend.pointsBehavior.index')}}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fa fa-square text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Behavior Points </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{request()->routeIs('backend.placements.index')? 'active': ''}}"
-                       href="{{route('backend.placements.index')}}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fa fa-square text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Placements </span>
-                    </a>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link {{request()->routeIs('backend.pointsBehavior.index')? 'active': ''}}"--}}
+{{--                       href="{{route('backend.pointsBehavior.index')}}">--}}
+{{--                        <div--}}
+{{--                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">--}}
+{{--                            <i class="fa fa-square text-primary text-sm opacity-10"></i>--}}
+{{--                        </div>--}}
+{{--                        <span class="nav-link-text ms-1">Behavior Points </span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link {{request()->routeIs('backend.placements.index')? 'active': ''}}"--}}
+{{--                       href="{{route('backend.placements.index')}}">--}}
+{{--                        <div--}}
+{{--                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">--}}
+{{--                            <i class="fa fa-square text-primary text-sm opacity-10"></i>--}}
+{{--                        </div>--}}
+{{--                        <span class="nav-link-text ms-1">Placements </span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
             @endif
             @if(\Illuminate\Support\Facades\Auth::user()->hasRole('teacher'))
                 <li class="nav-item">

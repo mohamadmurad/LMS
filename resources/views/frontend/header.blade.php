@@ -55,6 +55,7 @@
                                                 this.closest('form').submit();">
                               {{ __('Log Out') }}
                             </span>
+                                                        <a href="{{route('profile')}}" > Profile </a>
                                                     </form>
                                                 @else
                                                     <li class="button-header"><a

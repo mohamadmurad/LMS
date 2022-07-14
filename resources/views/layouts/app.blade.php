@@ -23,7 +23,11 @@
 </head>
 <body class="g-sidenav-show   bg-gray-100">
 <div class="min-height-300 bg-primary position-absolute w-100"></div>
-@include('layouts.aside')
+@if(\Illuminate\Support\Facades\Auth::user()->hasRole('student'))
+@else
+    @include('layouts.aside')
+@endif
+
 
 <!-- Page Content -->
 <main class="main-content position-relative border-radius-lg ">
