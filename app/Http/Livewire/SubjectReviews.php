@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Helpers\MainHelper;
 use App\Models\Subject;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -49,6 +50,13 @@ class SubjectReviews extends Component
         $this->reviews = $this->subject->reviews()->get();
         $this->reviewsCount = $this->subject->reviews()->count();
 
+        $user = Auth::user();
+        (new MainHelper)->notify_user([
+            'user_id' => $this->subject->creator_id,
+            'message' => "Student $user->name has been review subject $this->subject->name",
+            'url' => "http://example.com",
+            'methods' => ['database']
+        ]);
         $this->emitTo('subject-rate', 'refreshComponent');
     }
 }

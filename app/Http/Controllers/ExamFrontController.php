@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\exam_complete;
 use App\Events\exam_fail;
 use App\Events\placement_complete;
+use App\Helpers\MainHelper;
 use App\Models\Exam;
 use App\Models\ExamSubmit;
 use App\Models\Placement;
@@ -65,6 +66,13 @@ class ExamFrontController extends Controller
                 event(new exam_fail($subject, $exam, $final_mark));
             }
 
+            $user = Auth::user();
+            (new MainHelper)->notify_user([
+                'user_id' => $subject->creator_id,
+                'message' => "Student $user->name has been submit Exam $exam->name",
+                'url' => "http://example.com",
+                'methods' => ['database']
+            ]);
 
             DB::commit();
         } catch (\Exception $e) {
@@ -132,18 +140,24 @@ class ExamFrontController extends Controller
                         'correct' => $isCorrect,
                     ]);
 
-                    if ($isCorrect){
-                        $user =Auth::user();
+                    if ($isCorrect) {
+                        $user = Auth::user();
                         $objective = $question->objective;
-                        $this->objectiveSeen($user,$objective,$subject);
+                        $this->objectiveSeen($user, $objective, $subject);
 
                     }
                 }
             }
 
 
-              event(new placement_complete($subject,$placement));
-
+            event(new placement_complete($subject, $placement));
+            $user = Auth::user();
+            (new MainHelper)->notify_user([
+                'user_id' => $subject->creator_id,
+                'message' => "Student $user->name has been submit placement $placement->name",
+                'url' => "http://example.com",
+                'methods' => ['database']
+            ]);
             // dd($request->all());
 
             DB::commit();

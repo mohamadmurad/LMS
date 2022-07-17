@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\MainHelper;
 use App\Models\Assignment;
 use App\Models\AssignmentSubmit;
 use App\Models\assignmentSubmitObjectives;
@@ -187,6 +188,13 @@ class AssignmentController extends Controller
         $submit->update([
             'mark' => $request->get('mark'),
             'status' => 1,
+        ]);
+
+        (new MainHelper)->notify_user([
+            'user_id'=>$submit->student_id,
+            'message'=>"Your assignment $assignment->name has been marked " ,
+            'url'=>"http://example.com",
+            'methods'=>['database']
         ]);
 
        return redirect()->back();

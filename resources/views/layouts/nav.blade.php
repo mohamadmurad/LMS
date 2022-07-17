@@ -29,13 +29,13 @@
                             @endif
                             left: -18px;    top: 0px;    border-radius: 50%;    background: #c00;    color: #fff;    font-size: 14px;    justify-content: center;    align-items: center;" id="dropdown-notifications-icon">{{$unreadNotifications}}</span>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" aria-labelledby="notificationDropdown">
+                    <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4 notifications-container" aria-labelledby="notificationDropdown">
                         @foreach($notifications as $notification)
                             @php
                                 $bg = $notification['read_at']==null ?"#f1f1f1":"#ffffff";
                             @endphp
-                            <li class="mb-2">
-                                <a class="dropdown-item border-radius-md" href="javascript:;" style="background:{{$bg}} ">
+                            <li class="mb-2 dropdown-item border-radius-md">
+{{--                                <a class="dropdown-item border-radius-md" href="javascript:;" style="background:{{$bg}} ">--}}
                                     <div class="d-flex py-1">
 {{--                                        <div class="my-auto">--}}
 {{--                                            <img--}}
@@ -61,7 +61,7 @@
                                             </p>
                                         </div>
                                     </div>
-                                </a>
+{{--                                </a>--}}
                             </li>
                         @endforeach
                         @if(count($notifications)==0)

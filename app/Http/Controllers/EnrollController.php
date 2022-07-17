@@ -32,7 +32,7 @@ class EnrollController extends  Controller
                 'points' => 0,
             ]);
             (new MainHelper)->notify_user([
-                'user_id'=>1,
+                'user_id'=>$subject->creator_id,
                 'message'=>"Student $user->name has enroll $subject->name Subject" ,
                 'url'=>"http://example.com",
                 'methods'=>['database']
@@ -88,6 +88,14 @@ class EnrollController extends  Controller
 //            $user->seen()->attach($objective->id);
 //            event(new objective_complete($user, $objective, $subject));
 
+
+            (new MainHelper)->notify_user([
+                'user_id'=>$subject->creator_id,
+                'message'=>"Student $user->name has been complete $objective->name" ,
+                'url'=>"http://example.com",
+                'methods'=>['database']
+            ]);
+
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -135,6 +143,13 @@ class EnrollController extends  Controller
         if ($request->hasFile('file')) {
             $submit->addMediaFromRequest('file')->toMediaCollection('submit_file');
         }
+        $user = Auth::user();
+        (new MainHelper)->notify_user([
+            'user_id'=>$subject->creator_id,
+            'message'=>"Student $user->name has been submit assignment $assignment->name" ,
+            'url'=>"http://example.com",
+            'methods'=>['database']
+        ]);
 
         $this->successFlash('Submitted');
         return redirect()->back();

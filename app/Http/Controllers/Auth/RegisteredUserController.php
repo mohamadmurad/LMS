@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Helpers\MainHelper;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -60,6 +61,14 @@ class RegisteredUserController extends Controller
             if ($request->get('status') == 0) {
                 $user->update(['is_verified' => 1]);
                 $user->syncRoles(['student']);
+
+                (new MainHelper)->notify_user([
+                    'user_id'=>1,
+                    'message'=>"New Student Account $user->email" ,
+                    'url'=>"http://example.com",
+                    'methods'=>['database']
+                ]);
+
             } else {
 
                 $user->syncRoles(['teacher']);
@@ -67,6 +76,14 @@ class RegisteredUserController extends Controller
                     //$user->hasMedia('certificate') ? $teacher->getFirstMedia('certificate')->delete(): null;
                     $user->addMediaFromRequest('cert_img')->toMediaCollection('certificate');
                 }
+
+                (new MainHelper)->notify_user([
+                    'user_id'=>1,
+                    'message'=>"New Teacher Account $user->email need to active" ,
+                    'url'=>"http://example.com",
+                    'methods'=>['database']
+                ]);
+
             }
             event(new Registered($user));
 
