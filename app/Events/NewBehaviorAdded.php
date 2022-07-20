@@ -47,7 +47,7 @@ class NewBehaviorAdded extends baseEvent
             ]);
         }
 
-        event(new changeLevel($subject));
+        event(new changeLevel($subject,$student));
     }
 
     /**

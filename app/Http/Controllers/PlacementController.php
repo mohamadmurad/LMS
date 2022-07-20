@@ -119,6 +119,8 @@ class PlacementController extends Controller
      */
     public function destroy(Placement $placement)
     {
-        //
+        $placement->delete();
+
+        return redirect()->back();
     }
 }

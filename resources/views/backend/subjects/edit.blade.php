@@ -50,9 +50,10 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
+
                                     <label for="example-text-input" class="form-control-label">Enroll Points</label>
                                     <input class="form-control" type="number" name="process_points"
-                                           value="{{$subject->points->count ?? ''}}"
+                                           value="{{$subject->points[0]->count ??''}}"
                                     >
                                     <span class="text-xs">points collect if student Enroll this subject</span>
                                 </div>

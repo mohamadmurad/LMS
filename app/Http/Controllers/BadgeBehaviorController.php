@@ -22,6 +22,7 @@ class BadgeBehaviorController extends Controller
     public function index()
     {
         if (Auth::user()->hasRole('Admin')) {
+
             $badges = BadgeBehavior::with(['subject', 'badge', 'behavior'])->get();
         } else {
 
@@ -40,7 +41,7 @@ class BadgeBehaviorController extends Controller
      */
     public function create()
     {
-        $behaviors = Behavior::all();
+        $behaviors = Behavior::where('hidden',0)->get();
         $badges = Badge::all();
 
         if (Auth::user()->hasRole('Admin')) {

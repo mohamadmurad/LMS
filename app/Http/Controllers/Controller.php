@@ -70,7 +70,14 @@ class Controller extends BaseController
     }
 
     public function objectiveSeen($user,$objective,$subject){
-        $user->seen()->attach($objective->id);
-        event(new objective_complete($user, $objective, $subject));
+      //  dd($user->seen);
+       $isSeen =  $user->seen()->where('objective_seen.student_id',$user->id)
+            ->where('objective_seen.objective_id',$objective->id)->first();
+
+       if (!$isSeen){
+           $user->seen()->attach($objective->id);
+           event(new objective_complete($user, $objective, $subject));
+       }
+
     }
 }

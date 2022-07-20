@@ -117,6 +117,7 @@ class ExamFrontController extends Controller
     {
 
         $options = $request->get('option');
+
         DB::beginTransaction();
         try {
 
@@ -149,8 +150,12 @@ class ExamFrontController extends Controller
                 }
             }
 
+            if ($correct_questions == count($options)){
+                event(new placement_complete($subject, $placement));
+            }else{
+           //     event(new placement_complete($subject, $placement));
+            }
 
-            event(new placement_complete($subject, $placement));
             $user = Auth::user();
             (new MainHelper)->notify_user([
                 'user_id' => $subject->creator_id,

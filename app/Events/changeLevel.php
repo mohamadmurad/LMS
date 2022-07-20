@@ -23,10 +23,13 @@ class changeLevel
      *
      * @return void
      */
-    public function __construct(Subject $subject)
+    public function __construct(Subject $subject,$user = null)
     {
-        $totalPoints = Auth::user()->totalPoints($subject->id);
-        $authLevelID = Auth::user()->getLevelId($subject->id);
+        if ($user == null){
+            $user= Auth::user();
+        }
+        $totalPoints = $user->totalPoints($subject->id);
+        $authLevelID = $user->getLevelId($subject->id);
 
         $authLevel = $subject->levels()->where('levels.id', $authLevelID)->first();
         $levels = $subject->levels()->get();
@@ -47,7 +50,7 @@ class changeLevel
 
 
         if ($temp_level && $temp_level->id != $authLevelID) {
-            Auth::user()->enrolledSubject()->syncWithoutDetaching([
+            $user->enrolledSubject()->syncWithoutDetaching([
                 $subject->id => [
                     'level_id' => $temp_level->id,
                 ]

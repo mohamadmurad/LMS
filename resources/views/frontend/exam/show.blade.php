@@ -68,7 +68,7 @@
                                                                    value="{{$option->id}}">
                                                             <label class="form-check-label"
                                                                    for="inlineRadio1{{$option->id}}">{{$option->option}}</label>
-                                                            @if($option->correct)
+                                                            @if($exam->authSubmit->first() && $option->correct)
                                                                 <i class="fas fa-check-circle color-green"></i>
                                                             @endif
                                                         </div>

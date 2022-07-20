@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -124,6 +125,7 @@ class User extends Authenticatable implements HasMedia
 
     public function getLevelId($subject_id)
     {
+
         return $this->getLevel($subject_id)->pivot->level_id;
     }
 
@@ -150,6 +152,7 @@ class User extends Authenticatable implements HasMedia
 
     public function subject_placement_submit($subject_id)
     {
+
         return $this->placement_submit()->where('subject_id', $subject_id)->first();
     }
 

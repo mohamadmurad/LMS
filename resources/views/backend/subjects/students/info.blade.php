@@ -18,8 +18,14 @@
                     <span class="font-weight-bold text-lg">Student {{$student->name}} Info</span>
                     <span class="d-block font-weight-bold text-lg">Subject {{$subject->name}}</span>
                 </div>
-                <a href="{{route('backend.subjects.student.placement.info',['subject'=>$subject,'student'=>$student,'placement'=>$student->subject_placement_submit($subject->id)])}}"
-                   class="btn btn-primary">Placement info</a>
+
+
+
+                @if($student->subject_placement_submit($subject->id))
+                                    <a href="{{route('backend.subjects.student.placement.info',['subject'=>$subject,'student'=>$student,'placement'=>$student->subject_placement_submit($subject->id)])}}"
+                                       class="btn btn-primary">Placement info</a>
+                @endif
+
 
             </div>
             <div class="card-body px-0 pt-0 pb-2">
@@ -59,10 +65,11 @@
                         </tr>
                         </thead>
                         <tbody>
+
                         @foreach($authPoints as $point)
                             <tr>
-                                <td>{{$point->point->reason->name}}</td>
-                                <td>{{$point->point->behavior[0]->human_name}}</td>
+                                <td>{{$point->point->reason->name ?? ''}}</td>
+                                <td>{{$point->point->behavior[0]->human_name ?? ''}}</td>
                                 <td>{{$point->point->count}}</td>
                                 <td>{{$point->created_at}}</td>
                             </tr>

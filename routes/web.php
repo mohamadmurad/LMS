@@ -25,6 +25,7 @@ Route::get('/ss/{submit}',function (\App\Models\AssignmentSubmit  $submit){
    // dd($submit);
     $response = Http::get('http://localhost:3000',['url'=>$submit->getFirstMediaPath('submit_file')]);
 //        dd($response->json());
+   // dd($response->body());
     $html = $response->json('someData');
     return view('v',compact('html'));
 })->name('ss');
