@@ -118,6 +118,26 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="gender" class="form-control-label">Gender</label>
+                                       <select class="form-select" name="gender" id="gender" required>
+
+                                           <option value="" selected disabled>Select gender</option>
+                                           <option value="male" {{$user->gender == 'male' ? 'selected' : ''}}>Male</option>
+                                           <option value="female" {{$user->gender == 'female'  ? 'selected' : ''}}>female</option>
+                                       </select>
+                                        @error('gender') <span class="text-danger d-block">{{ $errors->first('gender') }}</span>@enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">School</label>
+                                        <input class="form-control" type="text"
+                                               name="school"  value="{{$user->school}}">
+                                        @error('school') <span class="text-danger d-block">{{ $errors->first('school') }}</span>@enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">BirthDate</label>
                                         <input class="form-control" type="text" data-date="dirthdate"
                                                name="birthdate" onfocus="focused(this)"

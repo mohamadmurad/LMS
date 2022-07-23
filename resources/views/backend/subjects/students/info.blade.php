@@ -13,9 +13,11 @@
 
     <div class="row mt-2">
         <div class="card mb-4">
-            <div class="card-header d-flex justify-content-between">
+            <div class="card-header d-flex justify-content-between align-items-center">
                 <div>
-                    <span class="font-weight-bold text-lg">Student {{$student->name}} Info</span>
+                    <span class="d-block font-weight-bold text-lg">Student {{$student->name}} Info</span>
+                    <span class="d-block font-weight-bold text-lg">Gender {{$student->gender}}</span>
+                    <span class="d-block font-weight-bold text-lg">School {{$student->school}}</span>
                     <span class="d-block font-weight-bold text-lg">Subject {{$subject->name}}</span>
                 </div>
 

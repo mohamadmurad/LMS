@@ -32,6 +32,8 @@ class AuthProfile extends Controller
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,id,' . $user->id],
             'birthdate' => ['required', 'date'],
+            'gender' => ['required', 'in:male,female'],
+            'school' => ['nullable', 'string'],
             'new_password' => ['nullable', Rules\Password::defaults()],
         ]);
 
@@ -39,6 +41,8 @@ class AuthProfile extends Controller
             'first_name' => $request->get('first_name'),
             'last_name' => $request->get('last_name'),
             'email' => $request->get('email'),
+            'gender' => $request->get('gender'),
+            'school' => $request->get('school'),
             'birthDate' => Carbon::create($request->get('birthdate')),
         ]);
 
