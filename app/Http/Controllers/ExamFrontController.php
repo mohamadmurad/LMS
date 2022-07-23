@@ -8,6 +8,7 @@ use App\Events\placement_complete;
 use App\Helpers\MainHelper;
 use App\Models\Exam;
 use App\Models\ExamSubmit;
+use App\Models\Objective;
 use App\Models\Placement;
 use App\Models\PlacementSubmit;
 use App\Models\Subject;
@@ -130,24 +131,38 @@ class ExamFrontController extends Controller
             $correct_questions = 0;
 
             if ($request->has('option')) {
+                $objectives = [];
                 foreach ($options as $q_id => $option) {
                     $question = $placement->questions()->where('questions.id', $q_id)->first();
+                    //dd($question);
+
                     $option = $question->options()->where('id', $option)->first();
                     $isCorrect = $option->correct;
                     $isCorrect ? $correct_questions++ : null;
+                    $objectives[$question->objective_id][$q_id] = $isCorrect;
 
                     $placement_submit->answers()->attach($question->id, [
                         'option_id' => $option->id,
                         'correct' => $isCorrect,
                     ]);
 
-                    if ($isCorrect) {
-                        $user = Auth::user();
-                        $objective = $question->objective;
-                        $this->objectiveSeen($user, $objective, $subject);
+//                    if ($isCorrect) {
+//                        $user = Auth::user();
+//                        $objective = $question->objective;
+//                        $this->objectiveSeen($user, $objective, $subject);
+//
+//                    }
+                }
+                foreach ($objectives as $objective_id=>$all){
 
+                    if (!in_array(false,$all)){
+
+                        $user = Auth::user();
+                        $objective = Objective::findOrFail($objective_id);
+                        $this->objectiveSeen($user, $objective, $subject);
                     }
                 }
+
             }
 
             if ($correct_questions == count($options)){

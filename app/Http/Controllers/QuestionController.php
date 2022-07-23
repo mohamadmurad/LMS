@@ -46,8 +46,8 @@ class QuestionController extends Controller
             'objective_id' => 'required',
             'option_1' => 'required|string',
             'option_2' => 'required|string',
-            'option_3' => 'required|string',
-            'option_4' => 'required|string',
+            'option_3' => 'nullable|string',
+            'option_4' => 'nullable|string',
             'option_correct' => 'required|min:1|max:4',
         ]);
 
@@ -61,10 +61,13 @@ class QuestionController extends Controller
             ]);
 
             for ($i = 1; $i < 5; $i++) {
-                $question->options()->create([
-                    'option' => $request->get('option_' . $i),
-                    'correct' => $request->get('option_correct') == $i,
-                ]);
+                if ($request->get('option_' . $i) != null) {
+                    $question->options()->create([
+                        'option' => $request->get('option_' . $i),
+                        'correct' => $request->get('option_correct') == $i,
+                    ]);
+                }
+
             }
 
             if ($request->hasFile('file')) {
@@ -121,8 +124,8 @@ class QuestionController extends Controller
             'objective_id' => 'required',
             'option_1' => 'required|string',
             'option_2' => 'required|string',
-            'option_3' => 'required|string',
-            'option_4' => 'required|string',
+            'option_3' => 'nullable|string',
+            'option_4' => 'nullable|string',
             'option_correct' => 'required|min:1|max:4',
         ]);
 
@@ -132,15 +135,17 @@ class QuestionController extends Controller
                 'question' => $request->get('question'),
                 'level' => $request->get('level'),
                 'objective_id' => $request->get('objective_id'),
-              //  'subject_id' => $subject->id,
+                //  'subject_id' => $subject->id,
             ]);
 
             $question->options()->delete();
             for ($i = 1; $i < 5; $i++) {
-                $question->options()->create([
-                    'option' => $request->get('option_' . $i),
-                    'correct' => $request->get('option_correct') == $i,
-                ]);
+                if ($request->get('option_' . $i) != null) {
+                    $question->options()->create([
+                        'option' => $request->get('option_' . $i),
+                        'correct' => $request->get('option_correct') == $i,
+                    ]);
+                }
             }
 
             if ($request->hasFile('file')) {

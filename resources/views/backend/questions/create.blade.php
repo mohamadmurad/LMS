@@ -96,7 +96,7 @@
                                     <div class="col-md-2">
                                         <div class="form-check form-switch">
                                             <input class="form-check-input" type="radio" name="option_correct" value="3"
-                                                   id="option_3_correct" required>
+                                                   id="option_3_correct" >
                                             <label class="form-check-label" for="option_3_correct">Correct?</label>
                                         </div>
 
@@ -105,7 +105,7 @@
                                         <div class="form-group">
                                             <input class="form-control" type="text"
                                                    name="option_3" value="{{old('option_3')}}" autocomplete="subject"
-                                                   placeholder="Option 3" required>
+                                                   placeholder="Option 3" >
                                         </div>
                                     </div>
                                 </div>
@@ -113,7 +113,7 @@
                                     <div class="col-md-2">
                                         <div class="form-check form-switch">
                                             <input class="form-check-input" type="radio" name="option_correct" value="4"
-                                                   id="option_4_correct" required>
+                                                   id="option_4_correct" >
                                             <label class="form-check-label" for="option_4_correct">Correct?</label>
                                         </div>
 
@@ -122,7 +122,7 @@
                                         <div class="form-group">
                                             <input class="form-control" type="text"
                                                    name="option_4" value="{{old('option_4')}}" autocomplete="subject"
-                                                   placeholder="Option 4" required>
+                                                   placeholder="Option 4" >
                                         </div>
                                     </div>
                                 </div>
