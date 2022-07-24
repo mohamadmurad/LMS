@@ -160,6 +160,12 @@ class EnrollController extends Controller
             'methods' => ['database']
         ]);
 
+
+        if ($subject->is_completed) {
+            $this->createCertificate($user, $subject);
+        }
+
+
         $this->successFlash('Submitted');
         return redirect()->back();
 

@@ -75,6 +75,10 @@ class ExamFrontController extends Controller
                 'methods' => ['database']
             ]);
 
+            if ($subject->is_completed) {
+                $this->createCertificate($user, $subject);
+            }
+
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -179,6 +183,10 @@ class ExamFrontController extends Controller
                 'methods' => ['database']
             ]);
             // dd($request->all());
+
+            if ($subject->is_completed) {
+                $this->createCertificate($user, $subject);
+            }
 
             DB::commit();
         } catch (\Exception $e) {
