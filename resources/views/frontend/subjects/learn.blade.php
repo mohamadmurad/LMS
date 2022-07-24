@@ -13,6 +13,9 @@
         @if(!$subject->is_completed)
             <a class="theme-btn btn-style-two"
                href="{{route('student.subject.learnObjective',['subject'=>$subject,'objective'=>$lastSeenObjective])}}"><span class="txt">continue</span></a>
+        @elseif($subject->authCert())
+            <a class="theme-btn btn-style-two"
+               href="{{asset($subject->authCert())}}"><span class="txt">Certificate</span></a>
         @endif
 
         @if($subject->placement)

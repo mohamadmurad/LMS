@@ -22,13 +22,13 @@ Route::get('/subjects', [\App\Http\Controllers\FrontContrller::class, 'subjects'
 Route::get('/subjects/{subject}', [\App\Http\Controllers\FrontContrller::class, 'subjectInfo'])->name('subjects.info');
 
 Route::get('/ss/{submit}',function (\App\Models\AssignmentSubmit  $submit){
-   // dd($submit);
+
     $response = Http::get('http://localhost:3000',['url'=>$submit->getFirstMediaPath('submit_file')]);
-//        dd($response->json());
-   // dd($response->body());
     $html = $response->json('someData');
     return view('v',compact('html'));
 })->name('ss');
+
+Route::get('/cert',[\App\Http\Controllers\CertificateController::class,'index']);
 
 Route::middleware('auth')->group(function () {
 

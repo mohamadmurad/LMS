@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use App\Events\objective_complete;
 use App\Models\Badge;
 use App\Models\Behavior;
+use App\Models\certificates;
+use App\Models\Subject;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 
 class Controller extends BaseController
@@ -79,5 +83,34 @@ class Controller extends BaseController
            event(new objective_complete($user, $objective, $subject));
        }
 
+    }
+
+    protected function createCertificate($user, Subject $subject)
+    {
+
+        $path = public_path('certs');
+
+        if (!File::exists($path)){
+            mkdir($path);
+
+        }
+
+        $data = [
+            'name' => $user->name,
+            'subject' => $subject->name,
+            'creator' => $subject->creator->name,
+            'date' => \Carbon\Carbon::now()->format('Y-M-d')
+        ];
+
+        $pdf = Pdf::loadView('cert', ['data' => $data])->setPaper('a4', 'landscape');
+
+        $certName = 'certs/'.'cert_' . $user->id . '_' . $subject->id . '.pdf';
+        $pdf->save($certName);
+
+        certificates::create([
+            'subject_id'=>$subject->id,
+            'student_id' => $user->id,
+            'file' => $certName,
+        ]);
     }
 }

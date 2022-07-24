@@ -44,6 +44,17 @@ class Subject extends Model implements HasMedia
         'creator_id',
     ];
 
+    protected $appends = ['is_completed'];
+
+
+    public function getIsCompletedAttribute(){
+        foreach ($this->modules as $module){
+           if (!$module->is_completed){
+               return false;
+           }
+        }
+        return true;
+    }
 
     public function getRouteKeyName()
     {
@@ -138,4 +149,15 @@ class Subject extends Model implements HasMedia
             ->where('is_achieved',0)->get();
     }
 
+
+    public function authCert(){
+        $record = $this->hasMany(certificates::class,'subject_id','id')->where('student_id',Auth::id())->first();
+
+        if ($record){
+            return $record->file;
+
+        }
+        return null;
+
+    }
 }

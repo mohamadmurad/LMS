@@ -11,37 +11,39 @@ use App\Models\Level;
 use App\Models\Objective;
 use App\Models\Subject;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class EnrollController extends  Controller
+class EnrollController extends Controller
 {
 
-    public function enroll(Subject $subject){
+    public function enroll(Subject $subject)
+    {
         $user = Auth::user();
 
         $placement = $subject->placement;
 
         $enroll = $subject->authEnrolledStudent();
-        if (!$enroll){
+        if (!$enroll) {
             // new enroll
-            $user->enrolledSubject()->attach($subject->id,[
+            $user->enrolledSubject()->attach($subject->id, [
                 'level_id' => Level::all()->first()->id,
                 'points' => 0,
             ]);
             (new MainHelper)->notify_user([
-                'user_id'=>$subject->creator_id,
-                'message'=>"Student $user->name has enroll $subject->name Subject" ,
-                'url'=>"http://example.com",
-                'methods'=>['database']
+                'user_id' => $subject->creator_id,
+                'message' => "Student $user->name has enroll $subject->name Subject",
+                'url' => "http://example.com",
+                'methods' => ['database']
             ]);
 
-            event(new enroll_subject($user,$subject));
+            event(new enroll_subject($user, $subject));
 
 
-            if (!$placement){
+            if (!$placement) {
                 return redirect()->route('subjects.info', [
                     'subject' => $subject,
 
@@ -52,28 +54,30 @@ class EnrollController extends  Controller
                 'placement' => $placement,
             ]);
         }
-        if (!$placement){
+        if (!$placement) {
             return redirect()->route('subjects.info', [
                 'subject' => $subject,
 
             ]);
         }
 
-        return redirect()->route('student.placement.show',[
+        return redirect()->route('student.placement.show', [
             'subject' => $subject,
             'placement' => $placement,
         ]);
     }
 
 
-    public function learn(Subject $subject){
-    //    dd($subject->notAchievedObjective());
+    public function learn(Subject $subject)
+    {
+        //    dd($subject->notAchievedObjective());
         $modules = $subject->modules;
         $lastSeenObjective = $this->getLastSeenObjective($modules);
         return view('frontend.subjects.learn', compact('subject', 'lastSeenObjective'));
     }
 
-    public function learnObjective(Subject $subject, Objective $objective){
+    public function learnObjective(Subject $subject, Objective $objective)
+    {
         $module = $objective->module;
         return view('frontend.objective.learn', compact('subject', 'objective', 'module'));
     }
@@ -84,17 +88,21 @@ class EnrollController extends  Controller
         try {
 
             $user = Auth::user();
-            $this->objectiveSeen($user,$objective,$subject);
+            $this->objectiveSeen($user, $objective, $subject);
 //            $user->seen()->attach($objective->id);
 //            event(new objective_complete($user, $objective, $subject));
 
 
             (new MainHelper)->notify_user([
-                'user_id'=>$subject->creator_id,
-                'message'=>"Student $user->name has been complete $objective->name" ,
-                'url'=>"http://example.com",
-                'methods'=>['database']
+                'user_id' => $subject->creator_id,
+                'message' => "Student $user->name has been complete $objective->name",
+                'url' => "http://example.com",
+                'methods' => ['database']
             ]);
+
+            if ($subject->is_completed) {
+                $this->createCertificate($user, $subject);
+            }
 
             DB::commit();
         } catch (\Exception $e) {
@@ -106,7 +114,6 @@ class EnrollController extends  Controller
         $newObjective = Objective::where('id', '>', $objective->id)->where('module_id', $objective->module_id)->min('id');
 
 
-
         if ($newObjective) {
             $newObjective = Objective::findOrFail($newObjective);
             return redirect()->route('student.subject.learnObjective', ['objective' => $newObjective, 'subject' => $subject]);
@@ -114,23 +121,25 @@ class EnrollController extends  Controller
 
         $exam = $objective->module->exams()->first();
         if ($exam) {
-            return redirect()->route('student.subject.exam.show', ['subject'=>$subject,'exam'=>$exam]);
+            return redirect()->route('student.subject.exam.show', ['subject' => $subject, 'exam' => $exam]);
         }
 
-   //     event(new subject_complete(Auth::user(),$subject));
+        //     event(new subject_complete(Auth::user(),$subject));
 
         return redirect()->route('student.subject.learn', $subject);
     }
 
-    public function assignment(Subject $subject, Assignment $assignment){
+    public function assignment(Subject $subject, Assignment $assignment)
+    {
         $module = $assignment->module;
         $objectives = $assignment->module->objectives;
-        return view('frontend.assignments.show', compact('subject',  'module','objectives','assignment'));
+        return view('frontend.assignments.show', compact('subject', 'module', 'objectives', 'assignment'));
     }
 
-    public function assignmentStore(Request $request,Subject $subject, Assignment $assignment){
+    public function assignmentStore(Request $request, Subject $subject, Assignment $assignment)
+    {
 
-        $this->validate($request,[
+        $this->validate($request, [
             'content' => 'required|string',
             'file' => 'nullable',
         ]);
@@ -145,10 +154,10 @@ class EnrollController extends  Controller
         }
         $user = Auth::user();
         (new MainHelper)->notify_user([
-            'user_id'=>$subject->creator_id,
-            'message'=>"Student $user->name has been submit assignment $assignment->name" ,
-            'url'=>"http://example.com",
-            'methods'=>['database']
+            'user_id' => $subject->creator_id,
+            'message' => "Student $user->name has been submit assignment $assignment->name",
+            'url' => "http://example.com",
+            'methods' => ['database']
         ]);
 
         $this->successFlash('Submitted');
@@ -156,13 +165,16 @@ class EnrollController extends  Controller
 
     }
 
-    public function leaderboard (Subject $subject){
-        $students = $subject->getLeaderBoard(Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek());
-        $studentMonth = $subject->getLeaderBoard(Carbon::now()->startOfMonth(),Carbon::now()->endOfMonth());
+    public function leaderboard(Subject $subject)
+    {
+        $students = $subject->getLeaderBoard(Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek());
+        $studentMonth = $subject->getLeaderBoard(Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth());
 
-        return view('frontend.LeaderBoard.index',compact('students','subject','studentMonth'));
+        return view('frontend.LeaderBoard.index', compact('students', 'subject', 'studentMonth'));
 
 
     }
+
+
 
 }
