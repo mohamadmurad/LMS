@@ -100,9 +100,9 @@ class EnrollController extends Controller
                 'methods' => ['database']
             ]);
 
-            if ($subject->is_completed) {
-                $this->createCertificate($user, $subject);
-            }
+//            if ($subject->is_completed) {
+//                $this->createCertificate($user, $subject);
+//            }
 
             DB::commit();
         } catch (\Exception $e) {
@@ -161,9 +161,9 @@ class EnrollController extends Controller
         ]);
 
 
-        if ($subject->is_completed) {
-            $this->createCertificate($user, $subject);
-        }
+//        if ($subject->is_completed) {
+//            $this->createCertificate($user, $subject);
+//        }
 
 
         $this->successFlash('Submitted');

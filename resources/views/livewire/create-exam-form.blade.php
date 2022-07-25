@@ -7,6 +7,13 @@
                 <input class="form-control" type="text" name="name" value="{{old('name')}}" required>
             </div>
         </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="example-text-input" class="form-control-label">Question Count</label>
+               <input class="form-control" type="number" min="1" max="{{$max}}" name="count" wire:model="count" placeholder="Questions count">
+            </div>
+        </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label for="example-text-input" class="form-control-label">Level</label>
@@ -15,12 +22,6 @@
                     <option value="1">medium</option>
                     <option value="2">Hard</option>
                 </select>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="example-text-input" class="form-control-label">Question Count</label>
-               <input class="form-control" type="number" min="1" max="{{$max}}" name="count" placeholder="Questions count">
             </div>
         </div>
         <div class="col-md-6">

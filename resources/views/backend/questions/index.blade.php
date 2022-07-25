@@ -6,7 +6,7 @@
                 <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                                        href="{{route('backend.dashboard.index')}}">Dashboard</a></li>
                 <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
-                                                       href="{{route('backend.subjects.index',$subject)}}">{{$subject->name}}</a>
+                                                       href="{{route('backend.subjects.show',$subject)}}">{{$subject->name}}</a>
                 </li>
                 <li class="breadcrumb-item text-sm text-white active" aria-current="page">Questions</li>
 
@@ -29,7 +29,7 @@
                         <tr>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Question
                             </th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Level</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Objective
                             </th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Options</th>
@@ -42,9 +42,9 @@
                                 <td>{{$question->question}}</td>
                                 <td>
                                     @if($question->level == 0)
-                                        Easy
+                                        Basic
                                     @elseif($question->level == 1)
-                                        Medium
+                                        Advanced
                                     @else
                                         Hard
                                     @endif

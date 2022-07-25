@@ -6,7 +6,7 @@
                 <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                                        href="{{route('backend.dashboard.index')}}">Dashboard</a></li>
                 <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
-                                                       href="{{route('backend.subjects.index',$subject)}}">{{$subject->name}}</a>
+                                                       href="{{route('backend.subjects.show',$subject)}}">{{$subject->name}}</a>
                 </li>
                 <li class="breadcrumb-item text-sm text-white active" aria-current="page">Exams</li>
 
@@ -18,7 +18,7 @@
     <div class="row mt-2">
         <div class="card mb-4">
             <div class="card-header pb-0">
-                <h6>Questions </h6>
+                <h6>Exams </h6>
                 <a href="{{route('backend.exams.create',$subject)}}" @class('btn btn-success')>Create New
                     Exam</a>
             </div>
@@ -27,8 +27,8 @@
                     <table class="table align-items-center mb-0">
                         <thead>
                         <tr>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Exam Name
-                            </th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Exam Name</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Exam Level</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Module</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Question Count</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
@@ -38,7 +38,19 @@
                         @foreach($exams as $exam)
                             <tr>
                                 <td>{{$exam->name}}</td>
+                                <td>
+                                    @if($exam->level == 0)
+                                        Easy
+                                    @elseif($exam->level == 1)
+                                        Medium
+                                    @else
+                                        Hard
+                                    @endif
+
+
+                                </td>
                                 <td>{{$exam->module->name}}</td>
+
                                 <td>{{$exam->questions_count}}</td>
 {{--                                <td>{{$question->objective->module->name}} --> {{$question->objective->name}}</td>--}}
 {{--                                <td>--}}
@@ -59,11 +71,11 @@
                                         <a class="text-secondary font-weight-bold text-xs btn btn-link"
                                            href="{{route('backend.exams.show',['exam'=>$exam,'subject'=>$subject])}}"><i
                                                 class="fa fa-eye me-2"></i> Show </a>
-                                        <a class="text-secondary font-weight-bold text-xs btn btn-link"
-                                           href="{{route('backend.exams.edit',['exam'=>$exam,'subject'=>$subject])}}"><i
-                                                class="fa fa-pencil me-2"></i> edit </a>
-                                        <a type="submit" class="text-danger font-weight-bold text-xs btn btn-link"
-                                           onclick="delete_submit(this)"><i class="fa fa-trash me-2"></i>Delete</a>
+{{--                                        <a class="text-secondary font-weight-bold text-xs btn btn-link"--}}
+{{--                                           href="{{route('backend.exams.edit',['exam'=>$exam,'subject'=>$subject])}}"><i--}}
+{{--                                                class="fa fa-pencil me-2"></i> edit </a>--}}
+{{--                                        <a type="submit" class="text-danger font-weight-bold text-xs btn btn-link"--}}
+{{--                                           onclick="delete_submit(this)"><i class="fa fa-trash me-2"></i>Delete</a>--}}
                                     </form>
 
 

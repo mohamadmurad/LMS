@@ -88,6 +88,7 @@ class Controller extends BaseController
     protected function createCertificate($user, Subject $subject)
     {
 
+
         $path = public_path('certs');
 
         if (!File::exists($path)){
@@ -99,6 +100,7 @@ class Controller extends BaseController
             'name' => $user->name,
             'subject' => $subject->name,
             'creator' => $subject->creator->name,
+            'mark' =>$subject->mark,
             'date' => \Carbon\Carbon::now()->format('Y-M-d')
         ];
 

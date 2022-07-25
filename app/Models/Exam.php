@@ -15,6 +15,7 @@ class Exam extends Model
         'name',
         'subject_id',
         'module_id',
+        'level',
     ];
 
 

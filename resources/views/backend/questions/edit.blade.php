@@ -43,9 +43,11 @@
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Level</label>
                                     <select name="level" class="form-control" required>
-                                        <option value="0" {{$question->level == 0 ? 'selected' : ''}}>Easy</option>
-                                        <option value="1" {{$question->level == 1 ? 'selected' : ''}}>medium</option>
-                                        <option value="2" {{$question->level == 2 ? 'selected' : ''}}>Hard</option>
+                                        <option value="0" {{$question->level == 0 ? 'selected' : ''}}>Basic</option>
+                                        <option value="1" {{$question->level == 1 ? 'selected' : ''}}>Advanced</option>
+{{--                                        <option value="0" {{$question->level == 0 ? 'selected' : ''}}>Easy</option>--}}
+{{--                                        <option value="1" {{$question->level == 1 ? 'selected' : ''}}>medium</option>--}}
+{{--                                        <option value="2" {{$question->level == 2 ? 'selected' : ''}}>Hard</option>--}}
                                     </select>
                                 </div>
                             </div>

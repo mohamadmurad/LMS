@@ -108,7 +108,7 @@
                                     data-bs-toggle="collapse"
                                     data-bs-target="#collapse_{{$module->id}}" aria-expanded="true"
                                     aria-controls="collapse_{{$module->id}}">
-                                @if($modules->is_completed)
+                                @if($module->is_completed)
                                     <svg fill="#1F8354" class="_ufjrdd" aria-hidden="true" focusable="false"
                                          viewBox="0 0 48 48" role="img"
                                          aria-labelledby="Completedb2e43b61-2807-4cc5-96f3-3ffd55573f3b Completedb2e43b61-2807-4cc5-96f3-3ffd55573f3bDesc"

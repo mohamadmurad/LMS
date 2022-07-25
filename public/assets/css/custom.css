@@ -127,6 +127,8 @@ img.edit-image {
     border-radius: 10px;
     box-shadow: 0 4px 8px #c8c8c8;
     border: 1px solid #e6e6e6;
+    width: 76px;
+    height: 76px;
 }
 
 .course-tool .content {

@@ -121,6 +121,7 @@
                     </p>
 
                     <p class="subject-name">{{$data['subject']}}</p>
+                    <p>with mark <b>{{$data['mark']}}%</b></p>
 
                     <p>an online course authorized by {{$data['creator']}} and offered through {{config('app.name')}}</p>
 

@@ -32,7 +32,8 @@ class Module extends Model
 
 
     protected $appends = [
-        'is_completed'
+        'is_completed',
+        'mark'
     ];
 
     public function getRouteKeyName()
@@ -60,22 +61,49 @@ class Module extends Model
         return $this->objectives()->doesntHave('media');
     }
 
+    public function getMarkAttribute(){
+        $examsCount = $this->exams()->count();
+        $mark = 0;
+        foreach ($this->exams as $exam){
+            $submit = $exam->authSubmit()->first();
+            if ($submit){
+                $mark+= $submit->final_mark;
+            }
+        }
+
+        return $mark / $examsCount;
+
+    }
     public function getIsCompletedAttribute()
     {
+        $examsCount = $this->exams()->count();
+        $submitsCount = 0;
+        if ($examsCount > 0){
+            foreach ($this->exams as $exam){
 
-        $examComplete = $this->exam ? $this->exam->authSubmit()->first() : null;
-        $objectives = $this->objectives;
-        $objectiveSeen = 0;
-        foreach ($objectives as $objective) {
-            if ($objective->isSeen->first()) {
-                $objectiveSeen++;
+                $submit = $exam->authSubmit()->first();
+                if ($submit){
+                    $submitsCount++;
+                }
             }
-
         }
+       // $examComplete = $this->exams ? $this->exam->authSubmit()->first() : null;
 
-        if (($this->exam && $examComplete) && $objectiveSeen == $objectives->count() || (!$this->exam ) && $objectiveSeen == $objectives->count()) {
+//        $objectives = $this->objectives;
+//        $objectiveSeen = 0;
+//        foreach ($objectives as $objective) {
+//            if ($objective->isSeen->first()) {
+//                $objectiveSeen++;
+//            }
+//
+//        }
+
+        if ($examsCount == $submitsCount){
             return true;
         }
+//        if (($this->exam && $examComplete) /*&& $objectiveSeen == $objectives->count()*//* || (!$this->exam ) *//*&& $objectiveSeen == $objectives->count()*/) {
+//            return true;
+//        }
 
 
         return false;

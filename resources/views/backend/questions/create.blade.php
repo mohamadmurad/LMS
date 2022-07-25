@@ -41,11 +41,11 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Level</label>
+                                    <label for="example-text-input" class="form-control-label">Type</label>
                                     <select name="level" class="form-control" required>
-                                        <option value="0">Easy</option>
-                                        <option value="1">medium</option>
-                                        <option value="2">Hard</option>
+                                        <option value="0">Basic</option>
+                                        <option value="1">Advanced</option>
+{{--                                        <option value="2">Hard</option>--}}
                                     </select>
                                 </div>
                             </div>

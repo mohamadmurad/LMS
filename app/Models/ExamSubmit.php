@@ -53,6 +53,7 @@ class ExamSubmit extends Model
         $oid = 0;
         $answer = $this->answers()
             ->where('question_id', $id)->first();
+       // dd($answer);
 
         if ($answer) {
             $oid = $answer->pivot->option_id;

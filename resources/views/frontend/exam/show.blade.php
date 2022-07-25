@@ -23,17 +23,26 @@
                             <div class="row clearfix">
 
                                 <!-- Column -->
-                                <div class="column col-lg-12 col-md-6 col-sm-12">
+                                <div class="column col-lg-6 col-md-6 col-sm-12">
                                     <h6>Questions</h6>
                                     <div class="question">{{$exam->questions()->count()}} <span>Questions</span></div>
                                 </div>
-
+                                @if($exam->authSubmit->first())
+                                <!-- Column -->
+                                <div class="column col-lg-6 col-md-6 col-sm-12">
+                                    <h6>Your Mark</h6>
+                                    <div class="question"> {{$exam->authSubmit->first()->final_mark}} <span>%</span></div>
+                                </div>
+                                @endif
 
                             </div>
                         </div>
                     </div>
                     <!-- Lower Box -->
                     <div class="lower-box">
+
+
+
 
                         <!-- Quiz Form -->
                         <div class="quiz-form">
@@ -59,6 +68,7 @@
                                         <div class="d-flex mb-2">
                                             <div class="flex-grow-1">
                                                     @foreach($question->options as $option)
+
                                                         <div class="form-check ">
                                                             <input required class="form-check-input" type="radio"
                                                                    name="option[{{$question->id}}]"

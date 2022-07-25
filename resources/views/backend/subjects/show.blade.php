@@ -77,7 +77,7 @@
                             <div class="course-tool">
                                 <div class="big-icon">
                                     <a href="{{route('backend.placements.index',$subject)}}">
-                                        <img src="{{asset('assets/img/quiz.png')}}" alt="Placements" title="Placements"/>
+                                        <img src="{{asset('assets/img/placement.png')}}" alt="Placements" title="Placements"/>
                                     </a>
                                 </div>
                                 <div class="content">
@@ -89,7 +89,7 @@
                             <div class="course-tool">
                                 <div class="big-icon">
                                     <a href="{{route('backend.modules.index',$subject)}}">
-                                        <img src="{{asset('assets/img/course_progress.png')}}" alt="Modules"
+                                        <img src="{{asset('assets/img/module.png')}}" alt="Modules"
                                              title="Module"/>
                                     </a>
                                 </div>
@@ -102,7 +102,7 @@
                             <div class="course-tool">
                                 <div class="big-icon">
                                     <a href="{{route('backend.subject.level.show',$subject)}}">
-                                        <img src="{{asset('assets/img/course_progress.png')}}" alt="Levels"
+                                        <img src="{{asset('assets/img/level.png')}}" alt="Levels"
                                              title="Levels"/>
                                     </a>
                                 </div>
@@ -115,7 +115,7 @@
                             <div class="course-tool">
                                 <div class="big-icon">
                                     <a href="{{route('backend.subject.leaderboard.show',$subject)}}">
-                                        <img src="{{asset('assets/img/course_progress.png')}}" alt="Levels"
+                                        <img src="{{asset('assets/img/leaderboard.png')}}" alt="Levels"
                                              title="Levels"/>
                                     </a>
                                 </div>

@@ -44,7 +44,7 @@ class Subject extends Model implements HasMedia
         'creator_id',
     ];
 
-    protected $appends = ['is_completed'];
+    protected $appends = ['is_completed','mark'];
 
 
     public function getIsCompletedAttribute(){
@@ -54,6 +54,15 @@ class Subject extends Model implements HasMedia
            }
         }
         return true;
+    }
+
+    public function getMarkAttribute(){
+        $modulesCount = $this->modules()->count();
+        $mark = 0;
+        foreach ($this->modules as $module){
+          $mark+= $module->mark;
+        }
+        return floor($mark / $modulesCount);
     }
 
     public function getRouteKeyName()
