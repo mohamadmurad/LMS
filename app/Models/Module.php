@@ -70,7 +70,7 @@ class Module extends Model
                 $mark+= $submit->final_mark;
             }
         }
-
+        if ($examsCount == 0) return null;
         return $mark / $examsCount;
 
     }
