@@ -17,6 +17,7 @@ class AssignmentSubmit extends Model  implements HasMedia
         'status',
         'mark',
         'student_id',
+        'feedback',
     ];
 
 

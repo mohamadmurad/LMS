@@ -111,7 +111,8 @@
                         @endforeach
 
                     </div>
-
+                    <h3>Feedback</h3>
+                    <p>{{$assignment->submitAuth->feedback}}</p>
 
                 </div>
                 @endif

@@ -159,6 +159,7 @@ class AssignmentController extends Controller
 
         $this->validate($request,[
             'mark'=> 'required|numeric|min:0|max:100',
+            'feedback' => 'nullable|string',
         ]);
 
 
@@ -187,6 +188,7 @@ class AssignmentController extends Controller
         }
         $submit->update([
             'mark' => $request->get('mark'),
+            'feedback' => $request->get('feedback'),
             'status' => 1,
         ]);
 

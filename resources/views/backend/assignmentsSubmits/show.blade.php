@@ -33,13 +33,12 @@
                 </div>
 
 
-
-
                 @if($submit->hasMedia('submit_file'))
 
                     @if($submit->getFirstMedia('submit_file')->getExtensionAttribute() == 'sb3')
                         <div class="w-100">
-                            <iframe id="myframe" src="{{route('ss',['submit'=>$submit])}}" style="    width: 100%;    height: 500px;"></iframe>
+                            <iframe id="myframe" src="{{route('ss',['submit'=>$submit])}}"
+                                    style="    width: 100%;    height: 500px;"></iframe>
                         </div>
 
                     @endif
@@ -58,7 +57,8 @@
                                 <div class="col-md-1">
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox"
-                                               name="objective[{{$objective->id}}]" {{in_array($objective->id, $submit->achieved()) ? 'checked' : ''}} disabled
+                                               name="objective[{{$objective->id}}]"
+                                               {{in_array($objective->id, $submit->achieved()) ? 'checked' : ''}} disabled
                                                id="objective_{{$objective->id}}_correct">
                                         <label class="form-check-label"
                                                for="objective_{{$objective->name}}_correct"></label>
@@ -73,11 +73,13 @@
                         @endforeach
                     </div>
 
+                    <h5>Feedback</h5>
+                    <p>{{$submit->feedback}}</p>
                 @else
                     <form method="post"
                           action="{{route('backend.assignments.submits.mark',['subject'=>$subject,'assignment'=>$assignment,'submit'=>$submit])}}">
                         @csrf
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Mark</label>
                                 <input class="form-control" type="number" name="mark" value="{{old('mark')}}"
@@ -85,6 +87,15 @@
                                 @error('mark') <span>{{$errors->mark}}</span> @enderror
                             </div>
                         </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="example-text-input" class="form-control-label">Feedback</label>
+                                <textarea class="form-control" name="feedback">{{old('feedback')}}</textarea>
+                                @error('feedback') <span>{{$errors->feedback}}</span> @enderror
+                            </div>
+                        </div>
+
                         <p>Objectives that have been achieved</p>
                         <div class="questions">
                             @foreach($objectives as $objective)
