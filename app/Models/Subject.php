@@ -146,7 +146,7 @@ class Subject extends Model implements HasMedia
 //            ->join('levels', 'reward_points.student_id', '=', 'enrolls.student_id')
             ->select( DB::raw('SUM(points.count) as points'), 'reward_points.student_id')
             ->groupBy('reward_points.student_id')
-            ->orderBy('points')
+            ->orderBy('points','desc')
             ->get();
     }
 
