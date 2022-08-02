@@ -62,6 +62,8 @@ class Subject extends Model implements HasMedia
         foreach ($this->modules as $module){
           $mark+= $module->mark;
         }
+        if($modulesCount == 0) return  null;
+
         return floor($mark / $modulesCount);
     }
 
