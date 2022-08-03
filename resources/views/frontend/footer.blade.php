@@ -9,7 +9,7 @@
                             <div class="single-footer-caption mb-30">
                                 <!-- logo -->
                                 <div class="footer-logo mb-25">
-                                    <a href="{{route('home')}}"><img src="{{asset('assets/front/img/logo/logo2_footer.png')}}" alt=""></a>
+                                    <a href="{{route('home')}}"><h1 style="color: #fff">ProGaming</h1></a>
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">
