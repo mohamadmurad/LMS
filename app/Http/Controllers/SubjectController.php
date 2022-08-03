@@ -154,7 +154,10 @@ class SubjectController extends Controller
                 'category_id' => $request->get('category_id'),
             ]);
             if ($request->hasFile('cover')) {
-                $subject->getFirstMedia('cover')->delete();
+                if ($subject->hasMedia('cover')){
+                    $subject->getFirstMedia('cover')->delete();
+                }
+
                 $subject->addMediaFromRequest('cover')->toMediaCollection('cover');
             }
 
