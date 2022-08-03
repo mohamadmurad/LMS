@@ -20,8 +20,7 @@
                         <!-- Logo -->
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo">
-                                <a href="{{route('home')}}"><img src="{{asset('assets/front/img/logo/logo.png')}}"
-                                                                 alt=""></a>
+                                <a href="{{route('home')}}"><h1 style="color: #fff">ProGaming</h1></a>
                             </div>
                         </div>
                         <div class="col-xl-10 col-lg-10">
