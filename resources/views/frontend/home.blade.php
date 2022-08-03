@@ -8,9 +8,9 @@
                     <div class="row">
                         <div class="col-xl-6 col-lg-7 col-md-12">
                             <div class="hero__caption">
-                                <h1 data-animation="fadeInLeft" data-delay="0.2s">Online learning<br> platform</h1>
-                                <p data-animation="fadeInLeft" data-delay="0.4s">Build skills with courses,
-                                    certificates, and degrees online from world-class universities and companies</p>
+                                <h1 data-animation="fadeInLeft" data-delay="0.2s">Gamified Programming<br> platform</h1>
+                                <p data-animation="fadeInLeft" data-delay="0.4s">Start your programming journey,
+                                    with Points, Badges, LeaderBoard, Certificates, and degrees</p>
                                 <a href="{{ route('register') }}" class="btn hero-btn" data-animation="fadeInLeft"
                                    data-delay="0.7s">Join for Free</a>
                             </div>
@@ -31,8 +31,8 @@
                             <img src="{{asset('assets/front/img/icon/icon1.svg')}}" alt="">
                         </div>
                         <div class="features-caption">
-                            <h3>60+ UX courses</h3>
-                            <p>The automated process all your website tasks.</p>
+                            <h3>Start Coding</h3>
+                            <p>We would be more than happy to give you a course in our platform.</p>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                         </div>
                         <div class="features-caption">
                             <h3>Expert instructors</h3>
-                            <p>The automated process all your website tasks.</p>
+                            <p>Design your content and motivate your students</p>
                         </div>
                     </div>
                 </div>
@@ -53,8 +53,8 @@
                             <img src="{{asset('assets/front/img/icon/icon3.svg')}}" alt="">
                         </div>
                         <div class="features-caption">
-                            <h3>Life time access</h3>
-                            <p>The automated process all your website tasks.</p>
+                            <h3>Collaborative</h3>
+                            <p>make learning engaging and effective</p>
                         </div>
                     </div>
                 </div>
