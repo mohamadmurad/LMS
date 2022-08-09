@@ -53,7 +53,7 @@ class SubjectReviews extends Component
         $user = Auth::user();
         (new MainHelper)->notify_user([
             'user_id' => $this->subject->creator_id,
-            'message' => "Student $user->name has been review subject $this->subject->name",
+            'message' => "Student $user->name has been review subject " . $this->subject->name,
             'url' => "http://example.com",
             'methods' => ['database']
         ]);
