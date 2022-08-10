@@ -11,13 +11,14 @@
     <!-- Styles -->
 {{--    <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">--}}
 {{--    <link rel="stylesheet" href="{{ asset('assets/css/nucleo-svg.css') }}">--}}
-{{--    <link rel="stylesheet" href="{{ asset('assets/css/fancybox.css') }}">--}}
+    <link rel="stylesheet" href="{{ asset('assets/css/fancybox.css') }}">
 {{--    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">--}}
     <link rel="stylesheet" href="{{ asset('assets/css/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/argon-dashboard.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/toastr.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @livewireStyles
     @if(auth()->check())

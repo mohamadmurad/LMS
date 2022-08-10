@@ -10,6 +10,8 @@
 
     <link rel="stylesheet" href="{{ mix('css/frontall.css') }}">
 
+
+
     @livewireStyles
 </head>
 <body>
